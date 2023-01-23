@@ -13,13 +13,14 @@ import { getCategories } from '../Features/Notes/NotesSelectors';
 import { useModal } from 'react-native-modalfy';
 import { DrawPannel } from '../Components/DrawPannel';
 import { createStackNavigator } from '@react-navigation/stack';
+import { navigationOptionsConfig } from './NavigatorsConfig';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
 function NoteOptionStack() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ ...navigationOptionsConfig }}>
       <Stack.Screen name="NoteEditor" component={NoteEditor} />
       <Stack.Screen name="DrawPannel" component={DrawPannel} />
     </Stack.Navigator>

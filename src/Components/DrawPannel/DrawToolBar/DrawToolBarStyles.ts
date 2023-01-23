@@ -12,4 +12,9 @@ export default StyleSheet.create({
     position: 'absolute',
     right: 16,
   },
+  buttons: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-between',
+  },
 });
