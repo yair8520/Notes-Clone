@@ -18,23 +18,27 @@ import { INote } from '../../Features/Notes/NotesTypes';
 export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   const { noteId } = route?.params ?? '0';
   const notes = useAppSelector(getNotes);
-
-  const currentNote: INote | undefined = useMemo(() => {
-    return notes.find((item) => {
-      return item.id === noteId;
+  const currentNote = useMemo(() => {
+    return Object.entries(notes).find((item) => {
+      console.log(item[0]);
+      return item[0] === noteId;
     });
   }, [noteId, notes]);
 
-  const [headline, setHeadline] = useState<any>(currentNote?.headline);
-  const [body, setBody] = useState<any>(currentNote?.body);
+  const id = useMemo(() => {
+    return noteId ? noteId : uid(16);
+  }, [noteId]);
+
+  const [headline, setHeadline] = useState<any>(currentNote?.[1]?.headline);
+  const [body, setBody] = useState<any>(currentNote?.[1].body);
   const [image, setImage] = useState<string>('');
   const [option, setOption] = useState<string>('');
-
+  console.log({ noteId });
   const dispatch = useAppDispatch();
   const saveNote = (type: string) => {
     dispatch(
       addNote({
-        id: uid(16),
+        id,
         type,
         time: getCurrentTime(),
         date: getCurrentDate(),

@@ -10,17 +10,15 @@ import { t } from 'i18next';
 
 export const NotesList = ({ type, filterDir }: NotesListProps) => {
   let notes = useAppSelector(getNotes);
-  console.log(filterDir);
   const notesFiltered = useMemo(() => {
-    return notes.filter((item) => item.type === type);
+    return Object.entries(notes).filter((item) => item[1].type === type);
   }, [notes, type]);
-
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <View style={styles.container}>
         {notesFiltered.length !== 0 ? (
           notesFiltered.map((item, index) => (
-            <NotesListItem key={index} note={item} />
+            <NotesListItem key={index} note={item[1]} />
           ))
         ) : (
           <View style={styles.emptyList}>

@@ -1,5 +1,5 @@
 export interface NotesState {
-  notesArray: INote[];
+  notesArray: INote;
   categories: ICategories[];
 }
 interface ICategories {
@@ -7,6 +7,9 @@ interface ICategories {
   icon: string;
 }
 interface INote {
+  [key: string]: Inote;
+}
+interface Inote {
   id: string;
   type: string;
   date: string;

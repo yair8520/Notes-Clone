@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { INote, NotesState } from './NotesTypes';
+import { Inote, INote, NotesState } from './NotesTypes';
 
 const initialState: NotesState = {
-  notesArray: [],
+  notesArray: {},
   categories: [{ title: 'Work', icon: 'folder' }],
 };
 
@@ -10,8 +10,8 @@ const NotesSlice = createSlice({
   name: 'Note',
   initialState,
   reducers: {
-    addNote: (state, { payload }: { payload: INote }) => {
-      state.notesArray.push(payload);
+    addNote: (state, { payload }: { payload: Inote }) => {
+      state.notesArray[payload.id] = payload;
     },
 
     removeNote: (state, { payload }: { payload: INote }) => {
