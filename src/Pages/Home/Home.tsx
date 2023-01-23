@@ -34,7 +34,7 @@ export const Home = ({ navigation }: HomeProps) => {
       <FAB
         icon="plus"
         style={styles.fab}
-        onPress={() => navigation.navigate('NoteEditor')}
+        onPress={() => navigation.navigate('NoteEditorStack')}
       />
     </>
   );

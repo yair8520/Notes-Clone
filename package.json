@@ -17,6 +17,7 @@
     "@react-navigation/native": "^6.1.2",
     "@react-navigation/stack": "^6.3.11",
     "@reduxjs/toolkit": "^1.9.1",
+    "@shopify/react-native-skia": "^0.1.172",
     "@ui-kitten/components": "^5.1.2",
     "i18next": "^22.4.9",
     "moment": "^2.29.4",
@@ -34,6 +35,7 @@
     "react-native-vector-icons": "^9.2.0",
     "react-redux": "^8.0.5",
     "redux-persist": "^6.0.0",
+    "rn-perfect-sketch-canvas": "^0.3.0",
     "uid": "^2.0.1"
   },
   "devDependencies": {

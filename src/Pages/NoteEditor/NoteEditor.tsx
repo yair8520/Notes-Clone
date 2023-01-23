@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { View, ScrollView } from 'react-native';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { NoteEditorProps } from './NoteEditorProps';
 import styles from './NoteEditorStyles';
 import { MultiLineInput } from '../../Components/MultiLineInput';
@@ -13,11 +13,10 @@ import { getCurrentDate, getCurrentTime } from '../../Utils/Time';
 import { uid } from 'uid';
 import { getNotes } from '../../Features/Notes/NotesSelectors';
 import { DrawPannel } from '../../Components/DrawPannel';
-import { DrawToolBar } from '../../Components/DrawPannel/DrawToolBar';
+
 export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   const [headline, setHeadline] = useState<string>('');
   const [body, setBody] = useState<string>('');
-  console.log(route.params?.noteId);
   const note = useAppSelector(getNotes);
   const [option, setOption] = useState<string>('');
 
@@ -52,10 +51,9 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
               value={body}
             />
           </View>
-          <DrawPannel />
+          {/* {option === 'Draw' && <DrawPannel />} */}
         </View>
       </ScrollView>
-      <DrawToolBar />
       <FloatingButton setOption={setOption} />
     </>
   );

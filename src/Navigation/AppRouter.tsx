@@ -11,8 +11,20 @@ import { List, MD3Colors } from 'react-native-paper';
 import { useAppSelector } from '../Redux';
 import { getCategories } from '../Features/Notes/NotesSelectors';
 import { useModal } from 'react-native-modalfy';
+import { DrawPannel } from '../Components/DrawPannel';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
+
+function NoteOptionStack() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen name="NoteEditor" component={NoteEditor} />
+      <Stack.Screen name="DrawPannel" component={DrawPannel} />
+    </Stack.Navigator>
+  );
+}
 
 export default function AppRouter() {
   const { openModal } = useModal();
@@ -52,8 +64,8 @@ export default function AppRouter() {
         />
       ))}
       <Drawer.Screen
-        name={'NoteEditor'}
-        component={NoteEditor}
+        name={'NoteEditorStack'}
+        component={NoteOptionStack}
         options={{
           drawerItemStyle: { display: 'none' },
         }}
