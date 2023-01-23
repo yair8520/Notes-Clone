@@ -7,7 +7,6 @@ import { FAB } from 'react-native-paper';
 import { AppHeader } from '../../Components/Headers/AppHeader/Header';
 import { NotesList } from '../../NotesList';
 import { useRoute } from '@react-navigation/native';
-import useBackButton from '../../Hooks/useBackHandler/useBackHandler';
 
 export const Home = ({ navigation }: HomeProps) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
@@ -15,9 +14,7 @@ export const Home = ({ navigation }: HomeProps) => {
   const onChangeSearch = (query: React.SetStateAction<string>) =>
     setSearchQuery(query);
   const type = useRoute().name;
-  useBackButton(() => {
-    return console.log('back');
-  });
+
   return (
     <>
       <AppHeader

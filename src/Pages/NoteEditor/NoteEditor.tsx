@@ -12,6 +12,8 @@ import { addNote } from '../../Features/Notes/NotesSlice';
 import { getCurrentDate, getCurrentTime } from '../../Utils/Time';
 import { uid } from 'uid';
 import { getNotes } from '../../Features/Notes/NotesSelectors';
+import { DrawPannel } from '../../Components/DrawPannel';
+import { DrawToolBar } from '../../Components/DrawPannel/DrawToolBar';
 export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   const [headline, setHeadline] = useState<string>('');
   const [body, setBody] = useState<string>('');
@@ -50,8 +52,10 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
               value={body}
             />
           </View>
+          <DrawPannel />
         </View>
       </ScrollView>
+      <DrawToolBar />
       <FloatingButton setOption={setOption} />
     </>
   );
