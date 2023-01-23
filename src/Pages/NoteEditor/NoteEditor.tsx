@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { View, ScrollView } from 'react-native';
-import React, { useRef, useState } from 'react';
+import { View, ScrollView, Image } from 'react-native';
+import React, { useMemo, useRef, useState } from 'react';
 import { NoteEditorProps } from './NoteEditorProps';
 import styles from './NoteEditorStyles';
 import { MultiLineInput } from '../../Components/MultiLineInput';
@@ -12,12 +13,21 @@ import { addNote } from '../../Features/Notes/NotesSlice';
 import { getCurrentDate, getCurrentTime } from '../../Utils/Time';
 import { uid } from 'uid';
 import { getNotes } from '../../Features/Notes/NotesSelectors';
-import { DrawPannel } from '../../Components/DrawPannel';
+import { INote } from '../../Features/Notes/NotesTypes';
 
 export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
-  const [headline, setHeadline] = useState<string>('');
-  const [body, setBody] = useState<string>('');
-  const note = useAppSelector(getNotes);
+  const { noteId } = route?.params ?? '0';
+  const notes = useAppSelector(getNotes);
+
+  const currentNote: INote | undefined = useMemo(() => {
+    return notes.find((item) => {
+      return item.id === noteId;
+    });
+  }, [noteId, notes]);
+
+  const [headline, setHeadline] = useState<any>(currentNote?.headline);
+  const [body, setBody] = useState<any>(currentNote?.body);
+  const [image, setImage] = useState<string>('');
   const [option, setOption] = useState<string>('');
 
   const dispatch = useAppDispatch();
@@ -30,6 +40,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
         date: getCurrentDate(),
         headline,
         body,
+        image: image,
       })
     );
   };
@@ -51,7 +62,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
               value={body}
             />
           </View>
-          {/* {option === 'Draw' && <DrawPannel />} */}
+          {image && <Image source={{ uri: image }} />}
         </View>
       </ScrollView>
       <FloatingButton setOption={setOption} />

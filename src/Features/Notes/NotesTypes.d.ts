@@ -13,4 +13,5 @@ interface INote {
   time: string;
   headline: string;
   body: string;
+  image?: string;
 }

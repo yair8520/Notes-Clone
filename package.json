@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@eva-design/eva": "^2.1.1",
+    "@react-native-community/slider": "^4.4.1",
     "@react-native-masked-view/masked-view": "^0.2.8",
     "@react-navigation/drawer": "^6.5.7",
     "@react-navigation/native": "^6.1.2",
@@ -34,6 +35,7 @@
     "react-native-svg": "^13.7.0",
     "react-native-vector-icons": "^9.2.0",
     "react-redux": "^8.0.5",
+    "reanimated-color-picker": "^1.0.4",
     "redux-persist": "^6.0.0",
     "rn-perfect-sketch-canvas": "^0.3.0",
     "uid": "^2.0.1"

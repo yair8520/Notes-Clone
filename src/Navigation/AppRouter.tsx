@@ -32,7 +32,7 @@ export default function AppRouter() {
   const categories = useAppSelector(getCategories);
   return (
     <Drawer.Navigator
-      screenOptions={{ headerShown: false }}
+      screenOptions={{ headerShown: false, unmountOnBlur: true }}
       drawerContent={(props) => {
         return (
           <DrawerContentScrollView {...props}>

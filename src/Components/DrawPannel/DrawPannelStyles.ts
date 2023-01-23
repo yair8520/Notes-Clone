@@ -11,4 +11,5 @@ export default StyleSheet.create({
     height: 500,
     flexGrow: 1,
   },
+  title: { alignItems: 'center' },
 });

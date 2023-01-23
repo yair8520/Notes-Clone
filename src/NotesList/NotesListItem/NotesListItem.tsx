@@ -7,7 +7,10 @@ import { useNavigation } from '@react-navigation/native';
 export const NotesListItem = ({ note }: NotesListItemProps) => {
   const nav = useNavigation();
   const navToEditor = () => {
-    nav.navigate('NoteEditor', { noteId: note.id });
+    nav.navigate('NoteEditorStack', {
+      screen: 'NoteEditor',
+      params: { noteId: note.id },
+    });
   };
   return (
     <TouchableOpacity onPress={navToEditor} style={styles.container}>

@@ -4,6 +4,6 @@ export interface DrawToolBarProps {
   redo: () => void;
   undo: () => void;
   reset: () => void;
-  setBrush: (width: number) => void;
-  pickColor: (color: string) => void;
+  setStrokeWidth: (width: number) => void;
+  pickColor: any;
 }

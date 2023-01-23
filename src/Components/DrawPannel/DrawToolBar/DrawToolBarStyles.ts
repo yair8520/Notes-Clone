@@ -17,4 +17,7 @@ export default StyleSheet.create({
     width: '100%',
     justifyContent: 'space-between',
   },
+  menu: {
+    width: 150,
+  },
 });
