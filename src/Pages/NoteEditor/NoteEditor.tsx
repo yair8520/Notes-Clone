@@ -23,7 +23,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
       return item[0] === noteId;
     });
   }, [noteId, notes]);
-
+  console.log({ noteId });
   const id = useMemo(() => {
     return noteId ? noteId : uid(16);
   }, [noteId]);

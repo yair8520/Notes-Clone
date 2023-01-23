@@ -11,7 +11,10 @@ const NotesSlice = createSlice({
   initialState,
   reducers: {
     addNote: (state, { payload }: { payload: Inote }) => {
-      state.notesArray[payload.id] = payload;
+      state.notesArray[payload.id] = {
+        ...payload,
+        ...state.notesArray[payload.id],
+      };
     },
     addImage: (state, { payload }: { payload: IaddImage }) => {
       const { id, points, base64 } = payload;
