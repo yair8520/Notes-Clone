@@ -16,4 +16,11 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     flexGrow: 1,
   },
+  imgContainer: {
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+  },
+  img: { height: 150, width: 150 },
 });

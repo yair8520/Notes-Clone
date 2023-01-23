@@ -18,7 +18,7 @@ export const NotesList = ({ type, filterDir }: NotesListProps) => {
       <View style={styles.container}>
         {notesFiltered.length !== 0 ? (
           notesFiltered.map((item, index) => (
-            <NotesListItem key={index} note={item[1]} />
+            <NotesListItem key={`${index}${index}`} note={item[1]} />
           ))
         ) : (
           <View style={styles.emptyList}>

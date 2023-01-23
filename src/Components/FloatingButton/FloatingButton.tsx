@@ -4,7 +4,7 @@ import { TemplateProps } from './FloatingButtonProps';
 import styles from './FloatingButtonStyles';
 import { FAB } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-export const FloatingButton = ({ setOption }: TemplateProps) => {
+export const FloatingButton = ({ setOption, noteId }: TemplateProps) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const nav = useNavigation();
   const onStateChange = ({ open }: any) => setOpen(open);
@@ -35,7 +35,7 @@ export const FloatingButton = ({ setOption }: TemplateProps) => {
         {
           icon: 'draw',
           label: 'Draw',
-          onPress: () => nav.navigate('DrawPannel'),
+          onPress: () => nav.navigate('DrawPannel', { noteId }),
         },
         {
           icon: 'signature',

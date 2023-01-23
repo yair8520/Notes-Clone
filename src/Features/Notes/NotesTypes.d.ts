@@ -16,5 +16,14 @@ interface Inote {
   time: string;
   headline: string;
   body: string;
-  image?: string;
+  image?: Iimages;
+}
+interface Iimages {
+  points: any;
+  base64: string;
+}
+interface IaddImage {
+  id: string;
+  points: any;
+  base64: any;
 }

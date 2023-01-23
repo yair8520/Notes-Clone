@@ -20,7 +20,6 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   const notes = useAppSelector(getNotes);
   const currentNote = useMemo(() => {
     return Object.entries(notes).find((item) => {
-      console.log(item[0]);
       return item[0] === noteId;
     });
   }, [noteId, notes]);
@@ -28,12 +27,10 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   const id = useMemo(() => {
     return noteId ? noteId : uid(16);
   }, [noteId]);
-
+  const image = currentNote?.[1].image?.base64;
   const [headline, setHeadline] = useState<any>(currentNote?.[1]?.headline);
   const [body, setBody] = useState<any>(currentNote?.[1].body);
-  const [image, setImage] = useState<string>('');
   const [option, setOption] = useState<string>('');
-  console.log({ noteId });
   const dispatch = useAppDispatch();
   const saveNote = (type: string) => {
     dispatch(
@@ -44,7 +41,6 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
         date: getCurrentDate(),
         headline,
         body,
-        image: image,
       })
     );
   };
@@ -66,10 +62,17 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
               value={body}
             />
           </View>
-          {image && <Image source={{ uri: image }} />}
+          <View style={styles.imgContainer}>
+            {image && (
+              <Image
+                style={styles.img}
+                source={{ uri: `data:image/jpeg;base64,${image}` }}
+              />
+            )}
+          </View>
         </View>
       </ScrollView>
-      <FloatingButton setOption={setOption} />
+      <FloatingButton noteId={id} setOption={setOption} />
     </>
   );
 };

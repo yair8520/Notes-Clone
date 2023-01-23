@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { Inote, INote, NotesState } from './NotesTypes';
+import { IaddImage, Inote, INote, NotesState } from './NotesTypes';
 
 const initialState: NotesState = {
   notesArray: {},
@@ -13,7 +13,10 @@ const NotesSlice = createSlice({
     addNote: (state, { payload }: { payload: Inote }) => {
       state.notesArray[payload.id] = payload;
     },
-
+    addImage: (state, { payload }: { payload: IaddImage }) => {
+      const { id, points, base64 } = payload;
+      state.notesArray[id].image = { points, base64 };
+    },
     removeNote: (state, { payload }: { payload: INote }) => {
       console.log(payload);
     },
@@ -23,5 +26,6 @@ const NotesSlice = createSlice({
   },
 });
 
-export const { addNote, removeNote, addCategory } = NotesSlice.actions;
+export const { addNote, removeNote, addCategory, addImage } =
+  NotesSlice.actions;
 export default NotesSlice.reducer;
