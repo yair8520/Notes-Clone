@@ -15,16 +15,15 @@ export const NotesList = ({
   searchQuery,
 }: NotesListProps) => {
   let notes = useAppSelector(getNotes);
-
-  console.log(searchQuery);
   const notesFiltered = useMemo(() => {
     if (searchQuery) {
-      console.log(searchQuery);
-      return Object.entries(notes).filter((item) =>
-        item[1].headline.includes(searchQuery)
+      return Object.entries(notes).filter(
+        (item) =>
+          item[1].headline.includes(searchQuery) && item[1].type === type
       );
-    } else return Object.entries(notes);
-  }, [notes, searchQuery]);
+    } else return Object.entries(notes).filter((item) => item[1].type === type);
+  }, [notes, searchQuery, type]);
+
   return (
     <ScrollView contentContainerStyle={styles.content}>
       <View style={styles.container}>

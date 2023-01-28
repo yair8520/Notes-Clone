@@ -8,11 +8,11 @@ import { DrawToolBar } from './DrawToolBar';
 import { Appbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { useAppDispatch, useAppSelector } from '../../Redux';
-import { addImage } from '../../Features/Notes/NotesSlice';
+import { addImage, addSign } from '../../Features/Notes/NotesSlice';
 import { getNotes } from '../../Features/Notes/NotesSelectors';
 export const DrawPannel = ({ route }: DrawPannelProps) => {
-  const { noteId } = route.params;
-
+  const { noteId, sign = false } = route.params;
+  console.log(sign);
   const selector = useAppSelector(getNotes);
   const dispatch = useAppDispatch();
   const [strokeWidth, setStrokeWidth] = useState<number>();
@@ -21,7 +21,9 @@ export const DrawPannel = ({ route }: DrawPannelProps) => {
 
   useEffect(() => {
     canvasRef.current?.addPoints([]);
-    if (selector[noteId]?.image?.points) {
+    if (sign && selector[noteId]?.sign?.points) {
+      canvasRef.current?.addPoints(selector[noteId].sign?.points);
+    } else if (selector[noteId]?.image?.points) {
       canvasRef.current?.addPoints(selector[noteId].image?.points);
     }
   }, []);
@@ -38,15 +40,18 @@ export const DrawPannel = ({ route }: DrawPannelProps) => {
   const saveImage = () => {
     const points = canvasRef.current?.toPoints();
     const base64 = canvasRef.current?.toImage()?.encodeToBase64();
-    console.log(noteId);
-    dispatch(addImage({ id: noteId, base64, points }));
+    if (sign) {
+      dispatch(addSign({ id: noteId, base64, points }));
+    } else {
+      dispatch(addImage({ id: noteId, base64, points }));
+    }
   };
   return (
     <>
       <Appbar.Header>
         <Appbar.Action icon="content-save" onPress={() => saveImage()} />
         <Appbar.Content style={styles.title} title={'Draw Panel'} />
-        <Appbar.Action icon="arrow-left" onPress={() => nav.goBack()} />
+        <Appbar.Action icon="arrow-right" onPress={() => nav.goBack()} />
       </Appbar.Header>
       <View style={styles.container}>
         <SketchCanvas

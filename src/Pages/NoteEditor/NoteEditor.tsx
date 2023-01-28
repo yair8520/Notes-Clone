@@ -13,10 +13,13 @@ import { addNote } from '../../Features/Notes/NotesSlice';
 import { getCurrentDate, getCurrentTime } from '../../Utils/Time';
 import { uid } from 'uid';
 import { getNotes } from '../../Features/Notes/NotesSelectors';
+import { TouchableOpacity } from 'react-native';
+import { Pressable } from 'react-native';
 
 export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   const { noteId } = route?.params ?? '0';
   const notes = useAppSelector(getNotes);
+  console.log(notes);
   const currentNote = useMemo(() => {
     return Object.entries(notes).find((item) => {
       return item[0] === noteId;
@@ -27,6 +30,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
     return noteId ? noteId : uid(16);
   }, [noteId]);
   const image = currentNote?.[1].image?.base64;
+  const sign = currentNote?.[1].sign?.base64;
   const [headline, setHeadline] = useState<any>(currentNote?.[1]?.headline);
   const [body, setBody] = useState<any>(currentNote?.[1].body);
   const dispatch = useAppDispatch();
@@ -61,15 +65,46 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
             />
           </View>
           {image && (
-            <View style={styles.imgContainer}>
-              <Image
-                style={styles.img}
-                source={{ uri: `data:image/jpeg;base64,${image}` }}
-              />
-            </View>
+            <>
+              <NText style={styles.label} variant="H3">
+                Draw Pannel - long press for edit
+              </NText>
+              <TouchableOpacity
+                onPress={() => {}}
+                onLongPress={() =>
+                  navigation.navigate('DrawPannel', { noteId })
+                }
+                style={styles.imgContainer}
+              >
+                <Image
+                  style={styles.drawImg}
+                  source={{ uri: `data:image/jpeg;base64,${image}` }}
+                />
+              </TouchableOpacity>
+            </>
+          )}
+          {sign && (
+            <>
+              <NText style={styles.label} variant="H3">
+                Sign Pannel - long press for edit
+              </NText>
+              <TouchableOpacity
+                onPress={() => {}}
+                onLongPress={() =>
+                  navigation.navigate('DrawPannel', { noteId, sign: true })
+                }
+                style={styles.imgContainer}
+              >
+                <Image
+                  style={styles.signimg}
+                  source={{ uri: `data:image/jpeg;base64,${sign}` }}
+                />
+              </TouchableOpacity>
+            </>
           )}
         </View>
       </ScrollView>
+
       <FloatingButton data={currentNote?.[1]} noteId={id} />
     </>
   );

@@ -1,6 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { generateColor } from '../../Theme/Colors';
-import { IaddImage, ICategories, Inote, NotesState } from './NotesTypes';
+import {
+  IaddImage,
+  IaddSign,
+  ICategories,
+  Inote,
+  NotesState,
+} from './NotesTypes';
 
 const initialState: NotesState = {
   notesArray: {},
@@ -24,8 +30,12 @@ const NotesSlice = createSlice({
     },
     addImage: (state, { payload }: { payload: IaddImage }) => {
       const { id, points, base64 } = payload;
-      console.log('addImage', id);
       state.notesArray[id].image = { points, base64 };
+    },
+    addSign: (state, { payload }: { payload: IaddSign }) => {
+      const { id, points, base64 } = payload;
+      console.log('IaddSign', id);
+      state.notesArray[id].sign = { points, base64 };
     },
     removeNote: (state, { payload }: { payload: { noteId: string } }) => {
       delete state.notesArray[payload.noteId];
@@ -37,6 +47,6 @@ const NotesSlice = createSlice({
   },
 });
 
-export const { addNote, removeNote, addCategory, addImage } =
+export const { addNote, removeNote, addCategory, addImage, addSign } =
   NotesSlice.actions;
 export default NotesSlice.reducer;

@@ -18,12 +18,22 @@ interface Inote {
   body: string;
   color?: string;
   image?: Iimages;
+  sign?: ISign;
 }
 interface Iimages {
   points: any;
   base64: string;
 }
+interface ISign {
+  points: any;
+  base64: string;
+}
 interface IaddImage {
+  id: string;
+  points: any;
+  base64: any;
+}
+interface IaddSign {
   id: string;
   points: any;
   base64: any;

@@ -23,7 +23,7 @@ export const NoteHeader = ({ navigation, route, addNote }: HeaderProps) => {
         data={categories}
       />
       <Appbar.Content style={styles.title} title={title} />
-      <Appbar.Action icon="arrow-left" onPress={() => navigation.goBack()} />
+      <Appbar.Action icon="arrow-right" onPress={() => navigation.goBack()} />
     </Appbar.Header>
   );
 };

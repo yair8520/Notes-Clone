@@ -37,7 +37,7 @@ export const FloatingButton = ({ setOption, noteId, data }: TemplateProps) => {
         {
           icon: 'signature',
           label: 'Sign',
-          onPress: () => setOption('Sign'),
+          onPress: () => nav.navigate('DrawPannel', { noteId, sign: true }),
         },
       ]}
       onStateChange={onStateChange}

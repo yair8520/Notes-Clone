@@ -4,7 +4,6 @@ import { I18nextProvider } from 'react-i18next';
 import App from './App';
 import i18n from './I18n/i18n.config';
 import { Provider as PaperProvider } from 'react-native-paper';
-
 import { NavigationContainer } from '@react-navigation/native';
 import { Provider } from 'react-redux';
 import { store } from './Redux';

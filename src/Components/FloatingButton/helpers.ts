@@ -53,11 +53,11 @@ export const createPDF = async (data: any) => {
   }
 };
 const generateHtmlPdfContent = (data: Inote) => {
-  const { headline, body } = data;
+  const { headline, body, image } = data;
+  console.log(image);
   return `<html>
   <head>
     <style>
-      /* Define a class for the letter container */
       .letter {
         width: 600px;
         margin: 0 auto;
@@ -65,7 +65,6 @@ const generateHtmlPdfContent = (data: Inote) => {
         font-size: 14px;
         line-height: 1.5;
       }
-      /* Define a class for the heading */
       .letter h1 {
         height:100px;
         padding-top:25;
@@ -74,23 +73,23 @@ const generateHtmlPdfContent = (data: Inote) => {
         text-align: center;
         margin-bottom: 20px;
       }
-      /* Define a class for the recipient section */
+      .letter img {
+        height:80px;
+        width: 80px;
+      }
       .letter .recipient {
         font-weight: bold;
         margin-bottom: 20px;
       }
-      /* Define a class for the date */
       .letter .date {
         text-align: right;
         margin-bottom: 20px;
       }
-      /* Define a class for the body */
       .letter .body {
         height:500px;
         text-align: justify;
         margin-bottom: 20px;
       }
-      /* Define a class for the signature */
       .letter .signature {
         text-align: right;
         font-style: italic;
@@ -108,6 +107,7 @@ const generateHtmlPdfContent = (data: Inote) => {
 
       </div>
       <div class="signature">
+      <img  src="data:image/png;base64,${image?.base64} alt="signature"/>
         <p>Jane Doe</p>
       </div>
     </div>

@@ -19,7 +19,7 @@ export default StyleSheet.create({
   },
   imgContainer: {
     backgroundColor: 'white',
-    marginTop: 25,
+
     borderWidth: 1,
     borderRadius: 8,
     borderTopLeftRadius: 8,
@@ -30,5 +30,11 @@ export default StyleSheet.create({
     justifyContent: 'center',
     flex: 1,
   },
-  img: { height: 250, width: 250 },
+  drawImg: { height: 250, width: 250 },
+  signimg: { height: 100, width: 100 },
+  label: {
+    marginTop: 25,
+    paddingLeft: '5%',
+    alignSelf: 'flex-start',
+  },
 });
