@@ -1,10 +1,15 @@
 import React from 'react';
 import { HeaderProps } from './HeaderProps';
-import { Appbar, Divider, Menu } from 'react-native-paper';
+import { Appbar, Divider, List, Menu, Text } from 'react-native-paper';
 import styles from './HeaderStyles';
 import { DrawerActions } from '@react-navigation/native';
 
-export const AppHeader = ({ navigation, title, setFilterDir }: HeaderProps) => {
+export const AppHeader = ({
+  navigation,
+  title,
+  setFilterDir,
+  editMode,
+}: HeaderProps) => {
   const filterList = (dir: string) => {
     closeMenu();
     setFilterDir(dir);
@@ -19,6 +24,10 @@ export const AppHeader = ({ navigation, title, setFilterDir }: HeaderProps) => {
         onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
       />
       <Appbar.Content style={styles.title} title={title} />
+      <Appbar.Action
+        icon="content-save-edit"
+        onPress={() => editMode((p: any) => !p)}
+      />
       <Menu
         visible={visible}
         onDismiss={closeMenu}
@@ -29,13 +38,15 @@ export const AppHeader = ({ navigation, title, setFilterDir }: HeaderProps) => {
           onPress={() => {
             filterList('Ascending');
           }}
-          title="Ascending"
+          leadingIcon="sort-ascending"
+          title={'Ascending'}
         />
         <Divider />
         <Menu.Item
           onPress={() => {
             filterList('Descending');
           }}
+          leadingIcon="sort-descending"
           title="Descending"
         />
       </Menu>

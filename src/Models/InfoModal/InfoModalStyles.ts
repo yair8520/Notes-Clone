@@ -9,8 +9,13 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  errorText: {
+    color: 'red',
+  },
   inputCon: {
     width: '90%',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   modalView: {
     borderRadius: 8,
@@ -30,6 +35,8 @@ export default StyleSheet.create({
     justifyContent: 'flex-end',
   },
   button: {
+    width: 100,
+    borderColor: '#3f7ee8',
     borderRadius: 15,
   },
   content: {

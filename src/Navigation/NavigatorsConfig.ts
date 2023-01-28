@@ -24,6 +24,7 @@ export const defaultScreenOptions = {
 export const navigationOptionsConfig: StackNavigationOptions = {
   headerBackTitleVisible: false,
   headerTintColor: 'black',
+  detachPreviousScreen: true,
   headerTitleAlign: 'center',
   headerStyle: headerStyleConfig,
   headerShown: false,

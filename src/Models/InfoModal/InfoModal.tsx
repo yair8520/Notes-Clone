@@ -1,31 +1,41 @@
 /* eslint-disable quotes */
-import { View } from 'react-native';
+import { Text, View } from 'react-native';
 import React from 'react';
 import { InfoModalProps } from './InfoModalProps';
 import styles from './InfoModalStyles';
 import { NText } from '../../Components/Text';
 import { useTranslation } from 'react-i18next';
 import { NDropDown } from '../../Components/DropDown';
-import { Button, Input } from '@ui-kitten/components';
-import { useAppDispatch } from '../../Redux';
+import { Input } from '@ui-kitten/components';
+import { useAppDispatch, useAppSelector } from '../../Redux';
 import { addCategory } from '../../Features/Notes/NotesSlice';
 import { iconOptions } from '../../Components/DropDown/types';
+import { getCategories } from '../../Features/Notes/NotesSelectors';
+import { Button } from 'react-native-paper';
 export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const categories = useAppSelector(getCategories);
   const [value, setValue] = React.useState('');
+  const [error, setError] = React.useState('');
   const [selectedIndex, setSelectedIndex] = React.useState(0);
-
   const onSave = () => {
     if (value) {
-      dispatch(
-        addCategory({
-          title: value,
-          icon: iconOptions[selectedIndex as keyof object],
-        })
-      );
+      let dup = categories.find((c) => {
+        return c.title === value;
+      });
+      if (!dup) {
+        dispatch(
+          addCategory({
+            title: value,
+            icon: iconOptions[selectedIndex as keyof object].icon,
+          })
+        );
+        closeModal();
+      } else {
+        setError(`${t(`err.existCategory`)}`);
+      }
     }
-    closeModal();
   };
   return (
     <View style={styles.centeredView}>
@@ -36,9 +46,9 @@ export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
             <Input
               style={styles.input}
               value={value}
-              caption={'Asd'}
+              caption={() => <Text style={styles.errorText}> {error}</Text>}
               label="Name *"
-              placeholder="Place your Text"
+              placeholder="Category"
               onChangeText={(nextValue) => setValue(nextValue)}
             />
             <NDropDown
@@ -51,17 +61,17 @@ export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
           <View style={styles.buttonContainer}>
             <Button
               style={styles.button}
+              mode={'outlined'}
+              textColor={'#3f7ee8'}
               onPress={() => closeModal()}
-              appearance="outline"
-              status="danger"
             >
               {t(`buttons.cancel`).toString()}
             </Button>
             <Button
+              buttonColor={'#3f7ee8'}
+              mode={'contained'}
               style={styles.button}
               onPress={onSave}
-              appearance="outline"
-              status="success"
             >
               {t(`buttons.save`).toString()}
             </Button>

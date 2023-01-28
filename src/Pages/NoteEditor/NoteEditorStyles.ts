@@ -6,6 +6,7 @@ export default StyleSheet.create({
     backgroundColor: 'white',
     height: '100%',
     alignItems: 'center',
+    paddingBottom: 50,
   },
   title: {
     width: '90%',
@@ -17,10 +18,17 @@ export default StyleSheet.create({
     flexGrow: 1,
   },
   imgContainer: {
-    width: '100%',
+    backgroundColor: 'white',
+    marginTop: 25,
+    borderWidth: 1,
+    borderRadius: 8,
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    textAlignVertical: 'top',
+    width: '90%',
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
   },
-  img: { height: 150, width: 150 },
+  img: { height: 250, width: 250 },
 });

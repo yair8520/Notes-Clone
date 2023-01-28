@@ -16,7 +16,6 @@ import { ApplicationProvider } from '@ui-kitten/components';
 const Root = () => {
   return (
     <Provider store={store}>
-      {/* <PersistGate loading={null} persistor={persistStore(store)}> */}
       <ApplicationProvider {...eva} theme={eva.light}>
         <I18nextProvider i18n={i18n}>
           <ModalProvider stack={ModalStack}>
@@ -28,7 +27,6 @@ const Root = () => {
           </ModalProvider>
         </I18nextProvider>
       </ApplicationProvider>
-      {/* </PersistGate> */}
     </Provider>
   );
 };

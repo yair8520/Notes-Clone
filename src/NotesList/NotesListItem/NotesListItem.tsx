@@ -4,27 +4,54 @@ import { NotesListItemProps } from './NotesListItemProps';
 import styles from './NotesListItemStyles';
 import { NText } from '../../Components';
 import { useNavigation } from '@react-navigation/native';
-export const NotesListItem = ({ note }: NotesListItemProps) => {
-  const nav = useNavigation();
+import { JiggleView } from '../../Components/JiggleView';
+import { List } from 'react-native-paper';
+import { useAppDispatch } from '../../Redux';
+import { removeNote } from '../../Features/Notes/NotesSlice';
+export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
+  const dispatch = useAppDispatch();
+  const nav = useNavigation<any>();
   const navToEditor = () => {
-    nav.navigate('NoteEditorStack', {
-      screen: 'NoteEditor',
-      params: { noteId: note.id },
-    });
+    if (!startAnimation) {
+      nav.navigate('NoteEditorStack', {
+        screen: 'NoteEditor',
+        params: { noteId: note.id },
+      });
+    }
   };
+  const deleteNote = () => {
+    dispatch(removeNote({ noteId: note.id }));
+  };
+
   return (
-    <TouchableOpacity onPress={navToEditor} style={styles.container}>
-      <NText style={styles.date} bold variant="H4">
-        {`${note.date}`}
-      </NText>
-      <View style={styles.content}>
-        <NText bold variant="H2">
-          {note.headline}
-        </NText>
-        <NText numberOfLines={2} variant="H4">
-          {note.body}
-        </NText>
-      </View>
-    </TouchableOpacity>
+    <View style={styles.con}>
+      <JiggleView startAnimation={startAnimation}>
+        {startAnimation && (
+          <View style={styles.deleteButton}>
+            <TouchableOpacity onPress={deleteNote} style={styles.button}>
+              <List.Icon color={'white'} icon="close" />
+            </TouchableOpacity>
+          </View>
+        )}
+        <TouchableOpacity
+          disabled={startAnimation}
+          onPress={navToEditor}
+          onLongPress={() => console.log('long')}
+          style={[styles.container, { backgroundColor: note.color }]}
+        >
+          <NText style={styles.date} bold variant="H4">
+            {`${note.date}`}
+          </NText>
+          <View style={styles.content}>
+            <NText style={styles.text} bold variant="H2">
+              {note.headline}
+            </NText>
+            <NText style={styles.text} numberOfLines={4} variant="H4">
+              {note.body}
+            </NText>
+          </View>
+        </TouchableOpacity>
+      </JiggleView>
+    </View>
   );
 };

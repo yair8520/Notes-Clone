@@ -1,19 +1,15 @@
 import React from 'react';
-import {
-  createDrawerNavigator,
-  DrawerContentScrollView,
-  DrawerItem,
-  DrawerItemList,
-} from '@react-navigation/drawer';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Home } from '../Pages/Home';
 import { NoteEditor } from '../Pages/NoteEditor';
 import { List, MD3Colors } from 'react-native-paper';
 import { useAppSelector } from '../Redux';
 import { getCategories } from '../Features/Notes/NotesSelectors';
-import { useModal } from 'react-native-modalfy';
 import { DrawPannel } from '../Components/DrawPannel';
 import { createStackNavigator } from '@react-navigation/stack';
 import { navigationOptionsConfig } from './NavigatorsConfig';
+
+import { NDrawerContent } from '../Components/DrawerContent';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -28,22 +24,12 @@ function NoteOptionStack() {
 }
 
 export default function AppRouter() {
-  const { openModal } = useModal();
   const categories = useAppSelector(getCategories);
   return (
     <Drawer.Navigator
       screenOptions={{ headerShown: false, unmountOnBlur: true }}
       drawerContent={(props) => {
-        return (
-          <DrawerContentScrollView {...props}>
-            <DrawerItemList {...props} />
-            <DrawerItem
-              label="Add Category"
-              icon={() => <List.Icon icon="plus" />}
-              onPress={() => openModal('InfoModal')}
-            />
-          </DrawerContentScrollView>
-        );
+        return <NDrawerContent {...props} />;
       }}
     >
       {categories.map((category) => (

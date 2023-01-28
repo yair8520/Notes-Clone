@@ -1,5 +1,4 @@
-export interface NotesListItemProps {
+export interface JiggleViewProps {
   [key: string]: any;
-  note: any;
   startAnimation: boolean;
 }

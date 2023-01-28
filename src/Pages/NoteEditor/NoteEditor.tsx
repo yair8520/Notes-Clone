@@ -13,7 +13,6 @@ import { addNote } from '../../Features/Notes/NotesSlice';
 import { getCurrentDate, getCurrentTime } from '../../Utils/Time';
 import { uid } from 'uid';
 import { getNotes } from '../../Features/Notes/NotesSelectors';
-import { INote } from '../../Features/Notes/NotesTypes';
 
 export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   const { noteId } = route?.params ?? '0';
@@ -23,14 +22,13 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
       return item[0] === noteId;
     });
   }, [noteId, notes]);
-  console.log({ noteId });
+
   const id = useMemo(() => {
     return noteId ? noteId : uid(16);
   }, [noteId]);
   const image = currentNote?.[1].image?.base64;
   const [headline, setHeadline] = useState<any>(currentNote?.[1]?.headline);
   const [body, setBody] = useState<any>(currentNote?.[1].body);
-  const [option, setOption] = useState<string>('');
   const dispatch = useAppDispatch();
   const saveNote = (type: string) => {
     dispatch(
@@ -62,17 +60,17 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
               value={body}
             />
           </View>
-          <View style={styles.imgContainer}>
-            {image && (
+          {image && (
+            <View style={styles.imgContainer}>
               <Image
                 style={styles.img}
                 source={{ uri: `data:image/jpeg;base64,${image}` }}
               />
-            )}
-          </View>
+            </View>
+          )}
         </View>
       </ScrollView>
-      <FloatingButton noteId={id} setOption={setOption} />
+      <FloatingButton data={currentNote?.[1]} noteId={id} />
     </>
   );
 };

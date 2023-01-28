@@ -3,14 +3,17 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     height: 150,
-    width: '40%',
+
+    borderColor: 'transparent',
     borderWidth: 4,
     borderRadius: 25,
-    margin: 20,
+    margin: 10,
   },
+  text: { color: 'white', textAlign: 'right' },
   date: {
     position: 'absolute',
     top: 0,
+    color: 'white',
     left: 15,
   },
   content: {
@@ -19,5 +22,21 @@ export default StyleSheet.create({
     justifyContent: 'space-around',
     alignSelf: 'center',
     height: '80%',
+    color: 'white',
   },
+  deleteButton: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    zIndex: 5,
+  },
+  button: {
+    backgroundColor: 'red',
+    height: 25,
+    width: 25,
+    borderRadius: 1000,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  con: { width: '45%' },
 });

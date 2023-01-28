@@ -4,9 +4,11 @@ import { TemplateProps } from './FloatingButtonProps';
 import styles from './FloatingButtonStyles';
 import { FAB } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-export const FloatingButton = ({ setOption, noteId }: TemplateProps) => {
+import { createPDF, shareOption } from './helpers';
+
+export const FloatingButton = ({ setOption, noteId, data }: TemplateProps) => {
   const [open, setOpen] = React.useState<boolean>(false);
-  const nav = useNavigation();
+  const nav = useNavigation<any>();
   const onStateChange = ({ open }: any) => setOpen(open);
 
   return (
@@ -20,17 +22,12 @@ export const FloatingButton = ({ setOption, noteId }: TemplateProps) => {
         {
           icon: 'file-pdf-box',
           label: 'PDF',
-          onPress: () => setOption('PDF'),
-        },
-        {
-          icon: 'email',
-          label: 'Email',
-          onPress: () => setOption('Email'),
+          onPress: () => createPDF(data),
         },
         {
           icon: 'share',
           label: 'Share',
-          onPress: () => setOption('Share'),
+          onPress: () => shareOption(data),
         },
         {
           icon: 'draw',

@@ -1,0 +1,1 @@
+export { LongPressOptions } from './LongPressOptions';

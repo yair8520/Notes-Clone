@@ -1,12 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { DrawPannelProps } from './DrawPannelProps';
 import styles from './DrawPannelStyles';
-import {
-  ImageFormat,
-  SketchCanvas,
-  SketchCanvasRef,
-} from 'rn-perfect-sketch-canvas';
+import { SketchCanvas, SketchCanvasRef } from 'rn-perfect-sketch-canvas';
 import { DrawToolBar } from './DrawToolBar';
 import { Appbar } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
@@ -15,7 +12,7 @@ import { addImage } from '../../Features/Notes/NotesSlice';
 import { getNotes } from '../../Features/Notes/NotesSelectors';
 export const DrawPannel = ({ route }: DrawPannelProps) => {
   const { noteId } = route.params;
-  console.log({ noteId });
+
   const selector = useAppSelector(getNotes);
   const dispatch = useAppDispatch();
   const [strokeWidth, setStrokeWidth] = useState<number>();
@@ -23,10 +20,11 @@ export const DrawPannel = ({ route }: DrawPannelProps) => {
   const canvasRef = useRef<SketchCanvasRef>(null);
 
   useEffect(() => {
+    canvasRef.current?.addPoints([]);
     if (selector[noteId]?.image?.points) {
       canvasRef.current?.addPoints(selector[noteId].image?.points);
     }
-  });
+  }, []);
   const nav = useNavigation();
   const redo = () => {
     canvasRef.current?.redo();
@@ -40,6 +38,7 @@ export const DrawPannel = ({ route }: DrawPannelProps) => {
   const saveImage = () => {
     const points = canvasRef.current?.toPoints();
     const base64 = canvasRef.current?.toImage()?.encodeToBase64();
+    console.log(noteId);
     dispatch(addImage({ id: noteId, base64, points }));
   };
   return (

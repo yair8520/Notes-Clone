@@ -14,6 +14,7 @@ import { getCurrentDate, getCurrentTime } from '../../Utils/Time';
 
 export const Home = ({ navigation }: HomeProps) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
+  const [deleteMode, setDeleteMode] = React.useState<boolean>(false);
   const [filterDir, setFilterDir] = React.useState<string>('Descending');
   const dispatch = useAppDispatch();
   const onChangeSearch = (query: React.SetStateAction<string>) =>
@@ -39,6 +40,7 @@ export const Home = ({ navigation }: HomeProps) => {
   return (
     <>
       <AppHeader
+        editMode={setDeleteMode}
         title={type}
         setFilterDir={setFilterDir}
         navigation={navigation}
@@ -50,7 +52,12 @@ export const Home = ({ navigation }: HomeProps) => {
             searchQuery={searchQuery}
           />
         </View>
-        <NotesList type={type} filterDir={filterDir} />
+        <NotesList
+          searchQuery={searchQuery}
+          deleteMode={deleteMode}
+          type={type}
+          filterDir={filterDir}
+        />
       </View>
       <FAB icon="plus" style={styles.fab} onPress={() => newNote()} />
     </>

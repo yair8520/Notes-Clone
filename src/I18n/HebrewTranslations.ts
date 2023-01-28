@@ -10,5 +10,8 @@ export const HebrewTranslations = {
     cancel: 'cancel',
   },
   emptyList: 'Click the button below to add notes to this category',
+  err: {
+    existCategory: 'This category already exists',
+  },
 };
 export const errorMsg: any = {};

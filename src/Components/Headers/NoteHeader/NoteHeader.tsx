@@ -10,13 +10,13 @@ export const NoteHeader = ({ navigation, route, addNote }: HeaderProps) => {
   const { title } = route?.params ?? '';
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const categories = useAppSelector(getCategories);
-
+  const save = () => {
+    addNote(categories[selectedIndex].title);
+    navigation.goBack();
+  };
   return (
     <Appbar.Header>
-      <Appbar.Action
-        icon="content-save"
-        onPress={() => addNote(categories[selectedIndex].title)}
-      />
+      <Appbar.Action icon="content-save" onPress={save} />
       <NDropDown
         setSelectedIndex={setSelectedIndex}
         selectedIndex={selectedIndex}

@@ -6,3 +6,6 @@ export const getCurrentTime = (): string => {
 export const getCurrentDate = (): string => {
   return moment().format('DD MMM');
 };
+export const getFullDate = (): string => {
+  return moment().format('DD-MM-YYYY');
+};

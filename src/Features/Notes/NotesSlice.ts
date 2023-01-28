@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IaddImage, Inote, INote, NotesState } from './NotesTypes';
+import { generateColor } from '../../Theme/Colors';
+import { IaddImage, ICategories, Inote, NotesState } from './NotesTypes';
 
 const initialState: NotesState = {
   notesArray: {},
@@ -11,20 +12,27 @@ const NotesSlice = createSlice({
   initialState,
   reducers: {
     addNote: (state, { payload }: { payload: Inote }) => {
+      console.log(payload);
       state.notesArray[payload.id] = {
-        ...payload,
         ...state.notesArray[payload.id],
+        ...payload,
+        color: !state.notesArray[payload.id]?.color
+          ? generateColor()
+          : state.notesArray[payload.id].color,
       };
+      console.log('addNote', state.notesArray[payload.id].body);
     },
     addImage: (state, { payload }: { payload: IaddImage }) => {
       const { id, points, base64 } = payload;
+      console.log('addImage', id);
       state.notesArray[id].image = { points, base64 };
     },
-    removeNote: (state, { payload }: { payload: INote }) => {
-      console.log(payload);
+    removeNote: (state, { payload }: { payload: { noteId: string } }) => {
+      delete state.notesArray[payload.noteId];
     },
-    addCategory: (state, action) => {
-      state.categories.push(action.payload);
+    addCategory: (state, { payload }: { payload: ICategories }) => {
+      console.log('action.payload', payload);
+      state.categories.push(payload);
     },
   },
 });
