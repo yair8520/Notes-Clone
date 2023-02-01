@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { View, ScrollView, Image } from 'react-native';
+import { View, ScrollView, Image, Dimensions } from 'react-native';
 import React, { useMemo, useRef, useState } from 'react';
 import { NoteEditorProps } from './NoteEditorProps';
 import styles from './NoteEditorStyles';
@@ -14,14 +14,11 @@ import { uid } from 'uid';
 import { getNotes } from '../../Features/Notes/NotesSelectors';
 import { TouchableOpacity } from 'react-native';
 import { Pressable } from 'react-native';
-import {
-  actions,
-  RichEditor,
-  RichToolbar,
-} from 'react-native-pell-rich-editor';
+import { RichEditor, RichToolbar } from 'react-native-pell-rich-editor';
 import { useModal } from 'react-native-modalfy';
 import { List } from 'react-native-paper';
-import { actionList } from './Icons';
+import { actionList, onPressAddImage } from './helper';
+const windowHeight = Dimensions.get('window').height;
 
 export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   const { noteId } = route?.params ?? '0';
@@ -32,16 +29,12 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
       return item[0] === noteId;
     });
   }, [noteId, notes]);
-
   const id = useMemo(() => {
     return noteId ? noteId : uid(16);
   }, [noteId]);
-  const [descHTML, setDescHTML] = useState('');
-  const [showDescError, setShowDescError] = useState(false);
+  const [descHTML, setDescHTML] = useState(currentNote?.[1].body);
   const image = currentNote?.[1].image?.base64;
   const sign = currentNote?.[1].sign?.base64;
-  const [headline, setHeadline] = useState<any>(currentNote?.[1]?.headline);
-  const [body, setBody] = useState<any>(currentNote?.[1].body);
   const dispatch = useAppDispatch();
   const saveNote = (type: string) => {
     dispatch(
@@ -50,26 +43,24 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
         type,
         time: getCurrentTime(),
         date: getCurrentDate(),
-        headline,
-        body,
+        body: descHTML!,
       })
     );
   };
-  const richText = useRef<RichEditor>();
+  console.log(actionList);
+  const richTextRef = useRef<RichEditor | any>();
 
-  const richTextHandle = (descriptionText: React.SetStateAction<string>) => {
+  const richTextHandle = (descriptionText: string) => {
     if (descriptionText) {
-      setShowDescError(false);
       setDescHTML(descriptionText);
     } else {
-      setShowDescError(true);
       setDescHTML('');
     }
   };
   const onInsertLink = () => {
-    richText.current?.dismissKeyboard();
+    richTextRef.current?.dismissKeyboard();
     const insert = (title: string, value: string) => {
-      richText.current?.insertLink(title || value, value);
+      richTextRef.current?.insertLink(title || value, value);
     };
     openModal('LinkModal', { insert });
   };
@@ -78,46 +69,29 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
       <NoteHeader addNote={saveNote} navigation={navigation} />
       <View style={styles.mainCon}>
         <ScrollView contentContainerStyle={styles.content}>
-          <Pressable
-            onPress={() => {
-              console.log('asd');
-              richText.current?.dismissKeyboard();
-            }}
-          >
+          <Pressable onPress={() => richTextRef.current?.dismissKeyboard()}>
             <View style={styles.container}>
               <TouchableOpacity style={styles.editorTouch} activeOpacity={1}>
                 <RichEditor
-                  ref={richText} // from useRef()
+                  ref={richTextRef}
+                  autoCapitalize={'sentences'}
                   onChange={richTextHandle}
+                  initialContentHTML={descHTML}
                   placeholder="Write your cool content here :)"
                   androidHardwareAccelerationDisabled={true}
                   style={styles.richTextEditorStyle}
-                  initialHeight={250}
+                  allowsLinkPreview={true}
+                  initialHeight={windowHeight - 110}
                 />
               </TouchableOpacity>
-              {image && (
-                <>
-                  <NText style={styles.label} variant="H3">
-                    Draw Pannel - long press for edit
-                  </NText>
-                  <TouchableOpacity
-                    onPress={() => {}}
-                    onLongPress={() =>
-                      navigation.navigate('DrawPannel', { noteId })
-                    }
-                    style={styles.imgContainer}
-                  >
-                    <Image
-                      style={styles.drawImg}
-                      source={{ uri: `data:image/jpeg;base64,${image}` }}
-                    />
-                  </TouchableOpacity>
-                </>
-              )}
               {sign && (
                 <>
+                  <NText style={styles.title} variant="H2">
+                    Your Signature
+                  </NText>
                   <NText style={styles.label} variant="H3">
-                    Sign Pannel - long press for edit
+                    Sign Pannel - long press for edit can be added to your pfd
+                    file
                   </NText>
                   <TouchableOpacity
                     onPress={() => {}}
@@ -137,16 +111,26 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
           </Pressable>
         </ScrollView>
         <RichToolbar
-          editor={richText}
+          editor={richTextRef}
+          onPressAddImage={() => onPressAddImage(richTextRef)}
           onInsertLink={onInsertLink}
           style={styles.toolbar}
           iconMap={{
-            test: () => <List.Icon icon={'folder'} />,
+            keyboard: () => <List.Icon icon={'keyboard'} />,
+            undo: () => <List.Icon icon={'undo'} />,
+            redo: () => <List.Icon icon={'redo'} />,
+            underline: () => <List.Icon icon={'format-underline'} />,
+            italic: () => <List.Icon icon={'format-italic'} />,
+            link: () => <List.Icon icon={'link'} />,
+            checkboxList: () => <List.Icon icon={'format-list-checkbox'} />,
+            orderedList: () => <List.Icon icon={'format-list-numbered'} />,
+            unorderedList: () => <List.Icon icon={'format-list-group'} />,
+            image: () => <List.Icon icon={'file-image-plus'} />,
           }}
           actions={actionList}
         />
 
-        {/* <FloatingButton data={currentNote?.[1]} noteId={id} /> */}
+        <FloatingButton data={currentNote?.[1]} noteId={id} />
       </View>
     </>
   );

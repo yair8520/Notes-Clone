@@ -28,7 +28,6 @@ export const Home = ({ navigation }: HomeProps) => {
         type,
         time: getCurrentTime(),
         date: getCurrentDate(),
-        headline: '',
         body: '',
       })
     );

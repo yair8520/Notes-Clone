@@ -11,6 +11,7 @@ export const NText = ({
 }: AcTextProps) => {
   return (
     <Text
+      lineBreakMode="head"
       allowFontScaling={false}
       style={[
         styles.text,

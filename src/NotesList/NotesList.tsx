@@ -18,8 +18,7 @@ export const NotesList = ({
   const notesFiltered = useMemo(() => {
     if (searchQuery) {
       return Object.entries(notes).filter(
-        (item) =>
-          item[1].headline.includes(searchQuery) && item[1].type === type
+        (item) => item[1].body.includes(searchQuery) && item[1].type === type
       );
     } else return Object.entries(notes).filter((item) => item[1].type === type);
   }, [notes, searchQuery, type]);

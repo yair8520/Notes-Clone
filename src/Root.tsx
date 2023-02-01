@@ -11,6 +11,9 @@ import { ModalProvider } from 'react-native-modalfy';
 import { ModalStack } from './Models/ModalConfig';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider } from '@ui-kitten/components';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: Encountered two children with the']); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
 
 const Root = () => {
   return (

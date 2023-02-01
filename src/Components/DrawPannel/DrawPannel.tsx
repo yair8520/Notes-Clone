@@ -1,18 +1,18 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import { View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { DrawPannelProps } from './DrawPannelProps';
 import styles from './DrawPannelStyles';
+import { NavigationActions } from 'react-navigation';
+
 import { SketchCanvas, SketchCanvasRef } from 'rn-perfect-sketch-canvas';
 import { DrawToolBar } from './DrawToolBar';
 import { Appbar } from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
+import { CommonActions, useNavigation } from '@react-navigation/native';
 import { useAppDispatch, useAppSelector } from '../../Redux';
 import { addImage, addSign } from '../../Features/Notes/NotesSlice';
 import { getNotes } from '../../Features/Notes/NotesSelectors';
 export const DrawPannel = ({ route }: DrawPannelProps) => {
   const { noteId, sign = false } = route.params;
-  console.log(sign);
   const selector = useAppSelector(getNotes);
   const dispatch = useAppDispatch();
   const [strokeWidth, setStrokeWidth] = useState<number>();
@@ -20,13 +20,16 @@ export const DrawPannel = ({ route }: DrawPannelProps) => {
   const canvasRef = useRef<SketchCanvasRef>(null);
 
   useEffect(() => {
-    canvasRef.current?.addPoints([]);
-    if (sign && selector[noteId]?.sign?.points) {
-      canvasRef.current?.addPoints(selector[noteId].sign?.points);
-    } else if (selector[noteId]?.image?.points) {
-      canvasRef.current?.addPoints(selector[noteId].image?.points);
+    if (canvasRef.current) {
+      if (sign && selector[noteId]?.sign?.points) {
+        return canvasRef.current?.addPoints(selector[noteId].sign?.points);
+      } else if (selector[noteId]?.image?.points) {
+        canvasRef.current?.addPoints(selector[noteId].image?.points);
+      }
     }
+    return () => reset();
   }, []);
+
   const nav = useNavigation();
   const redo = () => {
     canvasRef.current?.redo();
@@ -45,6 +48,13 @@ export const DrawPannel = ({ route }: DrawPannelProps) => {
     } else {
       dispatch(addImage({ id: noteId, base64, points }));
     }
+
+    const resetAction = CommonActions.reset({
+      index: 0,
+      routes: [{ name: 'NoteEditor' }],
+    });
+    nav.dispatch(resetAction);
+    canvasRef?.current?.addPoints([]);
   };
   return (
     <>

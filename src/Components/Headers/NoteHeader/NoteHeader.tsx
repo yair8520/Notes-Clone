@@ -15,7 +15,7 @@ export const NoteHeader = ({ navigation, route, addNote }: HeaderProps) => {
     navigation.goBack();
   };
   return (
-    <Appbar.Header>
+    <Appbar.Header style={{ height: 70 }}>
       <Appbar.Action icon="content-save" onPress={save} />
       <NDropDown
         setSelectedIndex={setSelectedIndex}

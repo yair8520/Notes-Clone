@@ -14,7 +14,6 @@ interface Inote {
   type: string;
   date: string;
   time: string;
-  headline: string;
   body: string;
   color?: string;
   image?: Iimages;

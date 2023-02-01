@@ -8,6 +8,8 @@ import { JiggleView } from '../../Components/JiggleView';
 import { List } from 'react-native-paper';
 import { useAppDispatch } from '../../Redux';
 import { removeNote } from '../../Features/Notes/NotesSlice';
+import { htmlToString } from '../../Helpers/helper';
+
 export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
   const dispatch = useAppDispatch();
   const nav = useNavigation<any>();
@@ -43,11 +45,8 @@ export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
             {`${note.date}`}
           </NText>
           <View style={styles.content}>
-            <NText style={styles.text} bold variant="H2">
-              {note.headline}
-            </NText>
-            <NText style={styles.text} numberOfLines={4} variant="H4">
-              {note.body}
+            <NText style={styles.body} numberOfLines={5}>
+              {htmlToString(note.body)}
             </NText>
           </View>
         </TouchableOpacity>

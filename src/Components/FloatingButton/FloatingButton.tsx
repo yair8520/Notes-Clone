@@ -5,18 +5,20 @@ import styles from './FloatingButtonStyles';
 import { FAB } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { createPDF, shareOption } from './helpers';
+import useKeyBoardStatus from '../../Hooks/useKeyBoardStatus/useKeyBoardStatus';
 
 export const FloatingButton = ({ noteId, data }: TemplateProps) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const nav = useNavigation<any>();
   const onStateChange = ({ open }: any) => setOpen(open);
 
+  const { keyboardStatus } = useKeyBoardStatus();
   return (
     <FAB.Group
       style={styles.container}
       open={open}
-      visible
-      backdropColor={'transparent'}
+      visible={!keyboardStatus}
+      backdropColor={'#fdf7fe'}
       icon={open ? 'minus' : 'microsoft-xbox-controller-menu'}
       actions={[
         {
@@ -27,7 +29,9 @@ export const FloatingButton = ({ noteId, data }: TemplateProps) => {
         {
           icon: 'share',
           label: 'Share',
-          onPress: () => shareOption(data),
+          onPress: () => {
+            shareOption(data);
+          },
         },
         {
           icon: 'draw',

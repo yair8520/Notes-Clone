@@ -2,26 +2,24 @@ import { Alert, PermissionsAndroid, Share } from 'react-native';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import RNFetchBlob from 'rn-fetch-blob';
 import { Inote } from '../../Features/Notes/NotesTypes';
+import { htmlToString } from '../../Helpers/helper';
 import { getCurrentTime, getFullDate } from '../../Utils/Time';
 
-export const shareOption = async ({ headline, body, image }: any) => {
+export const shareOption = async ({ body, image }: any) => {
   try {
     const result = await Share.share({
-      title: headline,
-      message: `${headline} - ${body}`,
+      message: `${htmlToString(body)}`,
       url: image,
     });
     if (result.action === Share.sharedAction) {
       if (result.activityType) {
-        // shared with activity type of result.activityType
       } else {
         // shared
       }
     } else if (result.action === Share.dismissedAction) {
-      // dismissed
     }
   } catch (error: any) {
-    Alert.alert(headline, body, image);
+    Alert.alert(body, image);
   }
 };
 const isPermitted = async () => {
@@ -53,7 +51,7 @@ export const createPDF = async (data: any) => {
   }
 };
 const generateHtmlPdfContent = (data: Inote) => {
-  const { headline, body, image } = data;
+  const { body, image, sign } = data;
   console.log(image);
   return `<html>
   <head>
@@ -62,7 +60,7 @@ const generateHtmlPdfContent = (data: Inote) => {
         width: 600px;
         margin: 0 auto;
         font-family: Arial, sans-serif;
-        font-size: 14px;
+        font-size: 25px;
         line-height: 1.5;
       }
       .letter h1 {
@@ -74,8 +72,9 @@ const generateHtmlPdfContent = (data: Inote) => {
         margin-bottom: 20px;
       }
       .letter img {
-        height:80px;
-        width: 80px;
+        padding:25;
+        height:250px;
+        width: 250px;
       }
       .letter .recipient {
         font-weight: bold;
@@ -94,11 +93,15 @@ const generateHtmlPdfContent = (data: Inote) => {
         text-align: right;
         font-style: italic;
       }
+      .signature img{
+        height:100px;
+        padding:0;
+        width: 100px;
+      }
     </style>
   </head>
   <body>
     <div class="letter">
-      <h1>${headline}</h1>
       <div class="date">
         <p>${getFullDate()}<br/>${getCurrentTime()}</p>
       </div>
@@ -106,10 +109,16 @@ const generateHtmlPdfContent = (data: Inote) => {
         <p>${body}</p>
 
       </div>
-      <div class="signature">
-      <img  src="data:image/png;base64,${image?.base64} alt="signature"/>
+      
+      ${
+        sign
+          ? `<div class="signature">
+      <img src="data:image/png;base64,${sign?.base64} alt="signature"/>
         <p>Jane Doe</p>
-      </div>
+      </div>`
+          : ''
+      }
+      
     </div>
   </body>
 </html>`;
