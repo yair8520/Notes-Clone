@@ -4,6 +4,9 @@ export const HebrewTranslations = {
     info: {
       add: 'Add category',
     },
+    link: {
+      add: 'Add Link',
+    },
   },
   buttons: {
     save: 'save',
@@ -12,6 +15,7 @@ export const HebrewTranslations = {
   emptyList: 'Click the button below to add notes to this category',
   err: {
     existCategory: 'This category already exists',
+    required: 'Required felid',
   },
 };
 export const errorMsg: any = {};

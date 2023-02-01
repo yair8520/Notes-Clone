@@ -6,7 +6,7 @@ import { FAB } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { createPDF, shareOption } from './helpers';
 
-export const FloatingButton = ({ setOption, noteId, data }: TemplateProps) => {
+export const FloatingButton = ({ noteId, data }: TemplateProps) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const nav = useNavigation<any>();
   const onStateChange = ({ open }: any) => setOpen(open);

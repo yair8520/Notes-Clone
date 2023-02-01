@@ -1,21 +1,35 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
+  mainCon: { flex: 1 },
   container: {
     display: 'flex',
     backgroundColor: 'white',
-    height: '100%',
+    height: '90%',
     alignItems: 'center',
     paddingBottom: 50,
   },
   title: {
     width: '90%',
   },
+  toolbar: {},
   bodyInput: { maxHeight: 250 },
   content: {
     width: '100%',
     backgroundColor: 'white',
     flexGrow: 1,
+  },
+  richTextEditorStyle: {
+    backgroundColor: '#c6c3b3',
+    borderColor: '#c6c3b3',
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    borderWidth: 1,
+    borderRadius: 8,
+    width: '100%',
+  },
+  editorTouch: {
+    width: '100%',
   },
   imgContainer: {
     backgroundColor: 'white',

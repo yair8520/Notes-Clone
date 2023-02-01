@@ -4,8 +4,9 @@ export default StyleSheet.create({
   container: {},
   fab: {
     position: 'absolute',
-    margin: 16,
+    margin: 0,
     right: 0,
     bottom: 0,
+    top: 5,
   },
 });

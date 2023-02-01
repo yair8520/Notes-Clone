@@ -5,9 +5,10 @@ import {
   ModalStackConfig,
 } from 'react-native-modalfy';
 import { InfoModal } from './InfoModal';
+import { LinkModal } from './LinkModal';
 const { height } = Dimensions.get('screen');
 
-const modalConfig: ModalStackConfig = { InfoModal };
+const modalConfig: ModalStackConfig = { InfoModal, LinkModal };
 
 const animate = (animatedValue: Animated.Value, toValue: number) => {
   Animated.spring(animatedValue, {
