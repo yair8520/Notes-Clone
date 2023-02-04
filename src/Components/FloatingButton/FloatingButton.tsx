@@ -6,6 +6,7 @@ import { FAB } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import { createPDF, shareOption } from './helpers';
 import useKeyBoardStatus from '../../Hooks/useKeyBoardStatus/useKeyBoardStatus';
+import { defaultActionsStyles } from '../../constant';
 
 export const FloatingButton = ({ noteId, data }: TemplateProps) => {
   const [open, setOpen] = React.useState<boolean>(false);
@@ -18,15 +19,20 @@ export const FloatingButton = ({ noteId, data }: TemplateProps) => {
       style={styles.container}
       open={open}
       visible={!keyboardStatus}
-      backdropColor={'#fdf7fe'}
+      backdropColor={'transparent'}
+      fabStyle={styles.fab}
+      color={'white'}
+      theme={{ colors: { accent: 'blue' } }}
       icon={open ? 'minus' : 'microsoft-xbox-controller-menu'}
       actions={[
         {
+          ...defaultActionsStyles,
           icon: 'file-pdf-box',
           label: 'PDF',
           onPress: () => createPDF(data),
         },
         {
+          ...defaultActionsStyles,
           icon: 'share',
           label: 'Share',
           onPress: () => {
@@ -34,11 +40,13 @@ export const FloatingButton = ({ noteId, data }: TemplateProps) => {
           },
         },
         {
+          ...defaultActionsStyles,
           icon: 'draw',
           label: 'Draw',
           onPress: () => nav.navigate('DrawPannel', { noteId }),
         },
         {
+          ...defaultActionsStyles,
           icon: 'signature',
           label: 'Sign',
           onPress: () => nav.navigate('DrawPannel', { noteId, sign: true }),

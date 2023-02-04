@@ -3,6 +3,7 @@ import { HeaderProps } from './HeaderProps';
 import { Appbar, Divider, Menu } from 'react-native-paper';
 import styles from './HeaderStyles';
 import { DrawerActions } from '@react-navigation/native';
+import { View } from 'react-native';
 
 export const AppHeader = ({
   navigation,
@@ -19,10 +20,16 @@ export const AppHeader = ({
   const closeMenu = () => setVisible(!true);
   return (
     <Appbar.Header style={styles.header}>
-      <Appbar.Action
-        icon="menu"
-        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-      />
+      {title !== 'Links' ? (
+        <Appbar.Action
+          icon="menu"
+          style={{ width: 50 }}
+          onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+        />
+      ) : (
+        <View style={{ width: 50 }} />
+      )}
+
       <Appbar.Content style={styles.title} title={title} />
       <Appbar.Action
         icon="content-save-edit"
@@ -31,6 +38,7 @@ export const AppHeader = ({
       <Menu
         visible={visible}
         onDismiss={closeMenu}
+        contentStyle={styles.menu}
         statusBarHeight={40}
         anchor={<Appbar.Action icon="filter-menu" onPress={openMenu} />}
       >

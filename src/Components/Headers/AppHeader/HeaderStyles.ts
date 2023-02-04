@@ -8,4 +8,5 @@ export default StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: '#e7e7e7',
   },
+  menu: { backgroundColor: 'white' },
 });

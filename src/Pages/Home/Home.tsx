@@ -8,34 +8,21 @@ import { AppHeader } from '../../Components/Headers/AppHeader/Header';
 import { NotesList } from '../../NotesList';
 import { useRoute } from '@react-navigation/native';
 import { uid } from 'uid';
-import { useAppDispatch } from '../../Redux';
-import { addNote } from '../../Features/Notes/NotesSlice';
-import { getCurrentDate, getCurrentTime } from '../../Utils/Time';
 
-export const Home = ({ navigation, route }: HomeProps) => {
-  console.log(route.name);
+export const Home = ({ navigation }: HomeProps) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [deleteMode, setDeleteMode] = React.useState<boolean>(false);
   const [filterDir, setFilterDir] = React.useState<string>('Descending');
-  const dispatch = useAppDispatch();
   const onChangeSearch = (query: React.SetStateAction<string>) =>
     setSearchQuery(query);
   const type = useRoute().name;
   const newNote = () => {
-    const id = uid(16);
-    dispatch(
-      addNote({
-        id,
-        type,
-        time: getCurrentTime(),
-        date: getCurrentDate(),
-        body: '',
-      })
-    );
-
     navigation.navigate('Notes', {
       screen: 'NoteEditorStack',
-      params: { noteId: id },
+      params: {
+        screen: 'NoteEditor',
+        params: { noteId: uid(16) },
+      },
     });
   };
   return (

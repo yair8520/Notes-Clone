@@ -13,7 +13,7 @@ export default StyleSheet.create({
     marginTop: 25,
     width: '90%',
   },
-  toolbar: { backgroundColor: 'white', borderRadius: 20, marginBottom: 5 },
+
   bodyInput: { maxHeight: 250 },
   content: {
     width: '100%',

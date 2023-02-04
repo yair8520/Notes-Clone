@@ -40,3 +40,10 @@ export const tabBarOptions: BottomTabNavigationOptions = {
     backgroundColor: 'blue',
   },
 };
+
+export const tabBarStyle = {
+  width: '90%',
+  alignSelf: 'center',
+  borderRadius: 80,
+  marginBottom: 10,
+};

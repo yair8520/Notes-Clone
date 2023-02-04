@@ -20,7 +20,6 @@ export const LinkListItem = ({
           <View style={styles.deleteButton}>
             <TouchableOpacity
               onPress={() => {
-                console.log('asd');
                 deleteLink(index);
               }}
               style={styles.button}

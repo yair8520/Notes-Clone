@@ -8,12 +8,18 @@ import { getLinks } from '../../Features/Links/LinksSelectors';
 import { ScrollView } from 'react-native-gesture-handler';
 import { LinkListItem } from './LinkListItem';
 import { removeLink } from '../../Features/Links/LinkSlice';
-export const LinkList = ({ deleteMode }: LinkListProps) => {
-  const links = useAppSelector(getLinks);
+import { useLinksFilter } from '../../Hooks/useLinksFilter';
+export const LinkList = ({
+  deleteMode,
+  filterDir,
+  searchQuery,
+}: LinkListProps) => {
+  let links = useAppSelector(getLinks);
   const dispatch = useAppDispatch();
   const deleteLink = (index: number) => {
     dispatch(removeLink({ index }));
   };
+  links = useLinksFilter({ filterDir, links, searchQuery });
   return (
     <ScrollView
       contentContainerStyle={styles.content}

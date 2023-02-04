@@ -40,7 +40,11 @@ export const Links = ({ navigation }: LinksProps) => {
             searchQuery={searchQuery}
           />
         </View>
-        <LinkList deleteMode={deleteMode} />
+        <LinkList
+          searchQuery={searchQuery}
+          deleteMode={deleteMode}
+          filterDir={filterDir}
+        />
       </View>
       <FAB
         icon="plus"

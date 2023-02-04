@@ -11,7 +11,7 @@ export const MenuItem = ({ icon, children }: MenuItemProps) => {
       onDismiss={() => setVisible(false)}
       statusBarHeight={-50}
       anchorPosition={'top'}
-      style={styles.menu}
+      contentStyle={styles.menu}
       anchor={
         <Appbar.Action icon={icon} onPress={() => setVisible(!visible)} />
       }

@@ -9,7 +9,7 @@ import { useAppSelector } from '../Redux';
 import { getCategories } from '../Features/Notes/NotesSelectors';
 import { DrawPannel } from '../Components/DrawPannel';
 import { createStackNavigator } from '@react-navigation/stack';
-import { navigationOptionsConfig } from './NavigatorsConfig';
+import { navigationOptionsConfig, tabBarStyle } from './NavigatorsConfig';
 import { NDrawerContent } from '../Components/DrawerContent';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Links } from '../Pages/Links';
@@ -24,15 +24,10 @@ function TabScreens() {
   return (
     <View style={{ flex: 1, backgroundColor: 'white' }}>
       <Tab.Navigator
-        sceneContainerStyle={{ backgroundColor: 'red' }}
         screenOptions={{
           headerShown: false,
-          tabBarStyle: {
-            width: '90%',
-            alignSelf: 'center',
-            borderRadius: 80,
-            marginBottom: 10,
-          },
+          tabBarLabelPosition: 'beside-icon',
+          tabBarStyle: { ...tabBarStyle },
         }}
       >
         <Tab.Screen
@@ -53,21 +48,6 @@ function TabScreens() {
           name="Links"
           component={Links}
         />
-
-        {/* <Tab.Screen
-        name="NoteOptionStack"
-        component={NoteOptionStack}
-        options={({ route }) => ({
-          tabBarButtonComponent: () => null,
-          tabBarStyle: ((route) => {
-            if (route.name === 'NoteOptionStack') {
-              return { display: 'none' };
-            }
-            return;
-          })(route),
-          tabBarItemStyle: { display: 'none' },
-        })}
-      /> */}
       </Tab.Navigator>
     </View>
   );

@@ -8,7 +8,7 @@ import { JiggleView } from '../../Components/JiggleView';
 import { useAppDispatch } from '../../Redux';
 import { removeNote } from '../../Features/Notes/NotesSlice';
 import { Icon } from '@ui-kitten/components';
-import { htmlToString } from '../../Helpers/helper';
+import { extractBody, extractTitle } from '../../Helpers/helper';
 
 export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
   const dispatch = useAppDispatch();
@@ -17,7 +17,10 @@ export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
     if (!startAnimation) {
       nav.navigate('Notes', {
         screen: 'NoteEditorStack',
-        params: { noteId: note.id },
+        params: {
+          screen: 'NoteEditor',
+          params: { noteId: note.id },
+        },
       });
     }
   };
@@ -37,11 +40,11 @@ export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
         <View style={styles.content}>
           <View style={styles.verticalLine} />
           <View style={styles.item}>
-            <NText bold variant="H2">
-              {htmlToString(note.type)}
+            <NText numberOfLines={1} bold variant="H3">
+              {extractTitle(note.body)}
             </NText>
             <NText numberOfLines={1} variant="H4">
-              {htmlToString(note.body)}
+              {extractBody(note.body)}
             </NText>
           </View>
         </View>

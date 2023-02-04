@@ -6,4 +6,5 @@ export default StyleSheet.create({
     right: 0,
     bottom: 40,
   },
+  fab: { backgroundColor: '#1d9df3' },
 });
