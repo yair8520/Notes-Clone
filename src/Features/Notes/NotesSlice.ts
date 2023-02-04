@@ -40,6 +40,7 @@ const NotesSlice = createSlice({
     removeNote: (state, { payload }: { payload: { noteId: string } }) => {
       delete state.notesArray[payload.noteId];
     },
+
     addCategory: (state, { payload }: { payload: ICategories }) => {
       console.log('action.payload', payload);
       state.categories.push(payload);

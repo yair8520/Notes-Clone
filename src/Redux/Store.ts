@@ -1,10 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import NotesSlice from '../Features/Notes/NotesSlice';
+import LinkSlice from '../Features/Links/LinkSlice';
 
 import { listenerMiddleware } from './Listener';
 
 const rootReducer = combineReducers({
   note: NotesSlice,
+  link: LinkSlice,
 });
 
 export const store = configureStore({

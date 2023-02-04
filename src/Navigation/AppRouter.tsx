@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Home } from '../Pages/Home';
@@ -8,12 +10,68 @@ import { getCategories } from '../Features/Notes/NotesSelectors';
 import { DrawPannel } from '../Components/DrawPannel';
 import { createStackNavigator } from '@react-navigation/stack';
 import { navigationOptionsConfig } from './NavigatorsConfig';
-
 import { NDrawerContent } from '../Components/DrawerContent';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Links } from '../Pages/Links';
+import NotesIcon from '../Assets/Images/NotesIcon';
+import LinksIcons from '../Assets/Images/LinksIcons';
+import { View } from 'react-native';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
+function TabScreens() {
+  return (
+    <View style={{ flex: 1, backgroundColor: 'white' }}>
+      <Tab.Navigator
+        sceneContainerStyle={{ backgroundColor: 'red' }}
+        screenOptions={{
+          headerShown: false,
+          tabBarStyle: {
+            width: '90%',
+            alignSelf: 'center',
+            borderRadius: 80,
+            marginBottom: 10,
+          },
+        }}
+      >
+        <Tab.Screen
+          name="Notes"
+          component={DrawerNav}
+          options={() => ({
+            tabBarIcon: ({ focused }) => (
+              <NotesIcon fill={focused ? '#1d9df3' : 'black'} />
+            ),
+          })}
+        />
+        <Tab.Screen
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <LinksIcons fill={focused ? '#1d9df3' : 'black'} />
+            ),
+          }}
+          name="Links"
+          component={Links}
+        />
 
+        {/* <Tab.Screen
+        name="NoteOptionStack"
+        component={NoteOptionStack}
+        options={({ route }) => ({
+          tabBarButtonComponent: () => null,
+          tabBarStyle: ((route) => {
+            if (route.name === 'NoteOptionStack') {
+              return { display: 'none' };
+            }
+            return;
+          })(route),
+          tabBarItemStyle: { display: 'none' },
+        })}
+      /> */}
+      </Tab.Navigator>
+    </View>
+  );
+}
 function NoteOptionStack() {
   return (
     <Stack.Navigator screenOptions={{ ...navigationOptionsConfig }}>
@@ -22,8 +80,7 @@ function NoteOptionStack() {
     </Stack.Navigator>
   );
 }
-
-export default function AppRouter() {
+function DrawerNav() {
   const categories = useAppSelector(getCategories);
   return (
     <Drawer.Navigator
@@ -59,4 +116,8 @@ export default function AppRouter() {
       />
     </Drawer.Navigator>
   );
+}
+
+export default function AppRouter() {
+  return <TabScreens />;
 }

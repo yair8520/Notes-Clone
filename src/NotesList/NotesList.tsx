@@ -6,8 +6,7 @@ import styles from './NotesListStyles';
 import { getNotes } from '../Features/Notes/NotesSelectors';
 import { useAppSelector } from '../Redux';
 import { NotesListItem } from './NotesListItem';
-import { NText } from '../Components';
-import { t } from 'i18next';
+import { EmptyList } from '../Components/EmptyList';
 
 export const NotesList = ({
   type,
@@ -15,7 +14,7 @@ export const NotesList = ({
   searchQuery,
 }: NotesListProps) => {
   let notes = useAppSelector(getNotes);
-  const notesFiltered = useMemo(() => {
+  let notesFiltered = useMemo(() => {
     if (searchQuery) {
       return Object.entries(notes).filter(
         (item) => item[1].body.includes(searchQuery) && item[1].type === type
@@ -23,9 +22,14 @@ export const NotesList = ({
     } else return Object.entries(notes).filter((item) => item[1].type === type);
   }, [notes, searchQuery, type]);
 
+  notesFiltered = Object.entries(notes);
+
   return (
-    <ScrollView contentContainerStyle={styles.content}>
-      <View style={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.content}
+      showsVerticalScrollIndicator={false}
+    >
+      <View>
         {notesFiltered && notesFiltered.length !== 0 ? (
           notesFiltered.map((item, index) => (
             <NotesListItem
@@ -35,9 +39,7 @@ export const NotesList = ({
             />
           ))
         ) : (
-          <View style={styles.emptyList}>
-            <NText variant="H3">{t('emptyList')}</NText>
-          </View>
+          <EmptyList type="note" />
         )}
       </View>
     </ScrollView>

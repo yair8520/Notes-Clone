@@ -13,7 +13,7 @@ export default StyleSheet.create({
     marginTop: 25,
     width: '90%',
   },
-  toolbar: {},
+  toolbar: { backgroundColor: 'white', borderRadius: 20, marginBottom: 5 },
   bodyInput: { maxHeight: 250 },
   content: {
     width: '100%',
@@ -22,9 +22,6 @@ export default StyleSheet.create({
   },
   richTextEditorStyle: {
     backgroundColor: '#c6c3b3',
-
-    borderWidth: 5,
-    borderRadius: 8,
     width: '100%',
   },
   editorTouch: {

@@ -1,5 +1,6 @@
 import { ViewStyle } from 'react-native';
 import { StackNavigationOptions } from '@react-navigation/stack';
+import { BottomTabNavigationOptions } from '@react-navigation/bottom-tabs/lib/typescript/src/types';
 
 export const headerStyleConfig: ViewStyle = {};
 
@@ -29,4 +30,13 @@ export const navigationOptionsConfig: StackNavigationOptions = {
   headerStyle: headerStyleConfig,
   headerShown: false,
   ...defaultScreenOptions,
+};
+export const tabBarOptions: BottomTabNavigationOptions = {
+  activeTintColor: '#e91e63',
+  labelStyle: {
+    fontSize: 12,
+  },
+  style: {
+    backgroundColor: 'blue',
+  },
 };

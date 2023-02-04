@@ -6,6 +6,7 @@ interface ICategories {
   title: string;
   icon: string;
 }
+
 interface INote {
   [key: string]: Inote;
 }

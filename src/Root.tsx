@@ -10,26 +10,29 @@ import { store } from './Redux';
 import { ModalProvider } from 'react-native-modalfy';
 import { ModalStack } from './Models/ModalConfig';
 import * as eva from '@eva-design/eva';
-import { ApplicationProvider } from '@ui-kitten/components';
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Warning: Encountered two children with the']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
-
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
 const Root = () => {
   return (
-    <Provider store={store}>
-      <ApplicationProvider {...eva} theme={eva.light}>
-        <I18nextProvider i18n={i18n}>
-          <ModalProvider stack={ModalStack}>
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <Provider store={store}>
+        <ApplicationProvider {...eva} theme={eva.light}>
+          <I18nextProvider i18n={i18n}>
             <PaperProvider>
               <NavigationContainer>
-                <App />
+                <ModalProvider stack={ModalStack}>
+                  <App />
+                </ModalProvider>
               </NavigationContainer>
             </PaperProvider>
-          </ModalProvider>
-        </I18nextProvider>
-      </ApplicationProvider>
-    </Provider>
+          </I18nextProvider>
+        </ApplicationProvider>
+      </Provider>
+    </>
   );
 };
 

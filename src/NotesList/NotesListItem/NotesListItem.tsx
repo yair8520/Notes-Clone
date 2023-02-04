@@ -5,9 +5,9 @@ import styles from './NotesListItemStyles';
 import { NText } from '../../Components';
 import { useNavigation } from '@react-navigation/native';
 import { JiggleView } from '../../Components/JiggleView';
-import { List } from 'react-native-paper';
 import { useAppDispatch } from '../../Redux';
 import { removeNote } from '../../Features/Notes/NotesSlice';
+import { Icon } from '@ui-kitten/components';
 import { htmlToString } from '../../Helpers/helper';
 
 export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
@@ -15,8 +15,8 @@ export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
   const nav = useNavigation<any>();
   const navToEditor = () => {
     if (!startAnimation) {
-      nav.navigate('NoteEditorStack', {
-        screen: 'NoteEditor',
+      nav.navigate('Notes', {
+        screen: 'NoteEditorStack',
         params: { noteId: note.id },
       });
     }
@@ -24,33 +24,39 @@ export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
   const deleteNote = () => {
     dispatch(removeNote({ noteId: note.id }));
   };
-
   return (
-    <View style={styles.con}>
-      <JiggleView startAnimation={startAnimation}>
+    <JiggleView startAnimation={startAnimation}>
+      <TouchableOpacity onPress={navToEditor} style={styles.container}>
         {startAnimation && (
           <View style={styles.deleteButton}>
             <TouchableOpacity onPress={deleteNote} style={styles.button}>
-              <List.Icon color={'white'} icon="close" />
+              <Icon name="close" fill={'white'} style={styles.closeIcon} />
             </TouchableOpacity>
           </View>
         )}
-        <TouchableOpacity
-          disabled={startAnimation}
-          onPress={navToEditor}
-          onLongPress={() => console.log('long')}
-          style={[styles.container, { backgroundColor: note.color }]}
-        >
-          <NText style={styles.date} bold variant="H4">
-            {`${note.date}`}
-          </NText>
-          <View style={styles.content}>
-            <NText style={styles.body} numberOfLines={5}>
+        <View style={styles.content}>
+          <View style={styles.verticalLine} />
+          <View style={styles.item}>
+            <NText bold variant="H2">
+              {htmlToString(note.type)}
+            </NText>
+            <NText numberOfLines={1} variant="H4">
               {htmlToString(note.body)}
             </NText>
           </View>
-        </TouchableOpacity>
-      </JiggleView>
-    </View>
+        </View>
+        <View style={styles.date}>
+          <TouchableOpacity
+            style={styles.rightItem}
+            onPress={() => console.log('Icon manu')}
+          >
+            <NText style={styles.dateText} variant="p">
+              {note.date}
+            </NText>
+            <Icon style={styles.icon} name="more-horizontal-outline" />
+          </TouchableOpacity>
+        </View>
+      </TouchableOpacity>
+    </JiggleView>
   );
 };

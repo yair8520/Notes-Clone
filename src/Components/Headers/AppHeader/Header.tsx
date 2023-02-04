@@ -1,6 +1,6 @@
 import React from 'react';
 import { HeaderProps } from './HeaderProps';
-import { Appbar, Divider, List, Menu, Text } from 'react-native-paper';
+import { Appbar, Divider, Menu } from 'react-native-paper';
 import styles from './HeaderStyles';
 import { DrawerActions } from '@react-navigation/native';
 
@@ -18,7 +18,7 @@ export const AppHeader = ({
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(!true);
   return (
-    <Appbar.Header>
+    <Appbar.Header style={styles.header}>
       <Appbar.Action
         icon="menu"
         onPress={() => navigation.dispatch(DrawerActions.openDrawer())}

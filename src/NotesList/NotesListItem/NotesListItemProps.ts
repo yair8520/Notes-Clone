@@ -1,5 +1,7 @@
+import { Inote } from '../../Features/Notes/NotesTypes';
+
 export interface NotesListItemProps {
   [key: string]: any;
-  note: any;
+  note: Inote;
   startAnimation: boolean;
 }

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { View, ScrollView, Image, Dimensions } from 'react-native';
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { NoteEditorProps } from './NoteEditorProps';
 import styles from './NoteEditorStyles';
 import { FloatingButton } from '../../Components/FloatingButton';
@@ -47,9 +47,21 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
       })
     );
   };
-  console.log(actionList);
   const richTextRef = useRef<RichEditor | any>();
-
+  useEffect(() => {
+    navigation
+      .getParent()
+      ?.getParent()
+      ?.setOptions({
+        tabBarStyle: {
+          display: 'none',
+        },
+      });
+    return () =>
+      navigation.getParent()?.getParent()?.setOptions({
+        tabBarStyle: undefined,
+      });
+  }, [navigation]);
   const richTextHandle = (descriptionText: string) => {
     if (descriptionText) {
       setDescHTML(descriptionText);
@@ -77,11 +89,11 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
                   autoCapitalize={'sentences'}
                   onChange={richTextHandle}
                   initialContentHTML={descHTML}
-                  placeholder="Write your cool content here :)"
+                  placeholder="Write your note here :)"
                   androidHardwareAccelerationDisabled={true}
                   style={styles.richTextEditorStyle}
                   allowsLinkPreview={true}
-                  initialHeight={windowHeight - 110}
+                  initialHeight={150}
                 />
               </TouchableOpacity>
               {sign && (
@@ -110,6 +122,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
             </View>
           </Pressable>
         </ScrollView>
+
         <RichToolbar
           editor={richTextRef}
           onPressAddImage={() => onPressAddImage(richTextRef)}

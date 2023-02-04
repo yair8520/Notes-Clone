@@ -6,7 +6,8 @@ export default StyleSheet.create({
     width: '90%',
     flexGrow: 1,
   },
-  emptyList: {
+  list: {},
+  empty: {
     height: '100%',
     alignItems: 'center',
   },

@@ -12,7 +12,8 @@ import { useAppDispatch } from '../../Redux';
 import { addNote } from '../../Features/Notes/NotesSlice';
 import { getCurrentDate, getCurrentTime } from '../../Utils/Time';
 
-export const Home = ({ navigation }: HomeProps) => {
+export const Home = ({ navigation, route }: HomeProps) => {
+  console.log(route.name);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [deleteMode, setDeleteMode] = React.useState<boolean>(false);
   const [filterDir, setFilterDir] = React.useState<string>('Descending');
@@ -31,8 +32,9 @@ export const Home = ({ navigation }: HomeProps) => {
         body: '',
       })
     );
-    navigation.navigate('NoteEditorStack', {
-      screen: 'NoteEditor',
+
+    navigation.navigate('Notes', {
+      screen: 'NoteEditorStack',
       params: { noteId: id },
     });
   };
@@ -58,7 +60,12 @@ export const Home = ({ navigation }: HomeProps) => {
           filterDir={filterDir}
         />
       </View>
-      <FAB icon="plus" style={styles.fab} onPress={() => newNote()} />
+      <FAB
+        icon="plus"
+        color={'white'}
+        style={styles.fab}
+        onPress={() => newNote()}
+      />
     </>
   );
 };
