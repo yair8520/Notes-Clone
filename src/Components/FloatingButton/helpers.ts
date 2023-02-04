@@ -1,26 +1,38 @@
-import { Alert, PermissionsAndroid, Share } from 'react-native';
+import { Clipboard } from '@react-native-clipboard/clipboard/dist/Clipboard';
+import { Alert, PermissionsAndroid, Share, Linking } from 'react-native';
 import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import RNFetchBlob from 'rn-fetch-blob';
 import { Inote } from '../../Features/Notes/NotesTypes';
 import { htmlToString } from '../../Helpers/helper';
 import { getCurrentTime, getFullDate } from '../../Utils/Time';
 
-export const shareOption = async ({ body, image }: any) => {
+export const shareOption = async ({
+  body,
+  url,
+}: {
+  body: string;
+  url?: string;
+}) => {
   try {
     const result = await Share.share({
       message: `${htmlToString(body)}`,
-      url: image,
+      url: url ?? '',
     });
     if (result.action === Share.sharedAction) {
       if (result.activityType) {
       } else {
-        // shared
       }
     } else if (result.action === Share.dismissedAction) {
     }
   } catch (error: any) {
-    Alert.alert(body, image);
+    Alert.alert(body, url);
   }
+};
+export const copyOption = (text: string) => {
+  Clipboard.setString(text);
+};
+export const openUrl = (url: string) => {
+  Linking.openURL(`http://${url}`).catch((e) => console.log(e));
 };
 const isPermitted = async () => {
   try {

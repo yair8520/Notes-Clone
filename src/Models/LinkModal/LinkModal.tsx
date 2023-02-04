@@ -12,8 +12,9 @@ export const LinkModal = ({
 }: LinkModalProps) => {
   const { t } = useTranslation();
   const insert = getParam('insert');
-  const [value, setValue] = React.useState('');
-  const [title, setTitle] = React.useState('');
+  const data = getParam('data') ?? { value: '', title: '' };
+  const [value, setValue] = React.useState(data.value);
+  const [title, setTitle] = React.useState(data.title);
   const [error, setError] = React.useState('');
 
   const onSave = () => {

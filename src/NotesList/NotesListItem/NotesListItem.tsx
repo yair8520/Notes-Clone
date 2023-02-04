@@ -46,15 +46,14 @@ export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
           </View>
         </View>
         <View style={styles.date}>
-          <TouchableOpacity
-            style={styles.rightItem}
-            onPress={() => console.log('Icon manu')}
-          >
+          <View style={styles.rightItem}>
             <NText style={styles.dateText} variant="p">
               {note.date}
             </NText>
-            <Icon style={styles.icon} name="more-horizontal-outline" />
-          </TouchableOpacity>
+            <NText style={styles.dateText} variant="p">
+              {note.time}
+            </NText>
+          </View>
         </View>
       </TouchableOpacity>
     </JiggleView>

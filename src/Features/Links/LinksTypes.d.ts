@@ -7,3 +7,9 @@ interface ILink {
   value: string;
   date?: string;
 }
+interface IEditLink {
+  index: number;
+  title: string;
+  value: string;
+  date?: string;
+}
