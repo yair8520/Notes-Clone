@@ -61,15 +61,13 @@ export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
           <View style={styles.buttonContainer}>
             <Button
               style={styles.button}
-              mode={'outlined'}
-              textColor={'#3f7ee8'}
+              textColor={'#2ba6f8'}
               onPress={() => closeModal()}
             >
               {t(`buttons.cancel`).toString()}
             </Button>
             <Button
-              buttonColor={'#3f7ee8'}
-              mode={'contained'}
+              textColor={'#2ba6f8'}
               style={styles.button}
               onPress={onSave}
             >

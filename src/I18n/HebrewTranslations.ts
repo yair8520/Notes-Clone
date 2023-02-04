@@ -9,8 +9,8 @@ export const HebrewTranslations = {
     },
   },
   buttons: {
-    save: 'save',
-    cancel: 'cancel',
+    save: 'Save',
+    cancel: 'Cancel',
   },
   emptyList: 'Click the button below to add notes to this category',
   err: {

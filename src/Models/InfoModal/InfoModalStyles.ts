@@ -36,7 +36,7 @@ export default StyleSheet.create({
   },
   button: {
     width: 100,
-    borderColor: '#3f7ee8',
+
     borderRadius: 15,
   },
   content: {

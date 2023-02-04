@@ -7,6 +7,7 @@ import { NText } from '../../Components/Text';
 import { useTranslation } from 'react-i18next';
 import { Input } from '@ui-kitten/components';
 import { Button } from 'react-native-paper';
+import { NInput } from '../../Components';
 export const LinkModal = ({
   modal: { closeModal, getParam },
 }: LinkModalProps) => {
@@ -27,9 +28,11 @@ export const LinkModal = ({
   };
   return (
     <View style={styles.centeredView}>
-      <View style={styles.body}>
-        <View style={[styles.modalView]}>
-          <NText variant="H1">{t(`modals.link.add`)}</NText>
+      <View style={[styles.modalView]}>
+        <View style={styles.body}>
+          <NText style={styles.headline} variant="H1">
+            {t(`modals.link.add`)}
+          </NText>
           <View style={styles.inputCon}>
             <Input
               style={styles.input}
@@ -46,19 +49,21 @@ export const LinkModal = ({
               placeholder="paste your link here  "
               onChangeText={(nextValue) => setValue(nextValue)}
             />
+            <NInput
+              onChange={(nextValue) => setValue(nextValue)}
+              value={value}
+            />
           </View>
           <View style={styles.buttonContainer}>
             <Button
               style={styles.button}
-              mode={'outlined'}
-              textColor={'#3f7ee8'}
+              textColor={'#2ba6f8'}
               onPress={() => closeModal()}
             >
               {t(`buttons.cancel`).toString()}
             </Button>
             <Button
-              buttonColor={'#3f7ee8'}
-              mode={'contained'}
+              textColor={'#2ba6f8'}
               style={styles.button}
               onPress={onSave}
             >
