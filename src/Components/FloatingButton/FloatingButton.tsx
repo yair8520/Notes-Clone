@@ -36,6 +36,7 @@ export const FloatingButton = ({ noteId, data }: TemplateProps) => {
           icon: 'share',
           label: 'Share',
           onPress: () => {
+            console.log(data);
             shareOption(data);
           },
         },

@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { Image, View } from 'react-native';
 import React from 'react';
 import styles from './DrawerContentStyles';
 import {
@@ -6,16 +6,27 @@ import {
   DrawerItem,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import { List } from 'react-native-paper';
+import { Divider, List } from 'react-native-paper';
 import { NText } from '../Text';
 import { useModal } from 'react-native-modalfy';
 import { IconLink } from '../IconLink';
 import { socialLinks } from '../../constant';
+import { AppLogo } from '../../Assets/Images';
 export const NDrawerContent = (props: any) => {
   const { openModal } = useModal();
   return (
     <DrawerContentScrollView {...props}>
-      <View style={styles.header}>
+      <View style={styles.empty}>
+        <Image source={AppLogo} style={styles.logo} />
+      </View>
+      <Divider />
+      <DrawerItem
+        label="Add Category"
+        icon={() => <List.Icon icon="plus" />}
+        onPress={() => openModal('InfoModal')}
+      />
+      <DrawerItemList {...props} />
+      {/* <View style={styles.header}>
         <NText bold variant="H1">
           Notes App
         </NText>
@@ -30,13 +41,7 @@ export const NDrawerContent = (props: any) => {
           />
           <IconLink iconName="github" url={socialLinks.git} />
         </View>
-      </View>
-      <DrawerItem
-        label="Add Category"
-        icon={() => <List.Icon icon="plus" />}
-        onPress={() => openModal('InfoModal')}
-      />
-      <DrawerItemList {...props} />
+      </View> */}
     </DrawerContentScrollView>
   );
 };

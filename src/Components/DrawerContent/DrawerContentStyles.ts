@@ -15,4 +15,13 @@ export default StyleSheet.create({
     width: '30%',
     flexDirection: 'row',
   },
+  empty: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 150,
+  },
+  logo: {
+    height: 100,
+    width: 100,
+  },
 });

@@ -1,13 +1,13 @@
 /* eslint-disable quotes */
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 import { LinkModalProps } from './LinkModalProps';
 import styles from './LinkModalStyles';
 import { NText } from '../../Components/Text';
 import { useTranslation } from 'react-i18next';
-import { Input } from '@ui-kitten/components';
 import { Button } from 'react-native-paper';
 import { NInput } from '../../Components';
+import { errorMsg } from '../../I18n/HebrewTranslations';
 export const LinkModal = ({
   modal: { closeModal, getParam },
 }: LinkModalProps) => {
@@ -20,7 +20,7 @@ export const LinkModal = ({
 
   const onSave = () => {
     if (!value) {
-      setError(`${t(`err.required`)}`);
+      setError(errorMsg.required);
     } else {
       insert(title, value);
       closeModal();
@@ -30,26 +30,22 @@ export const LinkModal = ({
     <View style={styles.centeredView}>
       <View style={[styles.modalView]}>
         <View style={styles.body}>
-          <NText style={styles.headline} variant="H1">
+          <NText bold style={styles.headline} variant="H1">
             {t(`modals.link.add`)}
           </NText>
           <View style={styles.inputCon}>
-            <Input
+            <NInput
+              label="Title"
+              autoCapitalize="words"
               style={styles.input}
+              onChange={(nextValue) => setTitle(nextValue)}
               value={title}
-              label="title (optional)"
-              placeholder="link Title"
-              onChangeText={(nextValue) => setTitle(nextValue)}
-            />
-            <Input
-              style={styles.input}
-              value={value}
-              caption={() => <Text style={styles.errorText}> {error}</Text>}
-              label="link *"
-              placeholder="paste your link here  "
-              onChangeText={(nextValue) => setValue(nextValue)}
             />
             <NInput
+              error={error}
+              label="Link *"
+              errorText={errorMsg.required}
+              style={styles.input}
               onChange={(nextValue) => setValue(nextValue)}
               value={value}
             />

@@ -21,6 +21,7 @@ export const ToolBar = ({ richTextRef }: ToolBarProps) => {
       onPressAddImage={() => onPressAddImage(richTextRef)}
       onInsertLink={onInsertLink}
       style={styles.toolbar}
+      selectedButtonStyle={styles.selectedButton}
       iconMap={{
         keyboard: () => <List.Icon icon={'keyboard'} />,
         undo: () => <List.Icon icon={'undo'} />,

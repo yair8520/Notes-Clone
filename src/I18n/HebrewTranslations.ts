@@ -18,4 +18,6 @@ export const HebrewTranslations = {
     required: 'Required felid',
   },
 };
-export const errorMsg: any = {};
+export const errorMsg: any = {
+  required: 'This is a require felid',
+};
