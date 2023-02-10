@@ -15,13 +15,14 @@ export const Home = ({ navigation }: HomeProps) => {
   const [filterDir, setFilterDir] = React.useState<string>('Descending');
   const onChangeSearch = (query: React.SetStateAction<string>) =>
     setSearchQuery(query);
-  const type = useRoute().name;
+  const category = useRoute().name;
+  console.log(category);
   const newNote = () => {
     navigation.navigate('Notes', {
       screen: 'NoteEditorStack',
       params: {
         screen: 'NoteEditor',
-        params: { noteId: uid(16) },
+        params: { noteId: uid(16), category },
       },
     });
   };
@@ -29,7 +30,7 @@ export const Home = ({ navigation }: HomeProps) => {
     <>
       <AppHeader
         editMode={setDeleteMode}
-        title={type}
+        title={category}
         setFilterDir={setFilterDir}
         navigation={navigation}
       />
@@ -43,7 +44,7 @@ export const Home = ({ navigation }: HomeProps) => {
         <NotesList
           searchQuery={searchQuery}
           deleteMode={deleteMode}
-          type={type}
+          type={category}
           filterDir={filterDir}
         />
       </View>

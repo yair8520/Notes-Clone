@@ -1,17 +1,17 @@
 /* eslint-disable quotes */
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 import { InfoModalProps } from './InfoModalProps';
 import styles from './InfoModalStyles';
 import { NText } from '../../Components/Text';
 import { useTranslation } from 'react-i18next';
 import { NDropDown } from '../../Components/DropDown';
-import { Input } from '@ui-kitten/components';
 import { useAppDispatch, useAppSelector } from '../../Redux';
 import { addCategory } from '../../Features/Notes/NotesSlice';
 import { iconOptions } from '../../Components/DropDown/types';
 import { getCategories } from '../../Features/Notes/NotesSelectors';
 import { Button } from 'react-native-paper';
+import { NInput } from '../../Components';
 export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -35,23 +35,30 @@ export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
       } else {
         setError(`${t(`err.existCategory`)}`);
       }
+    } else {
+      setError(`${t(`err.required`)}`);
     }
   };
+  console.log(error);
   return (
     <View style={styles.centeredView}>
       <View style={styles.body}>
         <View style={[styles.modalView]}>
-          <NText variant="H1">{t(`modals.info.add`)}</NText>
+          <NText style={styles.title} variant="H1">
+            {t(`modals.info.add`)}
+          </NText>
           <View style={styles.inputCon}>
-            <Input
+            <NInput
               style={styles.input}
               value={value}
-              caption={() => <Text style={styles.errorText}> {error}</Text>}
-              label="Name *"
-              placeholder="Category"
-              onChangeText={(nextValue) => setValue(nextValue)}
+              error={!!error}
+              errorText={error}
+              label="Category"
+              onChange={(nextValue) => setValue(nextValue)}
             />
+
             <NDropDown
+              style={styles.input}
               data={iconOptions}
               label="Select Icon"
               setSelectedIndex={setSelectedIndex}

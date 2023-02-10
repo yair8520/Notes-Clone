@@ -31,6 +31,9 @@ export const shareOption = async ({
 export const copyOption = (text: string) => {
   Clipboard.setString(text);
 };
+export const pasteOption = () => {
+  return Clipboard.getString();
+};
 export const openUrl = (url: string) => {
   Linking.openURL(`http://${url}`).catch((e) => console.log(e));
 };

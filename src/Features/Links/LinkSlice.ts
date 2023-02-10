@@ -4,6 +4,7 @@ import { IEditLink, ILink, LinkState } from './LinksTypes';
 
 const initialState: LinkState = {
   links: [{ title: 'google', value: 'www.google.co.il', date: '03 Feb 23' }],
+  snackBarMessage: '',
 };
 
 const LinkSlice = createSlice({
@@ -20,8 +21,11 @@ const LinkSlice = createSlice({
     removeLink: (state, { payload }: { payload: { index: number } }) => {
       state.links.splice(payload.index, 1);
     },
+    addMessage: (state, { payload }: { payload: { msg: string } }) => {
+      state.snackBarMessage = payload.msg;
+    },
   },
 });
 
-export const { addLink, removeLink, editLink } = LinkSlice.actions;
+export const { addLink, removeLink, editLink, addMessage } = LinkSlice.actions;
 export default LinkSlice.reducer;

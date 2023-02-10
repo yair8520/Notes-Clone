@@ -6,7 +6,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
-    "release": "npx react-native run-android --mode=release",
+    "build": "cd android && gradlew clean && .\\gradlew app:assembleRelease",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "prettier:write": "prettier --write src/**/*.ts*"

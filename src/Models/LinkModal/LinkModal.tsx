@@ -42,7 +42,8 @@ export const LinkModal = ({
               value={title}
             />
             <NInput
-              error={error}
+              icon={'content-paste'}
+              error={!!error}
               label="Link *"
               errorText={errorMsg.required}
               style={styles.input}

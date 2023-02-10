@@ -10,7 +10,7 @@ import {
 } from '../../../FloatingButton/helpers';
 import { useModal } from 'react-native-modalfy';
 import { useAppDispatch } from '../../../../Redux';
-import { editLink } from '../../../../Features/Links/LinkSlice';
+import { addMessage, editLink } from '../../../../Features/Links/LinkSlice';
 
 export const LinkMenu = ({ children, style, data, index }: LinkMenuProps) => {
   const [visible, setVisible] = React.useState(false);
@@ -65,7 +65,10 @@ export const LinkMenu = ({ children, style, data, index }: LinkMenuProps) => {
       />
       <Menu.Item
         onPress={() => {
-          onPress(() => copyOption(data.value));
+          onPress(() => {
+            dispatch(addMessage({ msg: 'Url copied to Clipboard' }));
+            copyOption(data.value);
+          });
         }}
         trailingIcon="content-copy"
         title="Copy"
@@ -76,13 +79,6 @@ export const LinkMenu = ({ children, style, data, index }: LinkMenuProps) => {
         }}
         trailingIcon="open-in-new"
         title="Open"
-      />
-      <Menu.Item
-        onPress={() => {
-          onPress(() => {});
-        }}
-        trailingIcon="shield-lock-open"
-        title="Lock"
       />
     </Menu>
   );

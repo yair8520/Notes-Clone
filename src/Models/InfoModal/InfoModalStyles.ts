@@ -14,15 +14,13 @@ export default StyleSheet.create({
   },
   inputCon: {
     width: '90%',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   modalView: {
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',
-    height: 350,
+    height: 250,
     width: elementWidth(550),
   },
   viewWithIcon: {
@@ -45,19 +43,18 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
   },
-  title: {},
+  title: { alignSelf: 'flex-start', paddingLeft: '5%' },
   body: {
-    width: '100%',
+    width: '90%',
     alignItems: 'center',
     flex: 2,
     justifyContent: 'center',
   },
   buttonContainer: {
-    marginTop: 50,
+    marginTop: 20,
     flexDirection: 'row',
-    width: '70%',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
+    alignSelf: 'flex-end',
   },
   text: {
     textAlign: 'center',

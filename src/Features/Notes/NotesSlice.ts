@@ -10,7 +10,11 @@ import {
 
 const initialState: NotesState = {
   notesArray: {},
-  categories: [{ title: 'Work', icon: 'folder' }],
+  categories: [
+    { title: 'Work', icon: 'folder' },
+    { title: 'WishList', icon: 'shopping' },
+    { title: 'Personal', icon: 'face-man' },
+  ],
 };
 
 const NotesSlice = createSlice({

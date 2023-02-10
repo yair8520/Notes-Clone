@@ -1,5 +1,6 @@
 export interface LinkState {
   links: ILink[];
+  snackBarMessage: string;
 }
 
 interface ILink {

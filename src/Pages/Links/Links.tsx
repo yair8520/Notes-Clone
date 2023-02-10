@@ -46,6 +46,7 @@ export const Links = ({ navigation }: LinksProps) => {
           filterDir={filterDir}
         />
       </View>
+
       <FAB
         icon="plus"
         color={'white'}

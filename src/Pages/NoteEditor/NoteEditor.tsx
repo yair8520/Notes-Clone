@@ -9,18 +9,18 @@ import { useAppDispatch, useAppSelector } from '../../Redux';
 import { addNote } from '../../Features/Notes/NotesSlice';
 import { getCurrentDate, getCurrentTime } from '../../Utils/Time';
 import { uid } from 'uid';
-import { getNotes } from '../../Features/Notes/NotesSelectors';
+import { getCategories, getNotes } from '../../Features/Notes/NotesSelectors';
 import { TouchableOpacity } from 'react-native';
 import { Pressable } from 'react-native';
 import { RichEditor } from 'react-native-pell-rich-editor';
 import { ActivityIndicator, MD2Colors } from 'react-native-paper';
-
 import { ToolBar } from './ToolBar';
 import { useHideTabBar } from '../../Hooks/useHideTabBar';
 
 export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   useHideTabBar(navigation);
   const { noteId } = route?.params ?? '0';
+  const { category } = route?.params;
   const notes = useAppSelector(getNotes);
   const currentNote = useMemo(() => {
     return Object.entries(notes).find((item) => {
@@ -30,16 +30,18 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   const id = useMemo(() => {
     return noteId ? noteId : uid(16);
   }, [noteId]);
-
+  const categories = useAppSelector(getCategories);
+  const [selectedIndex, setSelectedIndex] = React.useState(
+    categories.findIndex((a) => a.title === category)
+  );
   const [descHTML, setDescHTML] = useState(currentNote?.[1].body);
-  //const image = currentNote?.[1].image?.base64;
   const sign = currentNote?.[1].sign?.base64;
   const dispatch = useAppDispatch();
-  const saveNote = (type: string) => {
+  const saveNote = () => {
     dispatch(
       addNote({
         id,
-        type,
+        type: categories[selectedIndex].title,
         time: getCurrentTime(),
         date: getCurrentDate(),
         body: descHTML!,
@@ -53,7 +55,12 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
 
   return (
     <>
-      <NoteHeader addNote={saveNote} navigation={navigation} />
+      <NoteHeader
+        setSelectedIndex={setSelectedIndex}
+        selectedIndex={selectedIndex}
+        addNote={saveNote}
+        navigation={navigation}
+      />
       <View style={styles.mainCon}>
         <ScrollView contentContainerStyle={styles.content}>
           <Pressable onPress={() => richTextRef.current?.dismissKeyboard()}>
@@ -104,7 +111,11 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
           </Pressable>
         </ScrollView>
         <ToolBar richTextRef={richTextRef} />
-        <FloatingButton data={currentNote?.[1]} noteId={id} />
+        <FloatingButton
+          onPress={() => saveNote()}
+          data={currentNote?.[1]}
+          noteId={id}
+        />
       </View>
     </>
   );

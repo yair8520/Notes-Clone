@@ -2,7 +2,6 @@ import { View } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 import { DrawPannelProps } from './DrawPannelProps';
 import styles from './DrawPannelStyles';
-import { NavigationActions } from 'react-navigation';
 
 import { SketchCanvas, SketchCanvasRef } from 'rn-perfect-sketch-canvas';
 import { DrawToolBar } from './DrawToolBar';
