@@ -5,6 +5,7 @@ import { IEditLink, ILink, LinkState } from './LinksTypes';
 const initialState: LinkState = {
   links: [{ title: 'google', value: 'www.google.co.il', date: '03 Feb 23' }],
   snackBarMessage: '',
+  password: '',
 };
 
 const LinkSlice = createSlice({
@@ -24,8 +25,19 @@ const LinkSlice = createSlice({
     addMessage: (state, { payload }: { payload: { msg: string } }) => {
       state.snackBarMessage = payload.msg;
     },
+    setPass: (state, { payload }: { payload: { pass: string } }) => {
+      state.password = payload.pass;
+    },
+    lockLink: (state, { payload }: { payload: { index: number } }) => {
+      if (state.links[payload.index].locked) {
+        state.links[payload.index].locked = false;
+      } else {
+        state.links[payload.index].locked = true;
+      }
+    },
   },
 });
 
-export const { addLink, removeLink, editLink, addMessage } = LinkSlice.actions;
+export const { addLink, removeLink, editLink, addMessage, setPass, lockLink } =
+  LinkSlice.actions;
 export default LinkSlice.reducer;

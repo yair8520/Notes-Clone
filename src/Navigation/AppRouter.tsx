@@ -16,6 +16,7 @@ import { Links } from '../Pages/Links';
 import NotesIcon from '../Assets/Images/NotesIcon';
 import LinksIcons from '../Assets/Images/LinksIcons';
 import { View } from 'react-native';
+import { PassModal } from '../Models/PassModal';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
@@ -57,6 +58,7 @@ function NoteOptionStack() {
     <Stack.Navigator screenOptions={{ ...navigationOptionsConfig }}>
       <Stack.Screen name="NoteEditor" component={NoteEditor} />
       <Stack.Screen name="DrawPannel" component={DrawPannel} />
+      <Stack.Screen name="password" component={PassModal} options={{}} />
     </Stack.Navigator>
   );
 }
@@ -87,6 +89,7 @@ function DrawerNav() {
           }}
         />
       ))}
+
       <Drawer.Screen
         name={'NoteEditorStack'}
         component={NoteOptionStack}

@@ -9,19 +9,30 @@ import { useAppDispatch } from '../../Redux';
 import { removeNote } from '../../Features/Notes/NotesSlice';
 import { Icon } from '@ui-kitten/components';
 import { extractBody, extractTitle } from '../../Helpers/helper';
+import { List } from 'react-native-paper';
 
 export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
   const dispatch = useAppDispatch();
   const nav = useNavigation<any>();
   const navToEditor = () => {
     if (!startAnimation) {
-      nav.navigate('Notes', {
-        screen: 'NoteEditorStack',
-        params: {
-          screen: 'NoteEditor',
-          params: { noteId: note.id },
-        },
-      });
+      if (note.locked) {
+        nav.navigate('Notes', {
+          screen: 'NoteEditorStack',
+          params: {
+            screen: 'password',
+            params: { noteId: note.id, category: note.type },
+          },
+        });
+      } else {
+        nav.navigate('Notes', {
+          screen: 'NoteEditorStack',
+          params: {
+            screen: 'NoteEditor',
+            params: { noteId: note.id, category: note.type },
+          },
+        });
+      }
     }
   };
   const deleteNote = () => {
@@ -57,6 +68,7 @@ export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
               {note.time}
             </NText>
           </View>
+          {note.locked && <List.Icon icon={'shield-lock-outline'} />}
         </View>
       </TouchableOpacity>
     </JiggleView>

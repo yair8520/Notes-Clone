@@ -19,6 +19,7 @@ interface Inote {
   color?: string;
   image?: Iimages;
   sign?: ISign;
+  locked?: boolean;
 }
 interface Iimages {
   points: any;

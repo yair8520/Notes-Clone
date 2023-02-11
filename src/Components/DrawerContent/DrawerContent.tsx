@@ -7,10 +7,7 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import { Divider, List } from 'react-native-paper';
-import { NText } from '../Text';
 import { useModal } from 'react-native-modalfy';
-import { IconLink } from '../IconLink';
-import { socialLinks } from '../../constant';
 import { AppLogo } from '../../Assets/Images';
 export const NDrawerContent = (props: any) => {
   const { openModal } = useModal();
@@ -21,9 +18,22 @@ export const NDrawerContent = (props: any) => {
       </View>
       <Divider />
       <DrawerItem
+        label="Password"
+        icon={() => <List.Icon icon="lock-pattern" />}
+        onPress={() => {
+          props.navigation.navigate('NoteEditorStack', {
+            screen: 'password',
+            params: {
+              next: -1,
+            },
+          });
+        }}
+      />
+      <Divider />
+      <DrawerItem
         label="Add Category"
         icon={() => <List.Icon icon="plus" />}
-        onPress={() => openModal('InfoModal')}
+        onPress={() => openModal('PassModal')}
       />
       <DrawerItemList {...props} />
       {/* <View style={styles.header}>

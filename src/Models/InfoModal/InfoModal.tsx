@@ -39,7 +39,6 @@ export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
       setError(`${t(`err.required`)}`);
     }
   };
-  console.log(error);
   return (
     <View style={styles.centeredView}>
       <View style={styles.body}>

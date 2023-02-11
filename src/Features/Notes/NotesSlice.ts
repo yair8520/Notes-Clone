@@ -22,7 +22,6 @@ const NotesSlice = createSlice({
   initialState,
   reducers: {
     addNote: (state, { payload }: { payload: Inote }) => {
-      console.log(payload);
       state.notesArray[payload.id] = {
         ...state.notesArray[payload.id],
         ...payload,
@@ -38,20 +37,25 @@ const NotesSlice = createSlice({
     },
     addSign: (state, { payload }: { payload: IaddSign }) => {
       const { id, points, base64 } = payload;
-      console.log('IaddSign', id);
       state.notesArray[id].sign = { points, base64 };
     },
     removeNote: (state, { payload }: { payload: { noteId: string } }) => {
       delete state.notesArray[payload.noteId];
     },
+    lockNote: (state, { payload }: { payload: { noteId: string } }) => {
+      if (state.notesArray[payload.noteId].locked) {
+        state.notesArray[payload.noteId].locked = false;
+      } else {
+        state.notesArray[payload.noteId].locked = true;
+      }
+    },
 
     addCategory: (state, { payload }: { payload: ICategories }) => {
-      console.log('action.payload', payload);
       state.categories.push(payload);
     },
   },
 });
 
-export const { addNote, removeNote, addCategory, addImage, addSign } =
+export const { addNote, removeNote, addCategory, addImage, addSign, lockNote } =
   NotesSlice.actions;
 export default NotesSlice.reducer;

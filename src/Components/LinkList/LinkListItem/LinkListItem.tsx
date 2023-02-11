@@ -1,5 +1,5 @@
 import { View } from 'react-native';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { LinkListItemProps } from './LinkListItemProps';
 import styles from './LinkListItemStyles';
 import { NText } from '../../Text';
@@ -13,6 +13,14 @@ export const LinkListItem = ({
   deleteLink,
   index,
 }: LinkListItemProps) => {
+  const info = useMemo(() => {
+    const a = { ...data };
+    if (data.locked) {
+      a.value = '******';
+      a.title = '******';
+    }
+    return a;
+  }, [data]);
   return (
     <JiggleView startAnimation={startAnimation}>
       <View style={styles.container}>
@@ -32,15 +40,15 @@ export const LinkListItem = ({
           <View style={styles.verticalLine} />
           <View style={styles.item}>
             <NText bold variant="H2">
-              {data.title}
+              {info.title}
             </NText>
-            <NText variant="H4">{data.value}</NText>
+            <NText variant="H4">{info.value}</NText>
           </View>
         </View>
         <View style={styles.date}>
-          <LinkMenu index={index} data={data} style={styles.rightItem}>
+          <LinkMenu index={index} data={info} style={styles.rightItem}>
             <NText style={styles.dateText} variant="p">
-              {data.date}
+              {info.date}
             </NText>
             <Icon style={styles.icon} name="more-horizontal-outline" />
           </LinkMenu>

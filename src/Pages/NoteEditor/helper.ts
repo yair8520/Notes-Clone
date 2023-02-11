@@ -23,7 +23,6 @@ export const onPressAddImage = async (
     maxHeight: 350,
     maxWidth: 350,
   }).then((res) => {
-    console.log(res?.assets?.[0].type);
     const str = `data:${res?.assets?.[0].type};base64,${res?.assets?.[0].base64}`;
     _ref.current?.insertImage(str);
   });

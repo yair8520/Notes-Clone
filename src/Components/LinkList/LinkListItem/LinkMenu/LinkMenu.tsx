@@ -10,9 +10,15 @@ import {
 } from '../../../FloatingButton/helpers';
 import { useModal } from 'react-native-modalfy';
 import { useAppDispatch } from '../../../../Redux';
-import { addMessage, editLink } from '../../../../Features/Links/LinkSlice';
+import {
+  addMessage,
+  editLink,
+  lockLink,
+} from '../../../../Features/Links/LinkSlice';
+import { useNavigation } from '@react-navigation/native';
 
 export const LinkMenu = ({ children, style, data, index }: LinkMenuProps) => {
+  const nav = useNavigation();
   const [visible, setVisible] = React.useState(false);
   const { openModal } = useModal();
   const dispatch = useAppDispatch();
@@ -79,6 +85,23 @@ export const LinkMenu = ({ children, style, data, index }: LinkMenuProps) => {
         }}
         trailingIcon="open-in-new"
         title="Open"
+      />
+      <Menu.Item
+        onPress={() => {
+          onPress(() => {
+            nav.navigate('Notes', {
+              screen: 'NoteEditorStack',
+              params: {
+                screen: 'password',
+                params: { handler: () => dispatch(lockLink({ index })) },
+              },
+            });
+          });
+        }}
+        trailingIcon={
+          data.locked ? 'shield-lock-outline' : 'shield-lock-open-outline'
+        }
+        title={data.locked ? 'Lock' : 'Unlock'}
       />
     </Menu>
   );

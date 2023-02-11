@@ -1,9 +1,8 @@
-import { View, ScrollView, Image } from 'react-native';
+import { View, ScrollView } from 'react-native';
 import React, { useMemo, useRef, useState } from 'react';
 import { NoteEditorProps } from './NoteEditorProps';
 import styles from './NoteEditorStyles';
 import { FloatingButton } from '../../Components/FloatingButton';
-import { NText } from '../../Components/Text';
 import { NoteHeader } from '../../Components/Headers/NoteHeader';
 import { useAppDispatch, useAppSelector } from '../../Redux';
 import { addNote } from '../../Features/Notes/NotesSlice';
@@ -30,12 +29,12 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   const id = useMemo(() => {
     return noteId ? noteId : uid(16);
   }, [noteId]);
+
   const categories = useAppSelector(getCategories);
   const [selectedIndex, setSelectedIndex] = React.useState(
     categories.findIndex((a) => a.title === category)
   );
   const [descHTML, setDescHTML] = useState(currentNote?.[1].body);
-  const sign = currentNote?.[1].sign?.base64;
   const dispatch = useAppDispatch();
   const saveNote = () => {
     dispatch(
@@ -56,6 +55,8 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   return (
     <>
       <NoteHeader
+        id={id}
+        locked={currentNote?.[1].locked}
         setSelectedIndex={setSelectedIndex}
         selectedIndex={selectedIndex}
         addNote={saveNote}
@@ -84,29 +85,6 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
                   initialHeight={450}
                 />
               </TouchableOpacity>
-              {sign && (
-                <>
-                  <NText style={styles.title} variant="H2">
-                    Your Signature
-                  </NText>
-                  <NText style={styles.label} variant="H3">
-                    Sign Pannel - long press for edit can be added to your pfd
-                    file
-                  </NText>
-                  <TouchableOpacity
-                    onPress={() => {}}
-                    onLongPress={() =>
-                      navigation.navigate('DrawPannel', { noteId, sign: true })
-                    }
-                    style={styles.imgContainer}
-                  >
-                    <Image
-                      style={styles.signimg}
-                      source={{ uri: `data:image/jpeg;base64,${sign}` }}
-                    />
-                  </TouchableOpacity>
-                </>
-              )}
             </View>
           </Pressable>
         </ScrollView>

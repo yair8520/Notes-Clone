@@ -16,7 +16,6 @@ export const Home = ({ navigation }: HomeProps) => {
   const onChangeSearch = (query: React.SetStateAction<string>) =>
     setSearchQuery(query);
   const category = useRoute().name;
-  console.log(category);
   const newNote = () => {
     navigation.navigate('Notes', {
       screen: 'NoteEditorStack',
