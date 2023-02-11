@@ -90,18 +90,15 @@ export const LinkMenu = ({ children, style, data, index }: LinkMenuProps) => {
         onPress={() => {
           onPress(() => {
             nav.navigate('Notes', {
-              screen: 'NoteEditorStack',
-              params: {
-                screen: 'password',
-                params: { handler: () => dispatch(lockLink({ index })) },
-              },
+              screen: 'password',
+              params: { handler: () => dispatch(lockLink({ index })) },
             });
           });
         }}
         trailingIcon={
-          data.locked ? 'shield-lock-outline' : 'shield-lock-open-outline'
+          !data.locked ? 'shield-lock-outline' : 'shield-lock-open-outline'
         }
-        title={data.locked ? 'Lock' : 'Unlock'}
+        title={!data.locked ? 'Lock' : 'Unlock'}
       />
     </Menu>
   );

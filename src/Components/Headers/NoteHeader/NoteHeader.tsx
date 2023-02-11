@@ -7,6 +7,7 @@ import { getCategories } from '../../../Features/Notes/NotesSelectors';
 import { useAppDispatch, useAppSelector } from '../../../Redux';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { lockNote } from '../../../Features/Notes/NotesSlice';
+import { addMessage } from '../../../Features/Links/LinkSlice';
 
 export const NoteHeader = ({
   navigation,
@@ -16,11 +17,21 @@ export const NoteHeader = ({
   id,
   locked,
 }: HeaderProps) => {
+  console.log(locked);
   const categories = useAppSelector(getCategories);
   const dispatch = useAppDispatch();
   const save = () => {
     addNote();
     navigation.navigate(categories[selectedIndex].title);
+  };
+  const LockOption = () => {
+    addNote();
+    dispatch(lockNote({ noteId: id }));
+    if (locked) {
+      dispatch(addMessage({ msg: 'The note is open' }));
+    } else {
+      dispatch(addMessage({ msg: 'The note is locked' }));
+    }
   };
   return (
     <Appbar.Header style={styles.header}>
@@ -32,7 +43,7 @@ export const NoteHeader = ({
       />
       <Appbar.Content style={styles.title} title={''} />
 
-      <TouchableOpacity onPress={() => dispatch(lockNote({ noteId: id }))}>
+      <TouchableOpacity onPress={LockOption}>
         <List.Icon
           icon={!locked ? 'shield-lock-open-outline' : 'shield-lock-outline'}
         />

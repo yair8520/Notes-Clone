@@ -18,19 +18,6 @@ export const NDrawerContent = (props: any) => {
       </View>
       <Divider />
       <DrawerItem
-        label="Password"
-        icon={() => <List.Icon icon="lock-pattern" />}
-        onPress={() => {
-          props.navigation.navigate('NoteEditorStack', {
-            screen: 'password',
-            params: {
-              next: -1,
-            },
-          });
-        }}
-      />
-      <Divider />
-      <DrawerItem
         label="Add Category"
         icon={() => <List.Icon icon="plus" />}
         onPress={() => openModal('PassModal')}

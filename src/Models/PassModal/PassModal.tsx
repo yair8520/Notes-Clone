@@ -12,8 +12,7 @@ import { addMessage, setPass } from '../../Features/Links/LinkSlice';
 
 export const PassModal = ({ navigation, route }: PassModalProps) => {
   useHideTabBar(navigation);
-  const { next, noteId, category, handler } = route.params;
-  console.log(handler);
+  const { next, noteId, category, handler } = route.params ?? {};
   const pass = useAppSelector(getPass);
   const firstTime = useMemo(() => {
     return !pass;
@@ -29,8 +28,6 @@ export const PassModal = ({ navigation, route }: PassModalProps) => {
       if (p === pass) {
         if (firstTime) {
           dispatch(addMessage({ msg: 'Pattern as register' }));
-        } else {
-          dispatch(addMessage({ msg: 'Success' }));
         }
         navigateNext();
         return true;
