@@ -45,6 +45,9 @@ export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
             </TouchableOpacity>
           </View>
         )}
+        {note.locked && (
+          <List.Icon style={styles.locked} icon={'shield-lock-outline'} />
+        )}
         <View style={styles.content}>
           <View style={styles.verticalLine} />
           <View style={styles.item}>
@@ -65,7 +68,6 @@ export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
               {note.time}
             </NText>
           </View>
-          {note.locked && <List.Icon icon={'shield-lock-outline'} />}
         </View>
       </TouchableOpacity>
     </JiggleView>

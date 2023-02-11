@@ -22,7 +22,6 @@
     "@react-navigation/stack": "^6.3.11",
     "@reduxjs/toolkit": "^1.9.1",
     "@shanshang/react-native-pattern-lock": "^1.0.1-rc.1",
-    "@shopify/react-native-skia": "^0.1.172",
     "@ui-kitten/components": "^5.1.2",
     "@ui-kitten/eva-icons": "^5.1.2",
     "i18next": "^22.4.9",
@@ -49,7 +48,6 @@
     "reanimated-color-picker": "^1.0.4",
     "redux-persist": "^6.0.0",
     "rn-fetch-blob": "^0.12.0",
-    "rn-perfect-sketch-canvas": "^0.3.0",
     "uid": "^2.0.1"
   },
   "devDependencies": {

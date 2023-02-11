@@ -1,17 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable curly */
 import { View } from 'react-native';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { PassModalProps } from './PassModalProps';
 import styles from './PassModalStyles';
 import { PatternLock } from '@shanshang/react-native-pattern-lock';
-import { useHideTabBar } from '../../Hooks/useHideTabBar';
 import { useAppDispatch, useAppSelector } from '../../Redux';
 import { getPass } from '../../Features/Links/LinksSelectors';
 import { addMessage, setPass } from '../../Features/Links/LinkSlice';
+import { tabBarStyle } from '../../Navigation';
 
 export const PassModal = ({ navigation, route }: PassModalProps) => {
-  useHideTabBar(navigation);
+  useEffect(() => {
+    navigation.getParent()?.setOptions({
+      tabBarStyle: { display: 'none' },
+    });
+    return () =>
+      navigation.getParent()?.setOptions({
+        tabBarStyle: { ...tabBarStyle },
+      });
+  }, [navigation]);
   const { next, noteId, category, handler } = route.params ?? {};
   const pass = useAppSelector(getPass);
   const firstTime = useMemo(() => {

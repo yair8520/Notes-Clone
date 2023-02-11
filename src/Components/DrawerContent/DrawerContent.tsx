@@ -20,7 +20,7 @@ export const NDrawerContent = (props: any) => {
       <DrawerItem
         label="Add Category"
         icon={() => <List.Icon icon="plus" />}
-        onPress={() => openModal('PassModal')}
+        onPress={() => openModal('InfoModal')}
       />
       <DrawerItemList {...props} />
       {/* <View style={styles.header}>

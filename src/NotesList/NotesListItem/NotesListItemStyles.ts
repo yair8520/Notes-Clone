@@ -56,4 +56,10 @@ export default StyleSheet.create({
     right: 0,
     zIndex: 5,
   },
+  locked: {
+    position: 'absolute',
+    top: -15,
+    left: 0,
+    zIndex: 5,
+  },
 });
