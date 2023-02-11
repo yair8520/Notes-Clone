@@ -34,15 +34,6 @@ function TabScreens() {
         }}
       >
         <Tab.Screen
-          options={{
-            tabBarIcon: ({ focused }) => (
-              <LinksIcons fill={focused ? '#1d9df3' : 'black'} />
-            ),
-          }}
-          name="Links"
-          component={Links}
-        />
-        <Tab.Screen
           name="Notes"
           component={DrawerNav}
           listeners={({ navigation }) => ({
@@ -60,6 +51,15 @@ function TabScreens() {
             ),
           })}
         />
+        <Tab.Screen
+          options={{
+            tabBarIcon: ({ focused }) => (
+              <LinksIcons fill={focused ? '#1d9df3' : 'black'} />
+            ),
+          }}
+          name="Links"
+          component={Links}
+        />
       </Tab.Navigator>
     </View>
   );
@@ -68,7 +68,7 @@ function NoteOptionStack() {
   return (
     <Stack.Navigator screenOptions={{ ...navigationOptionsConfig }}>
       <Stack.Screen name="NoteEditor" component={NoteEditor} />
-      <Stack.Screen name="DrawPannel" component={DrawPannel} />
+      {/* <Stack.Screen name="DrawPannel" component={DrawPannel} /> */}
     </Stack.Navigator>
   );
 }

@@ -17,7 +17,6 @@ export const NoteHeader = ({
   id,
   locked,
 }: HeaderProps) => {
-  console.log(locked);
   const categories = useAppSelector(getCategories);
   const dispatch = useAppDispatch();
   const save = () => {

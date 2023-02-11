@@ -51,7 +51,6 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   const richTextHandle = (descriptionText: string) => {
     setDescHTML(descriptionText);
   };
-
   return (
     <>
       <NoteHeader
@@ -69,16 +68,21 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
               <TouchableOpacity style={styles.editorTouch} activeOpacity={1}>
                 <RichEditor
                   renderLoading={() => (
-                    <ActivityIndicator
-                      animating={true}
-                      color={MD2Colors.red800}
-                    />
+                    <View style={styles.loading}>
+                      <ActivityIndicator
+                        size={'large'}
+                        animating={true}
+                        color={MD2Colors.red800}
+                      />
+                    </View>
                   )}
+                  startInLoadingState={true}
                   ref={richTextRef}
                   autoCapitalize={'sentences'}
                   onChange={richTextHandle}
                   initialContentHTML={descHTML}
-                  placeholder="Write your note here :)"
+                  editorStyle={{}}
+                  placeholder="Write your note here..."
                   androidHardwareAccelerationDisabled={true}
                   style={styles.richTextEditorStyle}
                   allowsLinkPreview={true}
