@@ -27,12 +27,11 @@
 ```
  git clone https://github.com/yair8520/Notes-Clone.git
 ```
-2. Open the project in your favorite text editor
-3. Open your terminal or cmd and type
+2. Open your terminal or cmd and type
 ```
 yarn install
 ```
-4. run command
+3. run command
 ```
 react-native run-android
 ```
