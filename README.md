@@ -5,23 +5,21 @@
 [![Node.js](https://img.shields.io/badge/Node.js-v.10.16-green.svg?style=rounded-square)](https://nodejs.org/)
 
 ## Main technologies used
-
+> A framework for building native apps with React.
 - [React Native](https://github.com/facebook/react-native)
 
-> A framework for building native apps with React.
-- [Redux](http://redux.js.org/)
-
-> Redux-Toolkit State Management.
 - [Redux Toolkit](https://github.com/reduxjs/redux-toolkit)
+> Redux-Toolkit State Management.
 
-> Cross-platform Material Design for React Native.
 - [React Native Paper](https://github.com/callstack/react-native-paper)
+> Cross-platform Material Design for React Native.
 
-> Modals Context Manager
 - [React Native Modalfy](https://github.com/colorfy-software/react-native-modalfy)
+> Modals Context Manager
+
 
 ## Requirements
-1. npm (node package manager)
+1. yarn / npm
 2. react-native-cli (from npm)
 
 ## How to run the app ?
