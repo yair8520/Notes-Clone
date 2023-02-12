@@ -20,7 +20,6 @@
 > Modals Context Manager
 - [React Native Modalfy](https://github.com/colorfy-software/react-native-modalfy)
 
-> React Native Router based on new React Native Navigation API
 ## Requirements
 1. npm (node package manager)
 2. react-native-cli (from npm)
