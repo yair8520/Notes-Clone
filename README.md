@@ -11,11 +11,14 @@
 > A framework for building native apps with React.
 - [Redux](http://redux.js.org/)
 
-> Redux is a predictable state container for JavaScript apps.
-- [React Native Elements](https://github.com/react-native-community/react-native-elements)
+> Redux-Toolkit State Management.
+- [Redux Toolkit](https://github.com/reduxjs/redux-toolkit)
 
-> Cross Platform React Native UI Toolkit
-- [React Native Router Flux](https://github.com/aksonov/react-native-router-flux)
+> Cross-platform Material Design for React Native.
+- [React Native Paper](https://github.com/callstack/react-native-paper)
+
+> Modals Context Manager
+- [React Native Modalfy](https://github.com/colorfy-software/react-native-modalfy)
 
 > React Native Router based on new React Native Navigation API
 ## Requirements
