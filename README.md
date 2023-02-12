@@ -5,8 +5,8 @@
 [![Node.js](https://img.shields.io/badge/Node.js-v.10.16-green.svg?style=rounded-square)](https://nodejs.org/)
 
 ## Main technologies used
-> A framework for building native apps with React.
 - [React Native](https://github.com/facebook/react-native)
+> A framework for building native apps with React.
 
 - [Redux Toolkit](https://github.com/reduxjs/redux-toolkit)
 > Redux-Toolkit State Management.
