@@ -11,7 +11,7 @@
 ## How to run the app ?
 1. Clone or download first this repository with 
 ```
-[git clone https://github.com/aahmadhadi/RESTful-API-Note-App-with-Express.git](https://github.com/yair8520/Notes-Clone.git)
+https://github.com/yair8520/Notes-Clone.git
 ```
 2. Open the project in your favorite text editor
 3. Open your terminal or cmd and type
