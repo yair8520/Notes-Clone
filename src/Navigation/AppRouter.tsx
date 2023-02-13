@@ -7,7 +7,6 @@ import { NoteEditor } from '../Pages/NoteEditor';
 import { List, MD3Colors } from 'react-native-paper';
 import { useAppSelector } from '../Redux';
 import { getCategories } from '../Features/Notes/NotesSelectors';
-import { DrawPannel } from '../Components/DrawPannel';
 import { createStackNavigator } from '@react-navigation/stack';
 import { navigationOptionsConfig, tabBarStyle } from './NavigatorsConfig';
 import { NDrawerContent } from '../Components/DrawerContent';

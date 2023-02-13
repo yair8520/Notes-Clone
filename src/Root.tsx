@@ -15,6 +15,12 @@ LogBox.ignoreLogs(['Warning: Encountered two children with the']); // Ignore log
 LogBox.ignoreAllLogs(); //Ignore all log notifications
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { I18nManager } from 'react-native';
+try {
+  I18nManager.allowRTL(false);
+} catch (e) {
+  console.log(e);
+}
 const Root = () => {
   return (
     <>
