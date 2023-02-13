@@ -12,6 +12,7 @@ import { iconOptions } from '../../Components/DropDown/types';
 import { getCategories } from '../../Features/Notes/NotesSelectors';
 import { Button } from 'react-native-paper';
 import { NInput } from '../../Components';
+import { Layout } from '../../Components/Layout';
 export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -42,7 +43,7 @@ export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
   return (
     <View style={styles.centeredView}>
       <View style={styles.body}>
-        <View style={[styles.modalView]}>
+        <Layout style={[styles.modalView]} colors={{ dark: '#383838' }}>
           <NText style={styles.title} variant="H1">
             {t(`modals.info.add`)}
           </NText>
@@ -55,7 +56,6 @@ export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
               label="Category"
               onChange={(nextValue) => setValue(nextValue)}
             />
-
             <NDropDown
               style={styles.input}
               data={iconOptions}
@@ -80,7 +80,7 @@ export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
               {t(`buttons.save`).toString()}
             </Button>
           </View>
-        </View>
+        </Layout>
       </View>
     </View>
   );

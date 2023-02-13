@@ -18,7 +18,7 @@ export default StyleSheet.create({
   bodyInput: { maxHeight: 250 },
   content: {
     width: '100%',
-    backgroundColor: 'white',
+
     flexGrow: 1,
   },
   richTextEditorStyle: {

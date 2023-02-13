@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable curly */
-import { View } from 'react-native';
 import React, { useEffect, useMemo, useState } from 'react';
 import { PassModalProps } from './PassModalProps';
 import styles from './PassModalStyles';
@@ -9,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../Redux';
 import { getPass } from '../../Features/Links/LinksSelectors';
 import { addMessage, setPass } from '../../Features/Links/LinkSlice';
 import { tabBarStyle } from '../../Navigation';
+import { Layout } from '../../Components/Layout';
 
 export const PassModal = ({ navigation, route }: PassModalProps) => {
   useEffect(() => {
@@ -61,8 +61,8 @@ export const PassModal = ({ navigation, route }: PassModalProps) => {
     }
   };
   return (
-    <View style={[styles.modalView]} onStartShouldSetResponder={() => true}>
+    <Layout style={[styles.modalView]} onStartShouldSetResponder={() => true}>
       <PatternLock message={message} onCheck={onCheck} />
-    </View>
+    </Layout>
   );
 };

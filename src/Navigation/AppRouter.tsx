@@ -14,16 +14,18 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Links } from '../Pages/Links';
 import NotesIcon from '../Assets/Images/NotesIcon';
 import LinksIcons from '../Assets/Images/LinksIcons';
-import { View } from 'react-native';
 import { PassModal } from '../Models/PassModal';
+import { Layout } from '../Components/Layout';
+import { getTheme } from '../Features/General/GeneralSelectors';
 
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 function TabScreens() {
   const categories = useAppSelector(getCategories);
+  const isDark = useAppSelector(getTheme);
   return (
-    <View style={{ flex: 1, backgroundColor: 'white' }}>
+    <Layout>
       <Tab.Navigator
         initialRouteName="Notes"
         screenOptions={{
@@ -37,7 +39,6 @@ function TabScreens() {
           component={DrawerNav}
           listeners={({ navigation }) => ({
             tabPress: (e) => {
-              console.log('ASdasd');
               e.preventDefault();
               navigation.navigate('Notes', {
                 screen: categories[0].title,
@@ -46,21 +47,25 @@ function TabScreens() {
           })}
           options={() => ({
             tabBarIcon: ({ focused }) => (
-              <NotesIcon fill={focused ? '#1d9df3' : 'black'} />
+              <NotesIcon
+                fill={focused ? '#1d9df3' : !isDark ? 'black' : 'white'}
+              />
             ),
           })}
         />
         <Tab.Screen
           options={{
             tabBarIcon: ({ focused }) => (
-              <LinksIcons fill={focused ? '#1d9df3' : 'black'} />
+              <LinksIcons
+                fill={focused ? '#1d9df3' : !isDark ? 'black' : 'white'}
+              />
             ),
           }}
           name="Links"
           component={Links}
         />
       </Tab.Navigator>
-    </View>
+    </Layout>
   );
 }
 function NoteOptionStack() {

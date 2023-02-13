@@ -6,7 +6,6 @@ export default StyleSheet.create({
     width: '100%',
     alignItems: 'center',
     alignContent: 'center',
-    backgroundColor: 'white',
   },
   input: {
     width: '90%',

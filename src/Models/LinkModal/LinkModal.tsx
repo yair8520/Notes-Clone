@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { Button } from 'react-native-paper';
 import { NInput } from '../../Components';
 import { errorMsg } from '../../I18n/HebrewTranslations';
+import { Layout } from '../../Components/Layout';
 export const LinkModal = ({
   modal: { closeModal, getParam },
 }: LinkModalProps) => {
@@ -28,7 +29,7 @@ export const LinkModal = ({
   };
   return (
     <View style={styles.centeredView}>
-      <View style={[styles.modalView]}>
+      <Layout style={[styles.modalView]}>
         <View style={styles.body}>
           <NText bold style={styles.headline} variant="H1">
             {t(`modals.link.add`)}
@@ -68,7 +69,7 @@ export const LinkModal = ({
             </Button>
           </View>
         </View>
-      </View>
+      </Layout>
     </View>
   );
 };

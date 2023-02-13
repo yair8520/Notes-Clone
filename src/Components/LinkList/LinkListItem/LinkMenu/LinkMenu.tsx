@@ -38,15 +38,6 @@ export const LinkMenu = ({ children, style, data, index }: LinkMenuProps) => {
       onDismiss={() => setVisible(false)}
       anchorPosition={'top'}
       contentStyle={styles.menu}
-      theme={{
-        colors: {
-          placeholder: 'white',
-          text: 'white',
-          primary: 'white',
-          underlineColor: 'transparent',
-          background: 'transparent',
-        },
-      }}
       anchor={
         <TouchableOpacity style={style} onPress={() => setVisible(!visible)}>
           {children}

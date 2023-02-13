@@ -5,8 +5,11 @@ import { List } from 'react-native-paper';
 import { RichToolbar } from 'react-native-pell-rich-editor';
 import { onPressAddImage, actionList } from '../helper';
 import { useModal } from 'react-native-modalfy';
+import { useAppSelector } from '../../../Redux';
+import { getTheme } from '../../../Features/General/GeneralSelectors';
 export const ToolBar = ({ richTextRef }: ToolBarProps) => {
   const { openModal } = useModal();
+  const isDark = useAppSelector(getTheme);
 
   const onInsertLink = () => {
     richTextRef.current?.dismissKeyboard();
@@ -20,7 +23,7 @@ export const ToolBar = ({ richTextRef }: ToolBarProps) => {
       editor={richTextRef}
       onPressAddImage={() => onPressAddImage(richTextRef)}
       onInsertLink={onInsertLink}
-      style={styles.toolbar}
+      style={[styles.toolbar, { backgroundColor: isDark ? 'black' : 'white' }]}
       selectedButtonStyle={styles.selectedButton}
       iconMap={{
         keyboard: () => <List.Icon icon={'keyboard'} />,

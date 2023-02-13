@@ -12,9 +12,10 @@ import { getCategories, getNotes } from '../../Features/Notes/NotesSelectors';
 import { TouchableOpacity } from 'react-native';
 import { Pressable } from 'react-native';
 import { RichEditor } from 'react-native-pell-rich-editor';
-import { ActivityIndicator, MD2Colors } from 'react-native-paper';
+import { ActivityIndicator } from 'react-native-paper';
 import { ToolBar } from './ToolBar';
 import { useHideTabBar } from '../../Hooks/useHideTabBar';
+import { Layout } from '../../Components/Layout';
 
 export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   useHideTabBar(navigation);
@@ -52,7 +53,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
     setDescHTML(descriptionText);
   };
   return (
-    <>
+    <Layout>
       <NoteHeader
         id={id}
         locked={currentNote?.[1].locked}
@@ -72,7 +73,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
                       <ActivityIndicator
                         size={'large'}
                         animating={true}
-                        color={MD2Colors.red800}
+                        color={'blue'}
                       />
                     </View>
                   )}
@@ -99,6 +100,6 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
           noteId={id}
         />
       </View>
-    </>
+    </Layout>
   );
 };

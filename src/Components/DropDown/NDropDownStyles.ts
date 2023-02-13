@@ -5,6 +5,5 @@ export default StyleSheet.create({
     width: 150,
     borderColor: 'black',
     borderRadius: 25,
-    backgroundColor: 'white',
   },
 });

@@ -8,6 +8,7 @@ import { AppHeader } from '../../Components/Headers/AppHeader/Header';
 import { NotesList } from '../../NotesList';
 import { useRoute } from '@react-navigation/native';
 import { uid } from 'uid';
+import { Layout } from '../../Components/Layout';
 
 export const Home = ({ navigation }: HomeProps) => {
   const [searchQuery, setSearchQuery] = React.useState<string>('');
@@ -26,7 +27,7 @@ export const Home = ({ navigation }: HomeProps) => {
     });
   };
   return (
-    <>
+    <Layout>
       <AppHeader
         editMode={setDeleteMode}
         title={category}
@@ -53,6 +54,6 @@ export const Home = ({ navigation }: HomeProps) => {
         style={styles.fab}
         onPress={() => newNote()}
       />
-    </>
+    </Layout>
   );
 };

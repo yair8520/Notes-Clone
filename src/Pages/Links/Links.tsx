@@ -10,6 +10,7 @@ import { useModal } from 'react-native-modalfy';
 import { useAppDispatch } from '../../Redux';
 import { LinkList } from '../../Components/LinkList';
 import { addLink } from '../../Features/Links/LinkSlice';
+import { Layout } from '../../Components/Layout';
 export const Links = ({ navigation }: LinksProps) => {
   const [deleteMode, setDeleteMode] = React.useState<boolean>(false);
   const [filterDir, setFilterDir] = React.useState<string>('Descending');
@@ -26,7 +27,7 @@ export const Links = ({ navigation }: LinksProps) => {
     openModal('LinkModal', { insert });
   };
   return (
-    <>
+    <Layout>
       <AppHeader
         editMode={setDeleteMode}
         title={type}
@@ -53,6 +54,6 @@ export const Links = ({ navigation }: LinksProps) => {
         style={styles.fab}
         onPress={onFabPress}
       />
-    </>
+    </Layout>
   );
 };

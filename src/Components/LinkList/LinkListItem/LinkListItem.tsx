@@ -7,6 +7,7 @@ import { Icon } from '@ui-kitten/components';
 import { TouchableOpacity } from 'react-native';
 import { JiggleView } from '../../JiggleView/JiggleView';
 import { LinkMenu } from './LinkMenu';
+import { List } from 'react-native-paper';
 export const LinkListItem = ({
   data,
   startAnimation,
@@ -50,7 +51,7 @@ export const LinkListItem = ({
             <NText style={styles.dateText} variant="p">
               {info.date}
             </NText>
-            <Icon style={styles.icon} name="more-horizontal-outline" />
+            <List.Icon style={styles.icon} icon="dots-horizontal" />
           </LinkMenu>
         </View>
       </View>

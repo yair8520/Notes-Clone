@@ -42,8 +42,8 @@ export const tabBarOptions: BottomTabNavigationOptions = {
 };
 
 export const tabBarStyle = {
-  width: '90%',
+  width: '95%',
   alignSelf: 'center',
   borderRadius: 80,
-  marginBottom: 10,
+  marginBottom: 5,
 };
