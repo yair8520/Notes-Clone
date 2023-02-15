@@ -43,6 +43,7 @@ export const LinkModal = ({
               value={title}
             />
             <NInput
+              numberOfLines={1}
               icon={'content-paste'}
               error={!!error}
               label="Link *"

@@ -24,7 +24,7 @@ const App = () => {
   useEffect(() => {
     setTimeout(() => {
       dispatch(addMessage({ msg: '' }));
-    }, 1000);
+    }, 2000);
   }, [msg]);
   return (
     <NavigationContainer theme={isDark ? DarkTheme : DefaultTheme}>

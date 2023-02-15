@@ -48,6 +48,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
       })
     );
   };
+  console.log({ descHTML });
   const richTextRef = useRef<RichEditor | any>();
   const richTextHandle = (descriptionText: string) => {
     setDescHTML(descriptionText);

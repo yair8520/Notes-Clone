@@ -80,7 +80,11 @@ function DrawerNav() {
   const categories = useAppSelector(getCategories);
   return (
     <Drawer.Navigator
-      screenOptions={{ headerShown: false, unmountOnBlur: true }}
+      screenOptions={{
+        headerShown: false,
+        //unmountOnBlur: true,
+        drawerStatusBarAnimation: 'fade',
+      }}
       initialRouteName={'Home'}
       drawerContent={(props) => {
         return <NDrawerContent {...props} />;

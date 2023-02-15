@@ -13,6 +13,8 @@ export default StyleSheet.create({
     width: '90%',
   },
   modalView: {
+    borderWidth: 2,
+    borderColor: '#2fa7f8',
     backgroundColor: 'white',
     height: '100%',
     width: '100%',

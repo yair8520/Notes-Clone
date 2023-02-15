@@ -35,6 +35,7 @@ export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
   const deleteNote = () => {
     dispatch(removeNote({ noteId: note.id }));
   };
+  console.log(note.body);
   return (
     <JiggleView startAnimation={startAnimation}>
       <TouchableOpacity onPress={navToEditor} style={styles.container}>

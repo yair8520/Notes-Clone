@@ -21,7 +21,10 @@ export const NDrawerContent = (props: any) => {
     setIsSwitchOn(!isSwitchOn);
   };
   return (
-    <DrawerContentScrollView {...props}>
+    <DrawerContentScrollView
+      style={{ backgroundColor: !isSwitchOn ? '#222e36' : '#c5d7e0' }}
+      {...props}
+    >
       <View style={styles.empty}>
         <Image source={AppLogo} style={styles.logo} />
       </View>

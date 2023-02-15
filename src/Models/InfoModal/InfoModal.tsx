@@ -43,7 +43,7 @@ export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
   return (
     <View style={styles.centeredView}>
       <View style={styles.body}>
-        <Layout style={[styles.modalView]} colors={{ dark: '#383838' }}>
+        <Layout style={[styles.modalView]} colors={{ dark: '#36454f' }}>
           <NText style={styles.title} variant="H1">
             {t(`modals.info.add`)}
           </NText>

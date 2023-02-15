@@ -20,6 +20,8 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   modalView: {
+    borderWidth: 2,
+    borderColor: '#2fa7f8',
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',

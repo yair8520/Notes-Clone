@@ -16,6 +16,8 @@ export default StyleSheet.create({
     width: '90%',
   },
   modalView: {
+    borderWidth: 2,
+    borderColor: '#2fa7f8',
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
@@ -48,6 +50,7 @@ export default StyleSheet.create({
     width: '90%',
     alignItems: 'center',
     flex: 2,
+
     justifyContent: 'center',
   },
   buttonContainer: {

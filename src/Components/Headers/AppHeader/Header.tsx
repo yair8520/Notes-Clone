@@ -24,7 +24,10 @@ export const AppHeader = ({
   const closeMenu = () => setVisible(!true);
   return (
     <Appbar.Header
-      style={[styles.header, { backgroundColor: !isDark ? 'white' : 'black' }]}
+      style={[
+        styles.header,
+        { backgroundColor: !isDark ? 'white' : '#36454f' },
+      ]}
     >
       {title !== 'Links' ? (
         <Appbar.Action

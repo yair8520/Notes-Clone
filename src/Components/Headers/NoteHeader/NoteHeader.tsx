@@ -26,11 +26,7 @@ export const NoteHeader = ({
   const LockOption = () => {
     addNote();
     dispatch(lockNote({ noteId: id }));
-    if (locked) {
-      dispatch(addMessage({ msg: 'The note is open' }));
-    } else {
-      dispatch(addMessage({ msg: 'The note is locked' }));
-    }
+    dispatch(addMessage({ msg: `The note is ${locked ? 'open' : 'locked'}` }));
   };
   return (
     <Appbar.Header style={styles.header}>
