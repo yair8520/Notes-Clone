@@ -1,29 +1,52 @@
 import React from 'react';
 import { HeaderProps } from './NoteHeaderProps';
-import { Appbar } from 'react-native-paper';
+import { Appbar, List } from 'react-native-paper';
 import styles from './NoteHeaderStyles';
 import { NDropDown } from '../../DropDown';
 import { getCategories } from '../../../Features/Notes/NotesSelectors';
-import { useAppSelector } from '../../../Redux';
+import { useAppDispatch, useAppSelector } from '../../../Redux';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { lockNote } from '../../../Features/Notes/NotesSlice';
+import { addMessage } from '../../../Features/Links/LinkSlice';
 
-export const NoteHeader = ({ navigation, route, addNote }: HeaderProps) => {
-  const { title } = route?.params ?? '';
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+export const NoteHeader = ({
+  navigation,
+  addNote,
+  setSelectedIndex,
+  selectedIndex,
+  id,
+  locked,
+}: HeaderProps) => {
   const categories = useAppSelector(getCategories);
+  const dispatch = useAppDispatch();
   const save = () => {
-    addNote(categories[selectedIndex].title);
-    navigation.goBack();
+    addNote();
+    navigation.navigate(categories[selectedIndex].title);
+  };
+  const LockOption = () => {
+    addNote();
+    dispatch(lockNote({ noteId: id }));
+    dispatch(addMessage({ msg: `The note is ${locked ? 'open' : 'locked'}` }));
   };
   return (
-    <Appbar.Header style={{ height: 70 }}>
+    <Appbar.Header style={styles.header}>
       <Appbar.Action icon="content-save" onPress={save} />
       <NDropDown
         setSelectedIndex={setSelectedIndex}
         selectedIndex={selectedIndex}
         data={categories}
       />
-      <Appbar.Content style={styles.title} title={title} />
-      <Appbar.Action icon="arrow-right" onPress={() => navigation.goBack()} />
+      <Appbar.Content style={styles.title} title={''} />
+
+      <TouchableOpacity onPress={LockOption}>
+        <List.Icon
+          icon={!locked ? 'shield-lock-open-outline' : 'shield-lock-outline'}
+        />
+      </TouchableOpacity>
+      <Appbar.Action
+        icon="arrow-right"
+        onPress={() => navigation.navigate(categories[selectedIndex].title)}
+      />
     </Appbar.Header>
   );
 };

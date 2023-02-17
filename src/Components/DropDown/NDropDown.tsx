@@ -16,6 +16,7 @@ export const NDropDown = ({
     <Select
       style={[styles.container, style]}
       label={label}
+      status="info"
       value={<NText>{data[selectedIndex as keyof object].title}</NText>}
       onSelect={({ row }) => setSelectedIndex(row)}
     >

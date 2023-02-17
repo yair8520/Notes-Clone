@@ -9,20 +9,24 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  headline: { alignSelf: 'flex-start' },
   errorText: {
     color: 'red',
   },
   inputCon: {
-    width: '90%',
+    width: '100%',
+    paddingTop: 20,
     alignItems: 'center',
     justifyContent: 'center',
   },
   modalView: {
+    borderWidth: 2,
+    borderColor: '#2fa7f8',
     borderRadius: 8,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',
-    height: 350,
+    height: 300,
     width: elementWidth(550),
   },
   viewWithIcon: {
@@ -35,7 +39,7 @@ export default StyleSheet.create({
     justifyContent: 'flex-end',
   },
   button: {
-    width: 100,
+    width: 80,
     borderColor: '#3f7ee8',
     borderRadius: 15,
   },
@@ -47,17 +51,16 @@ export default StyleSheet.create({
   },
   title: {},
   body: {
-    width: '100%',
+    width: '80%',
     alignItems: 'center',
     flex: 2,
     justifyContent: 'center',
   },
   buttonContainer: {
-    marginTop: 50,
+    marginTop: 20,
     flexDirection: 'row',
-    width: '70%',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
+    alignSelf: 'flex-end',
   },
   text: {
     textAlign: 'center',
@@ -66,6 +69,6 @@ export default StyleSheet.create({
     marginTop: 20,
   },
   input: {
-    width: '90%',
+    width: '100%',
   },
 });

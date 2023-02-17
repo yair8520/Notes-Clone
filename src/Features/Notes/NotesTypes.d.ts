@@ -6,6 +6,7 @@ interface ICategories {
   title: string;
   icon: string;
 }
+
 interface INote {
   [key: string]: Inote;
 }
@@ -18,6 +19,7 @@ interface Inote {
   color?: string;
   image?: Iimages;
   sign?: ISign;
+  locked?: boolean;
 }
 interface Iimages {
   points: any;

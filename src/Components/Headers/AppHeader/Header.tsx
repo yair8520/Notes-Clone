@@ -1,8 +1,12 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { HeaderProps } from './HeaderProps';
-import { Appbar, Divider, List, Menu, Text } from 'react-native-paper';
+import { Appbar, Divider, Menu } from 'react-native-paper';
 import styles from './HeaderStyles';
-import { DrawerActions } from '@react-navigation/native';
+import { DarkTheme, DrawerActions } from '@react-navigation/native';
+import { View } from 'react-native';
+import { useAppSelector } from '../../../Redux';
+import { getTheme } from '../../../Features/General/GeneralSelectors';
 
 export const AppHeader = ({
   navigation,
@@ -10,6 +14,7 @@ export const AppHeader = ({
   setFilterDir,
   editMode,
 }: HeaderProps) => {
+  const isDark = useAppSelector(getTheme);
   const filterList = (dir: string) => {
     closeMenu();
     setFilterDir(dir);
@@ -18,11 +23,22 @@ export const AppHeader = ({
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(!true);
   return (
-    <Appbar.Header>
-      <Appbar.Action
-        icon="menu"
-        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-      />
+    <Appbar.Header
+      style={[
+        styles.header,
+        { backgroundColor: !isDark ? 'white' : DarkTheme.colors.card },
+      ]}
+    >
+      {title !== 'Links' ? (
+        <Appbar.Action
+          icon="menu"
+          style={{ width: 50 }}
+          onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+        />
+      ) : (
+        <View style={{ width: 50 }} />
+      )}
+
       <Appbar.Content style={styles.title} title={title} />
       <Appbar.Action
         icon="content-save-edit"
@@ -31,6 +47,7 @@ export const AppHeader = ({
       <Menu
         visible={visible}
         onDismiss={closeMenu}
+        contentStyle={styles.menu}
         statusBarHeight={40}
         anchor={<Appbar.Action icon="filter-menu" onPress={openMenu} />}
       >

@@ -15,4 +15,10 @@ export default StyleSheet.create({
     width: '30%',
     flexDirection: 'row',
   },
+  empty: {
+    paddingRight: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 180,
+  },
 });

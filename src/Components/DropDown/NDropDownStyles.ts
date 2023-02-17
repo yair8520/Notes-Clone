@@ -1,5 +1,9 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  container: { width: 150, borderRadius: 8 },
+  container: {
+    width: 150,
+    borderColor: 'black',
+    borderRadius: 25,
+  },
 });

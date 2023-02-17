@@ -16,3 +16,7 @@ export const sizes = {
   defaultWindowWidth: 643,
   defaultWindowHeight: 1136,
 };
+export const defaultActionsStyles = {
+  color: 'white',
+  style: { backgroundColor: '#1d9df3' },
+};

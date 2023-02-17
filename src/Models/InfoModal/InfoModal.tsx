@@ -1,17 +1,18 @@
 /* eslint-disable quotes */
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 import { InfoModalProps } from './InfoModalProps';
 import styles from './InfoModalStyles';
 import { NText } from '../../Components/Text';
 import { useTranslation } from 'react-i18next';
 import { NDropDown } from '../../Components/DropDown';
-import { Input } from '@ui-kitten/components';
 import { useAppDispatch, useAppSelector } from '../../Redux';
 import { addCategory } from '../../Features/Notes/NotesSlice';
 import { iconOptions } from '../../Components/DropDown/types';
 import { getCategories } from '../../Features/Notes/NotesSelectors';
 import { Button } from 'react-native-paper';
+import { NInput } from '../../Components';
+import { Layout } from '../../Components/Layout';
 export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
@@ -35,23 +36,28 @@ export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
       } else {
         setError(`${t(`err.existCategory`)}`);
       }
+    } else {
+      setError(`${t(`err.required`)}`);
     }
   };
   return (
     <View style={styles.centeredView}>
       <View style={styles.body}>
-        <View style={[styles.modalView]}>
-          <NText variant="H1">{t(`modals.info.add`)}</NText>
+        <Layout style={[styles.modalView]} colors={{ dark: '#36454f' }}>
+          <NText style={styles.title} variant="H1">
+            {t(`modals.info.add`)}
+          </NText>
           <View style={styles.inputCon}>
-            <Input
+            <NInput
               style={styles.input}
               value={value}
-              caption={() => <Text style={styles.errorText}> {error}</Text>}
-              label="Name *"
-              placeholder="Category"
-              onChangeText={(nextValue) => setValue(nextValue)}
+              error={!!error}
+              errorText={error}
+              label="Category"
+              onChange={(nextValue) => setValue(nextValue)}
             />
             <NDropDown
+              style={styles.input}
               data={iconOptions}
               label="Select Icon"
               setSelectedIndex={setSelectedIndex}
@@ -61,22 +67,20 @@ export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
           <View style={styles.buttonContainer}>
             <Button
               style={styles.button}
-              mode={'outlined'}
-              textColor={'#3f7ee8'}
+              textColor={'#2ba6f8'}
               onPress={() => closeModal()}
             >
               {t(`buttons.cancel`).toString()}
             </Button>
             <Button
-              buttonColor={'#3f7ee8'}
-              mode={'contained'}
+              textColor={'#2ba6f8'}
               style={styles.button}
               onPress={onSave}
             >
               {t(`buttons.save`).toString()}
             </Button>
           </View>
-        </View>
+        </Layout>
       </View>
     </View>
   );

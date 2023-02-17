@@ -9,8 +9,8 @@ export const HebrewTranslations = {
     },
   },
   buttons: {
-    save: 'save',
-    cancel: 'cancel',
+    save: 'Save',
+    cancel: 'Cancel',
   },
   emptyList: 'Click the button below to add notes to this category',
   err: {
@@ -18,4 +18,6 @@ export const HebrewTranslations = {
     required: 'Required felid',
   },
 };
-export const errorMsg: any = {};
+export const errorMsg: any = {
+  required: 'This is a require felid',
+};

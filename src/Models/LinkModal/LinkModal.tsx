@@ -1,24 +1,27 @@
 /* eslint-disable quotes */
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 import { LinkModalProps } from './LinkModalProps';
 import styles from './LinkModalStyles';
 import { NText } from '../../Components/Text';
 import { useTranslation } from 'react-i18next';
-import { Input } from '@ui-kitten/components';
 import { Button } from 'react-native-paper';
+import { NInput } from '../../Components';
+import { errorMsg } from '../../I18n/HebrewTranslations';
+import { Layout } from '../../Components/Layout';
 export const LinkModal = ({
   modal: { closeModal, getParam },
 }: LinkModalProps) => {
   const { t } = useTranslation();
   const insert = getParam('insert');
-  const [value, setValue] = React.useState('');
-  const [title, setTitle] = React.useState('');
+  const data = getParam('data') ?? { value: '', title: '' };
+  const [value, setValue] = React.useState(data.value);
+  const [title, setTitle] = React.useState(data.title);
   const [error, setError] = React.useState('');
 
   const onSave = () => {
     if (!value) {
-      setError(`${t(`err.required`)}`);
+      setError(errorMsg.required);
     } else {
       insert(title, value);
       closeModal();
@@ -26,38 +29,40 @@ export const LinkModal = ({
   };
   return (
     <View style={styles.centeredView}>
-      <View style={styles.body}>
-        <View style={[styles.modalView]}>
-          <NText variant="H1">{t(`modals.link.add`)}</NText>
+      <Layout style={[styles.modalView]}>
+        <View style={styles.body}>
+          <NText bold style={styles.headline} variant="H1">
+            {t(`modals.link.add`)}
+          </NText>
           <View style={styles.inputCon}>
-            <Input
+            <NInput
+              label="Title"
+              autoCapitalize="words"
               style={styles.input}
+              onChange={(nextValue) => setTitle(nextValue)}
               value={title}
-              label="title (optional)"
-              placeholder="link Title"
-              onChangeText={(nextValue) => setTitle(nextValue)}
             />
-            <Input
+            <NInput
+              numberOfLines={1}
+              icon={'content-paste'}
+              error={!!error}
+              label="Link *"
+              errorText={errorMsg.required}
               style={styles.input}
+              onChange={(nextValue) => setValue(nextValue)}
               value={value}
-              caption={() => <Text style={styles.errorText}> {error}</Text>}
-              label="link *"
-              placeholder="paste your link here  "
-              onChangeText={(nextValue) => setValue(nextValue)}
             />
           </View>
           <View style={styles.buttonContainer}>
             <Button
               style={styles.button}
-              mode={'outlined'}
-              textColor={'#3f7ee8'}
+              textColor={'#2ba6f8'}
               onPress={() => closeModal()}
             >
               {t(`buttons.cancel`).toString()}
             </Button>
             <Button
-              buttonColor={'#3f7ee8'}
-              mode={'contained'}
+              textColor={'#2ba6f8'}
               style={styles.button}
               onPress={onSave}
             >
@@ -65,7 +70,7 @@ export const LinkModal = ({
             </Button>
           </View>
         </View>
-      </View>
+      </Layout>
     </View>
   );
 };

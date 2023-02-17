@@ -11,8 +11,15 @@ export const ListSearchBar = ({
       style={styles.container}
       label="Search"
       mode="outlined"
+      theme={{
+        colors: {
+          placeholder: 'white',
+          text: 'white',
+          primary: '#1d9df3',
+        },
+      }}
       outlineStyle={styles.outline}
-      left={<TextInput.Icon icon="clipboard-text-search" />}
+      left={<TextInput.Icon icon="magnify" />}
       onChangeText={onChangeSearch}
       value={searchQuery}
     />

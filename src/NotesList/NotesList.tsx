@@ -1,33 +1,36 @@
 /* eslint-disable curly */
 import { View, ScrollView } from 'react-native';
-import React, { useMemo } from 'react';
+import React from 'react';
 import { NotesListProps } from './NotesListProps';
 import styles from './NotesListStyles';
 import { getNotes } from '../Features/Notes/NotesSelectors';
 import { useAppSelector } from '../Redux';
 import { NotesListItem } from './NotesListItem';
-import { NText } from '../Components';
-import { t } from 'i18next';
+import { EmptyList } from '../Components/EmptyList';
+import { useNotesFilter } from '../Hooks/useNotesFilter';
+import { Inote, INote } from '../Features/Notes/NotesTypes';
 
 export const NotesList = ({
   type,
   deleteMode,
   searchQuery,
+  filterDir,
 }: NotesListProps) => {
-  let notes = useAppSelector(getNotes);
-  const notesFiltered = useMemo(() => {
-    if (searchQuery) {
-      return Object.entries(notes).filter(
-        (item) => item[1].body.includes(searchQuery) && item[1].type === type
-      );
-    } else return Object.entries(notes).filter((item) => item[1].type === type);
-  }, [notes, searchQuery, type]);
-
+  let notes: INote = useAppSelector(getNotes);
+  const notesFiltered: any = useNotesFilter({
+    notes,
+    searchQuery,
+    type,
+    filterDir,
+  });
   return (
-    <ScrollView contentContainerStyle={styles.content}>
-      <View style={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.content}
+      showsVerticalScrollIndicator={false}
+    >
+      <View>
         {notesFiltered && notesFiltered.length !== 0 ? (
-          notesFiltered.map((item, index) => (
+          notesFiltered.map((item: Inote[], index: any) => (
             <NotesListItem
               startAnimation={deleteMode}
               key={`${index}${index}`}
@@ -35,9 +38,7 @@ export const NotesList = ({
             />
           ))
         ) : (
-          <View style={styles.emptyList}>
-            <NText variant="H3">{t('emptyList')}</NText>
-          </View>
+          <EmptyList type="note" />
         )}
       </View>
     </ScrollView>

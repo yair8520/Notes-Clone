@@ -4,28 +4,26 @@ export default StyleSheet.create({
   mainCon: { flex: 1 },
   container: {
     display: 'flex',
-    backgroundColor: 'white',
-    height: '90%',
+    height: '100%',
     alignItems: 'center',
-    // paddingBottom: 50,
   },
   title: {
     marginTop: 25,
     width: '90%',
   },
-  toolbar: {},
+  loading: {
+    flex: 1,
+    alignItems: 'center',
+  },
   bodyInput: { maxHeight: 250 },
   content: {
     width: '100%',
-    backgroundColor: 'white',
+
     flexGrow: 1,
   },
   richTextEditorStyle: {
-    backgroundColor: '#c6c3b3',
-
-    borderWidth: 5,
-    borderRadius: 8,
     width: '100%',
+    height: '100%',
   },
   editorTouch: {
     width: '90%',
