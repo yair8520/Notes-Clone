@@ -7,7 +7,7 @@ import { getTheme } from '../../Features/General/GeneralSelectors';
 export const Layout = ({
   children,
   style,
-  colors = { dark: '#36454f', light: 'white' },
+  colors = { dark: 'black', light: 'white' },
 }: LayoutProps) => {
   const isDark = useAppSelector(getTheme);
   return (

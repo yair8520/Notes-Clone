@@ -1,4 +1,4 @@
-import { Image, View } from 'react-native';
+import { View } from 'react-native';
 import React from 'react';
 import styles from './DrawerContentStyles';
 import {
@@ -7,10 +7,10 @@ import {
 } from '@react-navigation/drawer';
 import { Divider, List, Switch } from 'react-native-paper';
 import { useModal } from 'react-native-modalfy';
-import { AppLogo } from '../../Assets/Images';
 import { Drawer } from 'react-native-paper';
 import { useAppDispatch } from '../../Redux';
 import { setDarkMode } from '../../Features/General/GeneralSlice';
+import Logo from '../../Assets/Images/Logo';
 
 export const NDrawerContent = (props: any) => {
   const { openModal } = useModal();
@@ -21,12 +21,10 @@ export const NDrawerContent = (props: any) => {
     setIsSwitchOn(!isSwitchOn);
   };
   return (
-    <DrawerContentScrollView
-      style={{ backgroundColor: !isSwitchOn ? '#222e36' : '#c5d7e0' }}
-      {...props}
-    >
+    <DrawerContentScrollView {...props}>
       <View style={styles.empty}>
-        <Image source={AppLogo} style={styles.logo} />
+        {/* <Image source={AppLogo} style={styles.logo} /> */}
+        <Logo />
       </View>
       <Divider />
       <Drawer.Section>

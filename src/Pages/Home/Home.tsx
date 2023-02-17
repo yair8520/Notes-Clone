@@ -9,8 +9,10 @@ import { NotesList } from '../../NotesList';
 import { useRoute } from '@react-navigation/native';
 import { uid } from 'uid';
 import { Layout } from '../../Components/Layout';
+import Animated from 'react-native-reanimated';
 
-export const Home = ({ navigation }: HomeProps) => {
+export const Home = ({ navigation, route }: HomeProps) => {
+  console.log(route.params.style);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [deleteMode, setDeleteMode] = React.useState<boolean>(false);
   const [filterDir, setFilterDir] = React.useState<string>('Descending');
@@ -27,33 +29,35 @@ export const Home = ({ navigation }: HomeProps) => {
     });
   };
   return (
-    <Layout>
-      <AppHeader
-        editMode={setDeleteMode}
-        title={category}
-        setFilterDir={setFilterDir}
-        navigation={navigation}
-      />
-      <View style={styles.container}>
-        <View style={styles.input}>
-          <ListSearchBar
-            onChangeSearch={onChangeSearch}
+    <Animated.View style={route.params.style}>
+      <Layout>
+        <AppHeader
+          editMode={setDeleteMode}
+          title={category}
+          setFilterDir={setFilterDir}
+          navigation={navigation}
+        />
+        <View style={styles.container}>
+          <View style={styles.input}>
+            <ListSearchBar
+              onChangeSearch={onChangeSearch}
+              searchQuery={searchQuery}
+            />
+          </View>
+          <NotesList
             searchQuery={searchQuery}
+            deleteMode={deleteMode}
+            type={category}
+            filterDir={filterDir}
           />
         </View>
-        <NotesList
-          searchQuery={searchQuery}
-          deleteMode={deleteMode}
-          type={category}
-          filterDir={filterDir}
+        <FAB
+          icon="plus"
+          color={'white'}
+          style={styles.fab}
+          onPress={() => newNote()}
         />
-      </View>
-      <FAB
-        icon="plus"
-        color={'white'}
-        style={styles.fab}
-        onPress={() => newNote()}
-      />
-    </Layout>
+      </Layout>
+    </Animated.View>
   );
 };

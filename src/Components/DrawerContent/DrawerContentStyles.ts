@@ -16,12 +16,9 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   empty: {
+    paddingRight: 15,
     alignItems: 'center',
     justifyContent: 'center',
-    height: 150,
-  },
-  logo: {
-    height: 100,
-    width: 100,
+    height: 180,
   },
 });

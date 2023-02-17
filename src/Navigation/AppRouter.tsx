@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-shadow */
-/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Home } from '../Pages/Home';
@@ -100,7 +98,7 @@ function DrawerNav() {
             drawerIcon() {
               return (
                 <List.Icon
-                  color={MD3Colors.neutralVariant30}
+                  // color={MD3Colors.neutralVariant30}
                   icon={category.icon || 'folder'}
                 />
               );

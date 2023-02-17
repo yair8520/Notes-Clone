@@ -3,7 +3,7 @@ import React from 'react';
 import { HeaderProps } from './HeaderProps';
 import { Appbar, Divider, Menu } from 'react-native-paper';
 import styles from './HeaderStyles';
-import { DrawerActions } from '@react-navigation/native';
+import { DarkTheme, DrawerActions } from '@react-navigation/native';
 import { View } from 'react-native';
 import { useAppSelector } from '../../../Redux';
 import { getTheme } from '../../../Features/General/GeneralSelectors';
@@ -26,7 +26,7 @@ export const AppHeader = ({
     <Appbar.Header
       style={[
         styles.header,
-        { backgroundColor: !isDark ? 'white' : '#36454f' },
+        { backgroundColor: !isDark ? 'white' : DarkTheme.colors.card },
       ]}
     >
       {title !== 'Links' ? (

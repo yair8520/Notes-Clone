@@ -12,7 +12,8 @@ export const darkTheme: ThemeProp = {
   colors: {
     ...MD3DarkTheme.colors,
     primary: '#3498db',
-    surface: '#36454F',
+    surface: 'black',
+    onSurfaceVariant: '#3184fc',
   },
 };
 export const lightTheme: ThemeProp = {
@@ -23,6 +24,6 @@ export const lightTheme: ThemeProp = {
     backdrop: 'white',
     surface: 'white',
     background: 'white',
-    primary: '#3498db',
+    onSurfaceVariant: '#3184fc',
   },
 };
