@@ -68,38 +68,38 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
       />
       <View style={styles.mainCon}>
         <ScrollView contentContainerStyle={styles.content}>
-          <Pressable onPress={() => richTextRef.current?.dismissKeyboard()}>
-            <View style={styles.container}>
-              {!openVoiceMemo && (
-                <Recorder currentNote={currentNote?.[1]!} noteId={id} />
-              )}
+          {/* <Pressable onPress={() => richTextRef.current?.dismissKeyboard()}> */}
+          <View style={styles.container}>
+            {!openVoiceMemo && (
+              <Recorder currentNote={currentNote?.[1]!} noteId={id} />
+            )}
 
-              <TouchableOpacity style={styles.editorTouch} activeOpacity={1}>
-                <RichEditor
-                  renderLoading={() => (
-                    <View style={styles.loading}>
-                      <ActivityIndicator
-                        size={'large'}
-                        animating={true}
-                        color={'blue'}
-                      />
-                    </View>
-                  )}
-                  startInLoadingState={true}
-                  ref={richTextRef}
-                  autoCapitalize={'sentences'}
-                  onChange={richTextHandle}
-                  initialContentHTML={descHTML}
-                  editorStyle={{}}
-                  placeholder="Write your note here..."
-                  androidHardwareAccelerationDisabled={true}
-                  style={styles.richTextEditorStyle}
-                  allowsLinkPreview={true}
-                  initialHeight={450}
-                />
-              </TouchableOpacity>
-            </View>
-          </Pressable>
+            <TouchableOpacity style={styles.editorTouch} activeOpacity={1}>
+              <RichEditor
+                renderLoading={() => (
+                  <View style={styles.loading}>
+                    <ActivityIndicator
+                      size={'large'}
+                      animating={true}
+                      color={'blue'}
+                    />
+                  </View>
+                )}
+                startInLoadingState={true}
+                ref={richTextRef}
+                autoCapitalize={'sentences'}
+                onChange={richTextHandle}
+                initialContentHTML={descHTML}
+                editorStyle={{}}
+                placeholder="Write your note here..."
+                androidHardwareAccelerationDisabled={true}
+                style={styles.richTextEditorStyle}
+                allowsLinkPreview={true}
+                initialHeight={450}
+              />
+            </TouchableOpacity>
+          </View>
+          {/* </Pressable> */}
         </ScrollView>
         <ToolBar richTextRef={richTextRef} />
         <FloatingButton

@@ -80,7 +80,6 @@ function DrawerNav() {
     <Drawer.Navigator
       screenOptions={{
         headerShown: false,
-        //unmountOnBlur: true,
         drawerStatusBarAnimation: 'fade',
       }}
       initialRouteName={'Home'}
@@ -96,12 +95,7 @@ function DrawerNav() {
           component={Home}
           options={{
             drawerIcon() {
-              return (
-                <List.Icon
-                  // color={MD3Colors.neutralVariant30}
-                  icon={category.icon || 'folder'}
-                />
-              );
+              return <List.Icon icon={category.icon || 'folder'} />;
             },
           }}
         />

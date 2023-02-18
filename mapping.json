@@ -1,0 +1,20 @@
+{
+  "components": {
+    "Select": {
+      "meta": {
+        "appearances": {
+          "filled": {
+            "default": true
+          }
+        },
+        "variantGroups": {
+          "status": {
+            "primary": {
+              "default": true
+            }
+          }
+        }
+      }
+    }
+  }
+}

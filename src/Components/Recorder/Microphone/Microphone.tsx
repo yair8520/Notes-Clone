@@ -1,8 +1,10 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable curly */
 import React, { useRef } from 'react';
 import { MicrophoneProps } from './MicrophoneProps';
 import { Animated } from 'react-native';
 import { List } from 'react-native-paper';
+import styles from './MicrophoneStyles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 export const Microphone = ({
   onStopRecord,
@@ -36,13 +38,16 @@ export const Microphone = ({
     }
   };
   return (
-    <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
-      <TouchableOpacity onPress={onPressHandler}>
+    <TouchableOpacity
+      onPress={onPressHandler}
+      style={[styles.container, { borderColor: isRecording ? 'red' : 'black' }]}
+    >
+      <Animated.View style={{ transform: [{ scale: scaleValue }] }}>
         <List.Icon
           color={isRecording ? 'red' : undefined}
           icon={'microphone'}
         />
-      </TouchableOpacity>
-    </Animated.View>
+      </Animated.View>
+    </TouchableOpacity>
   );
 };

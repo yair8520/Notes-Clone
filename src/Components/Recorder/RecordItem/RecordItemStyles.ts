@@ -14,7 +14,7 @@ export default StyleSheet.create({
     width: '100%',
     flexDirection: 'column',
     borderRadius: 8,
-    backgroundColor: '#94AED4',
+    backgroundColor: '#2fa7f8',
   },
   buttons: {
     width: '50%',

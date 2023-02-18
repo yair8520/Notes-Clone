@@ -11,6 +11,7 @@ import { Drawer } from 'react-native-paper';
 import { useAppDispatch } from '../../Redux';
 import { setDarkMode } from '../../Features/General/GeneralSlice';
 import Logo from '../../Assets/Images/Logo';
+import { RotateView } from '../RotateView';
 
 export const NDrawerContent = (props: any) => {
   const { openModal } = useModal();
@@ -23,14 +24,19 @@ export const NDrawerContent = (props: any) => {
   return (
     <DrawerContentScrollView {...props}>
       <View style={styles.empty}>
-        {/* <Image source={AppLogo} style={styles.logo} /> */}
         <Logo />
       </View>
       <Divider />
       <Drawer.Section>
         <Drawer.Item
           label={isSwitchOn ? 'Dark Mode' : 'Light Mode'}
-          icon={() => <List.Icon icon="theme-light-dark" />}
+          icon={() => {
+            return (
+              <RotateView deps={isSwitchOn}>
+                <List.Icon icon="theme-light-dark" />
+              </RotateView>
+            );
+          }}
           onPress={onToggleSwitch}
           right={() => (
             <Switch
