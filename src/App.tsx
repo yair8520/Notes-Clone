@@ -15,12 +15,15 @@ import { ModalStack } from './Models/ModalConfig';
 import { ModalProvider } from 'react-native-modalfy';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { darkTheme, lightTheme } from './Theme/Colors';
+import SplashScreen from 'react-native-splash-screen';
 
 const App = () => {
   const msg = useAppSelector(getMessage);
   const isDark = useAppSelector(getTheme);
-
   const dispatch = useAppDispatch();
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
   useEffect(() => {
     setTimeout(() => {
       dispatch(addMessage({ msg: '' }));
