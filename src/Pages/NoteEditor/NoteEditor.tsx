@@ -16,6 +16,7 @@ import { ActivityIndicator } from 'react-native-paper';
 import { ToolBar } from './ToolBar';
 import { useHideTabBar } from '../../Hooks/useHideTabBar';
 import { Layout } from '../../Components/Layout';
+import { Recorder } from '../../Components/Recorder';
 
 export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   useHideTabBar(navigation);
@@ -32,6 +33,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   }, [noteId]);
 
   const categories = useAppSelector(getCategories);
+  const [openVoiceMemo, setOpenVoiceMemo] = React.useState<boolean>(false);
   const [selectedIndex, setSelectedIndex] = React.useState(
     categories.findIndex((a) => a.title === category)
   );
@@ -48,7 +50,6 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
       })
     );
   };
-  console.log({ descHTML });
   const richTextRef = useRef<RichEditor | any>();
   const richTextHandle = (descriptionText: string) => {
     setDescHTML(descriptionText);
@@ -67,6 +68,10 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
         <ScrollView contentContainerStyle={styles.content}>
           <Pressable onPress={() => richTextRef.current?.dismissKeyboard()}>
             <View style={styles.container}>
+              {openVoiceMemo && (
+                <Recorder currentNote={currentNote?.[1]!} noteId={id} />
+              )}
+
               <TouchableOpacity style={styles.editorTouch} activeOpacity={1}>
                 <RichEditor
                   renderLoading={() => (
@@ -97,6 +102,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
         <ToolBar richTextRef={richTextRef} />
         <FloatingButton
           onPress={() => saveNote()}
+          openVoiceMemo={setOpenVoiceMemo}
           data={currentNote?.[1]}
           noteId={id}
         />

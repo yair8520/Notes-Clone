@@ -8,7 +8,12 @@ import useKeyBoardStatus from '../../Hooks/useKeyBoardStatus/useKeyBoardStatus';
 import { defaultActionsStyles } from '../../constant';
 import { Linking } from 'react-native';
 
-export const FloatingButton = ({ noteId, data, onPress }: TemplateProps) => {
+export const FloatingButton = ({
+  noteId,
+  data,
+  onPress,
+  openVoiceMemo,
+}: TemplateProps) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const onStateChange = ({ open }: any) => setOpen(open);
   const { keyboardStatus } = useKeyBoardStatus();
@@ -44,8 +49,18 @@ export const FloatingButton = ({ noteId, data, onPress }: TemplateProps) => {
           icon: 'email',
           label: 'Mail',
           onPress: () => {
-            Linking.openURL(`mailto:?subject=example&body=${data.body}`);
+            Linking.openURL(`mailto:?subject=&body=${data.body}`);
             // shareOption(data);
+          },
+        },
+        {
+          ...defaultActionsStyles,
+          icon: 'record-rec',
+          label: 'Voice Memo',
+          onPress: () => {
+            openVoiceMemo((p: boolean) => {
+              return !p;
+            });
           },
         },
         // {

@@ -20,6 +20,7 @@ interface Inote {
   image?: Iimages;
   sign?: ISign;
   locked?: boolean;
+  record?: string;
 }
 interface Iimages {
   points: any;

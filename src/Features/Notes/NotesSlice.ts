@@ -29,7 +29,6 @@ const NotesSlice = createSlice({
           ? generateColor()
           : state.notesArray[payload.id].color,
       };
-      console.log('addNote', state.notesArray[payload.id].body);
     },
     addImage: (state, { payload }: { payload: IaddImage }) => {
       const { id, points, base64 } = payload;
@@ -49,13 +48,25 @@ const NotesSlice = createSlice({
         state.notesArray[payload.noteId].locked = true;
       }
     },
-
     addCategory: (state, { payload }: { payload: ICategories }) => {
       state.categories.push(payload);
+    },
+    addRecord: (
+      state,
+      { payload }: { payload: { noteId: string; file: string } }
+    ) => {
+      state.notesArray[payload.noteId].record = payload.file;
     },
   },
 });
 
-export const { addNote, removeNote, addCategory, addImage, addSign, lockNote } =
-  NotesSlice.actions;
+export const {
+  addNote,
+  removeNote,
+  addCategory,
+  addImage,
+  addSign,
+  lockNote,
+  addRecord,
+} = NotesSlice.actions;
 export default NotesSlice.reducer;
