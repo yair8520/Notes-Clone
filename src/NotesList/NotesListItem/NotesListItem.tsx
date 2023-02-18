@@ -49,6 +49,7 @@ export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
         {note.locked && (
           <List.Icon style={styles.locked} icon={'shield-lock-outline'} />
         )}
+        {note.record && <List.Icon style={styles.record} icon={'microphone'} />}
         <View style={styles.content}>
           <View style={styles.verticalLine} />
           <View style={styles.item}>

@@ -62,4 +62,10 @@ export default StyleSheet.create({
     left: 0,
     zIndex: 5,
   },
+  record: {
+    position: 'absolute',
+    top: -15,
+    left: 20,
+    zIndex: 5,
+  },
 });
