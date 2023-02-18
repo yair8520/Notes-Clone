@@ -118,6 +118,7 @@ function DrawerNav() {
         name={'NoteEditorStack'}
         component={NoteOptionStack}
         options={{
+          unmountOnBlur: true,
           drawerItemStyle: { display: 'none' },
         }}
       />

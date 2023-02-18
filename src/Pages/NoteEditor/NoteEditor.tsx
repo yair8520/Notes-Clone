@@ -33,7 +33,9 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   }, [noteId]);
 
   const categories = useAppSelector(getCategories);
-  const [openVoiceMemo, setOpenVoiceMemo] = React.useState<boolean>(false);
+  const [openVoiceMemo, setOpenVoiceMemo] = React.useState<boolean>(
+    !currentNote?.[1].record
+  );
   const [selectedIndex, setSelectedIndex] = React.useState(
     categories.findIndex((a) => a.title === category)
   );
@@ -68,7 +70,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
         <ScrollView contentContainerStyle={styles.content}>
           <Pressable onPress={() => richTextRef.current?.dismissKeyboard()}>
             <View style={styles.container}>
-              {openVoiceMemo && (
+              {!openVoiceMemo && (
                 <Recorder currentNote={currentNote?.[1]!} noteId={id} />
               )}
 

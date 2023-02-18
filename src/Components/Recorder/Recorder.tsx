@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { Platform, View } from 'react-native';
 import React, { useState } from 'react';
 import { IPlayer, RecorderProps } from './RecorderProps';
 import styles from './RecorderStyles';
@@ -12,6 +12,8 @@ import {
 } from './helper';
 import { useAppDispatch } from '../../Redux';
 import { addRecord } from '../../Features/Notes/NotesSlice';
+import RNFetchBlob from 'rn-fetch-blob';
+import { getTimeStamp } from '../../Utils/Time';
 
 export const Recorder = ({ noteId, currentNote }: RecorderProps) => {
   const dispatch = useAppDispatch();
@@ -20,10 +22,10 @@ export const Recorder = ({ noteId, currentNote }: RecorderProps) => {
     isRecording: false,
     currentMetering: 0,
     file: currentNote?.record ?? '',
-    duration: 0,
+    duration: 1,
   });
-  const saveRecord = () => {
-    dispatch(addRecord({ file: player.file!, noteId }));
+  const saveRecord = (file: string) => {
+    dispatch(addRecord({ file, noteId }));
   };
   const removeRecord = () => {
     setPlayer(() => {
@@ -37,14 +39,20 @@ export const Recorder = ({ noteId, currentNote }: RecorderProps) => {
     });
     dispatch(addRecord({ file: '', noteId }));
   };
+  const dirs = RNFetchBlob.fs.dirs;
+  console.log(player.file);
   return (
     <View style={styles.container}>
       <RecordItem
         player={player}
-        onStartRecord={() => onStartRecord(setPlayer)}
+        onStartRecord={() =>
+          onStartRecord(
+            setPlayer,
+            player.file || `${dirs.CacheDir}/${getTimeStamp()}.mp3`
+          )
+        }
         onStopRecord={() => {
-          saveRecord();
-          onStopRecord(setPlayer);
+          onStopRecord(setPlayer, saveRecord);
         }}
         onRemoveRecord={removeRecord}
         onStartPlay={() => onStartPlay(player.file!, setPlayer)}

@@ -2,8 +2,11 @@ import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import { IPlayer } from './RecorderProps';
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
-export const onStartRecord = async (handler: (a: any) => void) => {
-  const result = await audioRecorderPlayer.startRecorder();
+export const onStartRecord = async (
+  handler: (a: any) => void,
+  path: string
+) => {
+  const result = await audioRecorderPlayer.startRecorder(path);
   audioRecorderPlayer.addRecordBackListener((e) => {
     handler((p: IPlayer) => ({
       ...p,
@@ -14,15 +17,19 @@ export const onStartRecord = async (handler: (a: any) => void) => {
   });
   console.log('onStartRecord', result);
 };
-export const onStopRecord = async (handler: (a: any) => void) => {
+export const onStopRecord = async (
+  handler: (a: any) => void,
+  save: (a: any) => void
+) => {
   const result = await audioRecorderPlayer.stopRecorder();
   audioRecorderPlayer.removeRecordBackListener();
-  console.log({ result });
+
   handler((p: IPlayer) => ({
     ...p,
     isRecording: false,
     file: result,
   }));
+  save(result);
 };
 export const onStartPlay = async (uri: string, handler: (a: any) => void) => {
   console.log('onStartPlay', { uri });

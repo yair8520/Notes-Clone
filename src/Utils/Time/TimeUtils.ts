@@ -9,3 +9,6 @@ export const getCurrentDate = (): string => {
 export const getFullDate = (): string => {
   return moment().format('DD-MM-YYYY');
 };
+export const getTimeStamp = (): string => {
+  return moment().format('DD-MM-YYYY:MM:HH:SS');
+};
