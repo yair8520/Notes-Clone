@@ -9,14 +9,13 @@ import { addNote } from '../../Features/Notes/NotesSlice';
 import { getCurrentDate, getCurrentTime } from '../../Utils/Time';
 import { uid } from 'uid';
 import { getCategories, getNotes } from '../../Features/Notes/NotesSelectors';
-import { TouchableOpacity } from 'react-native';
-import { Pressable } from 'react-native';
 import { RichEditor } from 'react-native-pell-rich-editor';
 import { ActivityIndicator } from 'react-native-paper';
 import { ToolBar } from './ToolBar';
 import { useHideTabBar } from '../../Hooks/useHideTabBar';
 import { Layout } from '../../Components/Layout';
 import { Recorder } from '../../Components/Recorder';
+import { getTheme } from '../../Features/General/GeneralSelectors';
 
 export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   useHideTabBar(navigation);
@@ -52,6 +51,8 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
       })
     );
   };
+  const isDark = useAppSelector(getTheme);
+
   const richTextRef = useRef<RichEditor | any>();
   const richTextHandle = (descriptionText: string) => {
     setDescHTML(descriptionText);
@@ -67,39 +68,41 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
         navigation={navigation}
       />
       <View style={styles.mainCon}>
-        <ScrollView contentContainerStyle={styles.content}>
-          {/* <Pressable onPress={() => richTextRef.current?.dismissKeyboard()}> */}
+        <ScrollView
+          contentContainerStyle={styles.content}
+          keyboardDismissMode={'on-drag'}
+          keyboardShouldPersistTaps={'never'}
+        >
           <View style={styles.container}>
             {!openVoiceMemo && (
               <Recorder currentNote={currentNote?.[1]!} noteId={id} />
             )}
-
-            <TouchableOpacity style={styles.editorTouch} activeOpacity={1}>
-              <RichEditor
-                renderLoading={() => (
-                  <View style={styles.loading}>
-                    <ActivityIndicator
-                      size={'large'}
-                      animating={true}
-                      color={'blue'}
-                    />
-                  </View>
-                )}
-                startInLoadingState={true}
-                ref={richTextRef}
-                autoCapitalize={'sentences'}
-                onChange={richTextHandle}
-                initialContentHTML={descHTML}
-                editorStyle={{}}
-                placeholder="Write your note here..."
-                androidHardwareAccelerationDisabled={true}
-                style={styles.richTextEditorStyle}
-                allowsLinkPreview={true}
-                initialHeight={450}
-              />
-            </TouchableOpacity>
+            <RichEditor
+              focusable={true}
+              initialFocus={true}
+              renderLoading={() => (
+                <View style={styles.loading}>
+                  <ActivityIndicator
+                    size={'large'}
+                    animating={true}
+                    color={'blue'}
+                  />
+                </View>
+              )}
+              startInLoadingState={true}
+              ref={richTextRef}
+              forceDarkOn={isDark}
+              autoCapitalize={'sentences'}
+              onChange={richTextHandle}
+              initialContentHTML={descHTML}
+              editorStyle={{}}
+              placeholder="Write your note here..."
+              androidHardwareAccelerationDisabled={true}
+              style={styles.richTextEditorStyle}
+              allowsLinkPreview={true}
+              initialHeight={450}
+            />
           </View>
-          {/* </Pressable> */}
         </ScrollView>
         <ToolBar richTextRef={richTextRef} />
         <FloatingButton

@@ -14,6 +14,8 @@ export default StyleSheet.create({
   },
   inputCon: {
     width: '90%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   modalView: {
     borderWidth: 2,
@@ -22,7 +24,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',
-    height: 250,
+    height: 350,
     width: elementWidth(550),
   },
   viewWithIcon: {
@@ -45,7 +47,7 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
   },
-  title: { alignSelf: 'flex-start', paddingLeft: '5%' },
+  title: { alignSelf: 'flex-start', paddingLeft: '10%', paddingBottom: 25 },
   body: {
     width: '90%',
     alignItems: 'center',

@@ -9,7 +9,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  headline: { alignSelf: 'flex-start' },
+  headline: { alignSelf: 'flex-start', paddingBottom: 15 },
   errorText: {
     color: 'red',
   },
@@ -26,7 +26,7 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'white',
-    height: 300,
+    height: 350,
     width: elementWidth(550),
   },
   viewWithIcon: {

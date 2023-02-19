@@ -11,6 +11,8 @@ import {
   DarkTheme,
   NavigationContainer,
 } from '@react-navigation/native';
+import * as eva from '@eva-design/eva';
+import { ApplicationProvider } from '@ui-kitten/components';
 import { ModalStack } from './Models/ModalConfig';
 import { ModalProvider } from 'react-native-modalfy';
 import { Provider as PaperProvider } from 'react-native-paper';
@@ -32,10 +34,12 @@ const App = () => {
   return (
     <NavigationContainer theme={isDark ? DarkTheme : DefaultTheme}>
       <PaperProvider theme={isDark ? darkTheme : lightTheme}>
-        <ModalProvider stack={ModalStack}>
-          <AppRouter />
-          <NSnackBar visible={!!msg} message={msg} />
-        </ModalProvider>
+        <ApplicationProvider {...eva} theme={isDark ? eva.dark : eva.light}>
+          <ModalProvider stack={ModalStack}>
+            <AppRouter />
+            <NSnackBar visible={!!msg} message={msg} />
+          </ModalProvider>
+        </ApplicationProvider>
       </PaperProvider>
     </NavigationContainer>
   );

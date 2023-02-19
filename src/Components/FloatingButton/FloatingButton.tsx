@@ -3,10 +3,12 @@ import React from 'react';
 import { TemplateProps } from './FloatingButtonProps';
 import styles from './FloatingButtonStyles';
 import { FAB } from 'react-native-paper';
-import { createPDF, shareOption } from './helpers';
+import { askPermission, createPDF, shareOption } from './helpers';
 import useKeyBoardStatus from '../../Hooks/useKeyBoardStatus/useKeyBoardStatus';
 import { defaultActionsStyles } from '../../constant';
 import { Linking } from 'react-native';
+import { addMessage } from '../../Features/Links/LinkSlice';
+import { useAppDispatch } from '../../Redux';
 
 export const FloatingButton = ({
   noteId,
@@ -16,6 +18,7 @@ export const FloatingButton = ({
 }: TemplateProps) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const onStateChange = ({ open }: any) => setOpen(open);
+  const dispatch = useAppDispatch();
   const { keyboardStatus } = useKeyBoardStatus();
   return (
     <FAB.Group
@@ -57,10 +60,14 @@ export const FloatingButton = ({
           ...defaultActionsStyles,
           icon: 'record-rec',
           label: 'Voice Memo',
-          onPress: () => {
-            openVoiceMemo((p: boolean) => {
-              return !p;
-            });
+          onPress: async () => {
+            askPermission().then((res) =>
+              res
+                ? openVoiceMemo((p: boolean) => {
+                    return !p;
+                  })
+                : dispatch(addMessage({ msg: 'no Permissions' }))
+            );
           },
         },
         // {

@@ -1,4 +1,4 @@
-import { Platform, View } from 'react-native';
+import { View } from 'react-native';
 import React, { useState } from 'react';
 import { IPlayer, RecorderProps } from './RecorderProps';
 import styles from './RecorderStyles';
@@ -40,7 +40,6 @@ export const Recorder = ({ noteId, currentNote }: RecorderProps) => {
     dispatch(addRecord({ file: '', noteId }));
   };
   const dirs = RNFetchBlob.fs.dirs;
-  console.log(player.file);
   return (
     <View style={styles.container}>
       <RecordItem

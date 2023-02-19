@@ -5,7 +5,10 @@ export default StyleSheet.create({
   container: {
     display: 'flex',
     height: '100%',
+    width: '90%',
     alignItems: 'center',
+    alignSelf: 'center',
+    paddingTop: 15,
   },
   title: {
     marginTop: 25,
