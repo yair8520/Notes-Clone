@@ -9,6 +9,8 @@ import { LogBox } from 'react-native';
 import { IconRegistry } from '@ui-kitten/components';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { I18nManager } from 'react-native';
+import { persistStore } from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react';
 
 I18nManager.allowRTL(false);
 LogBox.ignoreAllLogs();
@@ -18,9 +20,11 @@ const Root = () => {
     <>
       <IconRegistry icons={EvaIconsPack} />
       <Provider store={store}>
-        <I18nextProvider i18n={i18n}>
-          <App />
-        </I18nextProvider>
+        <PersistGate loading={null} persistor={persistStore(store)}>
+          <I18nextProvider i18n={i18n}>
+            <App />
+          </I18nextProvider>
+        </PersistGate>
       </Provider>
     </>
   );

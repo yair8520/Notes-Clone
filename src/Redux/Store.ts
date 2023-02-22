@@ -4,10 +4,11 @@ import LinkSlice from '../Features/Links/LinkSlice';
 import GeneralSlice from '../Features/General/GeneralSlice';
 
 import { listenerMiddleware } from './Listener';
-
+import { linkPersistConfig, notePersistConfig } from './Filters';
+import { persistReducer } from 'redux-persist';
 const rootReducer = combineReducers({
-  note: NotesSlice,
-  link: LinkSlice,
+  note: persistReducer(notePersistConfig, NotesSlice),
+  link: persistReducer(linkPersistConfig, LinkSlice),
   general: GeneralSlice,
 });
 

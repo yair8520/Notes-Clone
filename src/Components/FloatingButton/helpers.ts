@@ -58,8 +58,6 @@ export const askPermission = async () => {
       PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
     ]);
 
-    console.log('write external stroage', grants);
-
     if (
       grants['android.permission.WRITE_EXTERNAL_STORAGE'] ===
         PermissionsAndroid.RESULTS.GRANTED &&
@@ -94,7 +92,6 @@ export const createPDF = async (data: any) => {
 };
 const generateHtmlPdfContent = (data: Inote) => {
   const { body, image, sign } = data;
-  console.log(image);
   return `<html>
   <head>
     <style>

@@ -12,7 +12,6 @@ import { Layout } from '../../Components/Layout';
 import Animated from 'react-native-reanimated';
 
 export const Home = ({ navigation, route }: HomeProps) => {
-  console.log(route.params.style);
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const [deleteMode, setDeleteMode] = React.useState<boolean>(false);
   const [filterDir, setFilterDir] = React.useState<string>('Descending');
