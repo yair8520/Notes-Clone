@@ -1,5 +1,7 @@
 import AudioRecorderPlayer from 'react-native-audio-recorder-player';
 import { IPlayer } from './RecorderProps';
+import Share from 'react-native-share';
+
 const audioRecorderPlayer = new AudioRecorderPlayer();
 
 export const onStartRecord = async (
@@ -51,4 +53,10 @@ export const onStopPlay = async () => {
   console.log('onStopPlay');
   audioRecorderPlayer.stopPlayer();
   audioRecorderPlayer.removePlayBackListener();
+};
+export const onShareAudio = async (url: string) => {
+  Share.open({
+    url,
+    type: 'audio/mp3',
+  });
 };

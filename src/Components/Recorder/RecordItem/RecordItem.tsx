@@ -7,6 +7,7 @@ import { RotateView } from '../../RotateView';
 import { Microphone } from '../Microphone/Microphone';
 import { NText } from '../../Text';
 import { msToTime } from '../../../Helpers/helper';
+import { onShareAudio } from '../helper';
 
 export const RecordItem = ({
   onStartRecord,
@@ -43,6 +44,9 @@ export const RecordItem = ({
 
               <RotateView onPress={onRemoveRecord}>
                 <List.Icon icon={'delete'} />
+              </RotateView>
+              <RotateView onPress={() => onShareAudio(player.file!)}>
+                <List.Icon icon={'share'} />
               </RotateView>
             </View>
           </>

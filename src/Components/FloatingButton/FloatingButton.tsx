@@ -43,7 +43,6 @@ export const FloatingButton = ({
           icon: 'share',
           label: 'Share',
           onPress: () => {
-            console.log(data);
             shareOption(data);
           },
         },
