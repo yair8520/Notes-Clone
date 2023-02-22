@@ -11,7 +11,6 @@ import { addMessage } from '../../Features/Links/LinkSlice';
 import { useAppDispatch } from '../../Redux';
 
 export const FloatingButton = ({
-  noteId,
   data,
   onPress,
   openVoiceMemo,
@@ -65,7 +64,7 @@ export const FloatingButton = ({
                 ? openVoiceMemo((p: boolean) => {
                     return !p;
                   })
-                : dispatch(addMessage({ msg: 'no Permissions' }))
+                : dispatch(addMessage({ msg: 'Please confirm permissions' }))
             );
           },
         },
