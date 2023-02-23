@@ -1,8 +1,8 @@
 # React Native Note App
 
 ## Introduction
-[![React Native](https://img.shields.io/badge/React%20Native-0.70-blue.svg?style=rounded-square)](https://facebook.github.io/react-native/)
-[![Node.js](https://img.shields.io/badge/Node.js-v.10.16-green.svg?style=rounded-square)](https://nodejs.org/)
+[![React Native](https://img.shields.io/badge/React%20Native-0.70.6-blue.svg?style=rounded-square)](https://facebook.github.io/react-native/)
+[![Node.js](https://img.shields.io/badge/Node.js-v.16.19.0-green.svg?style=rounded-square)](https://nodejs.org/)
 
 ## Main technologies used
 - [React Native](https://github.com/facebook/react-native)
