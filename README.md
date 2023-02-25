@@ -38,13 +38,13 @@ react-native run-android
 
 ## Demonstration
 
-### lists:  and option to export to cintent into PDF file
+### lists:  and option to export to content into PDF file
 
 
 https://user-images.githubusercontent.com/66212863/221363014-a6673158-24d7-4f9d-bbdb-d510a468e4f3.mp4
 
 
-### Add images to the Note:
+### Add images to the Note from gallery:
 
 
 https://user-images.githubusercontent.com/66212863/221363649-fe2fe4f2-7c88-4fae-b6da-84f02d7a96ee.mp4
@@ -68,7 +68,7 @@ https://user-images.githubusercontent.com/66212863/221363762-0f5dd339-a286-455b-
 https://user-images.githubusercontent.com/66212863/221363787-12629567-c708-4656-a879-40c636336f74.mp4
 
 
-### 6.Links Section where you can store your favorite links,option and tools:
+### Links Section where you can store your favorite links,option and tools:
 
 
 https://user-images.githubusercontent.com/66212863/221363952-17710b7a-e727-4619-9bf4-d7643900e24d.mp4
