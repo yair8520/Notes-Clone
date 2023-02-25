@@ -38,38 +38,53 @@ react-native run-android
 
 ## Demonstration
 
-### Note options:
 1. lists:  and option to export to cintent into PDF file
+
 
 https://user-images.githubusercontent.com/66212863/221363014-a6673158-24d7-4f9d-bbdb-d510a468e4f3.mp4
 
+
 2. Add images to the Note:
+
 
 https://user-images.githubusercontent.com/66212863/221363649-fe2fe4f2-7c88-4fae-b6da-84f02d7a96ee.mp4
 
+
 3.Record voice Memo,and share as mp3 file:
+
 
 https://user-images.githubusercontent.com/66212863/221363703-b30f29ec-3d10-4f92-affd-751cac411dcc.mp4
 
+
 4.Add notes Category :
+
 
 https://user-images.githubusercontent.com/66212863/221363762-0f5dd339-a286-455b-87fe-c4b1137fbad8.mp4
 
+
 5.Changing the note category through the editor:
+
 
 https://user-images.githubusercontent.com/66212863/221363787-12629567-c708-4656-a879-40c636336f74.mp4
 
+
 6.Links Section where you can store your favorite links,option and tools:
+
 
 https://user-images.githubusercontent.com/66212863/221363952-17710b7a-e727-4619-9bf4-d7643900e24d.mp4
 
+
 7. filter and delete Links and Notes:
+
 
 https://user-images.githubusercontent.com/66212863/221364064-7200223b-3c50-41e8-9f3c-5b895728f37e.mp4
 
+
 8.Lock Note and Hide Links with password Pattern:
 
+
 https://user-images.githubusercontent.com/66212863/221364554-8bc380c3-e7c7-456f-82b1-9fe6c6e74cfc.mp4
+
 
 9.Full Dark Mode support:
 
