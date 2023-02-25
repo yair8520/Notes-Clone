@@ -38,7 +38,7 @@ react-native run-android
 
 ## Demonstration
 
-# note options:
+### note options:
 
 
 
