@@ -38,7 +38,9 @@ react-native run-android
 
 ## Demonstration
 
-### note options:
+### Note options:
+1. lists
+https://user-images.githubusercontent.com/66212863/221363014-a6673158-24d7-4f9d-bbdb-d510a468e4f3.mp4
 
 
 
