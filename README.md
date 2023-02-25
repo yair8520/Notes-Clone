@@ -38,6 +38,9 @@ react-native run-android
 
 ## Demonstration
 
+# note options:
+
+
 
 ## Author
 * [Yair Gabay](https://github.com/Yair8520)
