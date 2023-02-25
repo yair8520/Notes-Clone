@@ -44,6 +44,6 @@ https://user-images.githubusercontent.com/66212863/221363014-a6673158-24d7-4f9d-
 
 [![Demo CountPages alpha](https://share.gifyoutube.com/KzB6Gb.gif)](https://www.youtube.com/watch?v=ek1j272iAmc)
 
-
+ 
 ## Author
 * [Yair Gabay](https://github.com/Yair8520)
