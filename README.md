@@ -52,14 +52,13 @@ https://user-images.githubusercontent.com/66212863/221363649-fe2fe4f2-7c88-4fae-
 
 ### Record voice Memo,and share as mp3 file:
 
+https://user-images.githubusercontent.com/66212863/221363762-0f5dd339-a286-455b-87fe-c4b1137fbad8.mp4
 
-https://user-images.githubusercontent.com/66212863/221363703-b30f29ec-3d10-4f92-affd-751cac411dcc.mp4
 
 
 ### Add notes Category :
 
-
-https://user-images.githubusercontent.com/66212863/221363762-0f5dd339-a286-455b-87fe-c4b1137fbad8.mp4
+https://user-images.githubusercontent.com/66212863/221363703-b30f29ec-3d10-4f92-affd-751cac411dcc.mp4
 
 
  ### Changing the note category through the editor:
