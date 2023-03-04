@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  mainCon: { flex: 1 },
+  mainCon: { flex: 1, height: '100%', width: '100%' },
   container: {
     display: 'flex',
     height: '100%',

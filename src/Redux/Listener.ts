@@ -17,10 +17,6 @@ listener({
   effect: async (_action, _listenerApi) => {},
 });
 
-/**
- * for popup the redux thunk need to send {popUp:...}
- * normal error message, the redux thunk need to send {err:...}
- */
 listener({
   matcher: isRejected,
   effect: async (_action: any, _listenerApi) => {},

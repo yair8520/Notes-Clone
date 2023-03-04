@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { addToFirestore } from '../../Helpers/FireBase';
 import { generateColor } from '../../Theme/Colors';
 import {
   IaddImage,
@@ -50,6 +51,7 @@ const NotesSlice = createSlice({
     },
     addCategory: (state, { payload }: { payload: ICategories }) => {
       state.categories.push(payload);
+      addToFirestore(state.categories);
     },
     addRecord: (
       state,

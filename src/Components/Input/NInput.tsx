@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { NInputProps } from './NInputProps';
 import styles from './NInputStyles';
 import { HelperText, TextInput } from 'react-native-paper';
@@ -10,9 +10,10 @@ export const NInput = ({
   errorText,
   error,
   icon,
-
+  secure = false,
   ...rest
 }: NInputProps) => {
+  const [secureInput, setSecureInput] = useState<boolean>(secure);
   return (
     <>
       <TextInput
@@ -27,13 +28,22 @@ export const NInput = ({
         outlineStyle={styles.outline}
         onChangeText={onChange}
         value={value}
+        secureTextEntry={secureInput}
         right={
-          icon && (
+          icon ? (
             <TextInput.Icon
               iconColor={'#2fa7f8'}
               icon={icon}
               onPress={async () => onChange(await pasteOption())}
             />
+          ) : (
+            secure && (
+              <TextInput.Icon
+                iconColor={'#2fa7f8'}
+                icon={'eye'}
+                onPress={async () => setSecureInput(!secureInput)}
+              />
+            )
           )
         }
       />

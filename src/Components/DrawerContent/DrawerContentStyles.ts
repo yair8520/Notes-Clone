@@ -16,9 +16,14 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   empty: {
-    paddingRight: 15,
+    paddingRight: 20,
     alignItems: 'center',
     justifyContent: 'center',
     height: 180,
+  },
+  title: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingBottom: 5,
   },
 });

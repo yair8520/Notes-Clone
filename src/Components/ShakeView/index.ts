@@ -1,0 +1,1 @@
+export { ShakeView } from './ShakeView';

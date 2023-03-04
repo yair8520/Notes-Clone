@@ -20,9 +20,9 @@ export const NText = ({
       style={[
         styles.text,
         styles?.[variant as keyof object],
-        style,
         bold && styles.bold,
         { color: isDark ? 'white' : 'black' },
+        style,
       ]}
       {...rest}
     >

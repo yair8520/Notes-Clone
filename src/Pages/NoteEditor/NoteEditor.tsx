@@ -22,7 +22,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   const { noteId } = route?.params ?? '0';
   const { category } = route?.params;
   const notes = useAppSelector(getNotes);
-  const currentNote = useMemo(() => {
+  const currentNote: any = useMemo(() => {
     return Object.entries(notes).find((item) => {
       return item[0] === noteId;
     });
@@ -79,7 +79,6 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
             )}
             <RichEditor
               focusable={true}
-              initialFocus={true}
               renderLoading={() => (
                 <View style={styles.loading}>
                   <ActivityIndicator
@@ -92,7 +91,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
               startInLoadingState={true}
               ref={richTextRef}
               forceDarkOn={isDark}
-              autoCapitalize={'sentences'}
+              autoCapitalize={'off'}
               onChange={richTextHandle}
               initialContentHTML={descHTML}
               editorStyle={{}}

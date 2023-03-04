@@ -6,7 +6,7 @@ import { styles } from './ExpandableViewStyles';
 export const ExpandableView = ({
   children,
   expanded,
-  toHeight,
+  toHeight = 350,
 }: ExpandableViewProps) => {
   const [height] = useState(new Animated.Value(0));
 

@@ -17,15 +17,16 @@ import { ModalStack } from './Models/ModalConfig';
 import { ModalProvider } from 'react-native-modalfy';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { darkTheme, lightTheme } from './Theme/Colors';
-import SplashScreen from 'react-native-splash-screen';
+import { useAuthStateChanged } from './Hooks/useAuthStateChanged';
+import { useOnFireBaseMessage } from './Hooks/useOnFireBaseMessage';
 
 const App = () => {
+  useAuthStateChanged();
+  useOnFireBaseMessage();
+  const dispatch = useAppDispatch();
   const msg = useAppSelector(getMessage);
   const isDark = useAppSelector(getTheme);
-  const dispatch = useAppDispatch();
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
+  useEffect(() => {}, []);
   useEffect(() => {
     setTimeout(() => {
       dispatch(addMessage({ msg: '' }));
