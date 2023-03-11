@@ -23,6 +23,11 @@ export function TabScreens() {
         screenOptions={{
           headerShown: false,
           tabBarLabelPosition: 'beside-icon',
+          tabBarHideOnKeyboard: true,
+          tabBarVisibilityAnimationConfig: {
+            hide: { animation: 'spring' },
+            show: { animation: 'spring' },
+          },
           tabBarStyle: { ...tabBarStyle },
         }}
       >
