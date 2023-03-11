@@ -1,17 +1,20 @@
 export interface LinkState {
-  links: ILink[];
+  links: Links;
   snackBarMessage: string;
   password: string;
 }
-
+interface Links {
+  [key: string]: ILink;
+}
 interface ILink {
+  id: string;
   title: string;
   value: string;
   date?: string;
   locked?: boolean;
 }
 interface IEditLink {
-  index: number;
+  id: string;
   title: string;
   value: string;
   date?: string;

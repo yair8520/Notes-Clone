@@ -10,7 +10,7 @@ import { useModal } from 'react-native-modalfy';
 import { Drawer } from 'react-native-paper';
 import { useAppDispatch, useAppSelector } from '../../Redux';
 import { setDarkMode } from '../../Features/General/GeneralSlice';
-import { RotateView } from '../RotateView';
+import { RotateView } from '../Animations/RotateView';
 import { signOut } from '../../Helpers/FireBase';
 import { NText } from '../Text';
 import { getUserInfo } from '../../Features/General/GeneralSelectors';

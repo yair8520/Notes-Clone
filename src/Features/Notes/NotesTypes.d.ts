@@ -16,9 +16,6 @@ interface Inote {
   date: string;
   time: string;
   body: string;
-  color?: string;
-  image?: Iimages;
-  sign?: ISign;
   locked?: boolean;
   record?: string;
 }

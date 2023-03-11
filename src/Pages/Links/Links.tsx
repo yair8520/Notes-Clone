@@ -11,18 +11,19 @@ import { useAppDispatch } from '../../Redux';
 import { LinkList } from '../../Components/LinkList';
 import { addLink } from '../../Features/Links/LinkSlice';
 import { Layout } from '../../Components/Layout';
+import { uid } from 'uid';
 export const Links = ({ navigation }: LinksProps) => {
+  const type = useRoute().name;
+  const dispatch = useAppDispatch();
+  const { openModal } = useModal();
   const [deleteMode, setDeleteMode] = React.useState<boolean>(false);
   const [filterDir, setFilterDir] = React.useState<string>('Descending');
-  const type = useRoute().name;
   const [searchQuery, setSearchQuery] = React.useState<string>('');
   const onChangeSearch = (query: React.SetStateAction<string>) =>
     setSearchQuery(query);
-  const dispatch = useAppDispatch();
-  const { openModal } = useModal();
   const onFabPress = () => {
     const insert = (title: string, value: string) => {
-      dispatch(addLink({ title, value }));
+      dispatch(addLink({ title, value, id: uid(16) }));
     };
     openModal('LinkModal', { insert });
   };

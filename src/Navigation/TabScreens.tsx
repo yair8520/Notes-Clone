@@ -9,9 +9,11 @@ import { Layout } from '../Components/Layout';
 import { getTheme } from '../Features/General/GeneralSelectors';
 import { useAppSelector } from '../Redux';
 import { DrawerNav } from './NoteOptionStack';
+import useBackButton from '../Hooks/useBackHandler/useBackHandler';
 const Tab = createBottomTabNavigator();
 
 export function TabScreens() {
+  useBackButton();
   const categories = useAppSelector(getCategories);
   const isDark = useAppSelector(getTheme);
   return (

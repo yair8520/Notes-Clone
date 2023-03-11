@@ -7,8 +7,8 @@ import { DateData, MarkedDates } from 'react-native-calendars/src/types';
 import { Layout } from '../Layout';
 import { CalenderEvent } from './CalenderEvent';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ExpandableView } from '../ExpandableView';
 import { CalendarHeader } from '../Headers/CalendarHeader';
+import { ExpandableView } from '../Animations';
 
 export const NCalender = ({ navigation }: NCalenderProps) => {
   const [dates, setDates] = useState<MarkedDates>();

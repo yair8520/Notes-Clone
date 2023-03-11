@@ -4,7 +4,6 @@ import { BackHandler } from 'react-native';
 
 const useBackButton = (callBack?: () => void) => {
   const nav = useNavigation();
-
   React.useEffect(() => {
     const backAction = () => {
       if (nav.isFocused()) {

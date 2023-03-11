@@ -1,6 +1,6 @@
 /* eslint-disable curly */
 import { useMemo } from 'react';
-import { ILink } from '../../Features/Links/LinksTypes';
+import { Links } from '../../Features/Links/LinksTypes';
 
 export const useLinksFilter = ({
   searchQuery,
@@ -8,20 +8,20 @@ export const useLinksFilter = ({
   filterDir,
 }: {
   searchQuery: string;
-  links: ILink[];
+  links: Links;
   filterDir: string;
 }) => {
   let filteredLinks = useMemo(() => {
-    let returnData = [...links];
+    let returnData = Object.entries(links);
     if (searchQuery) {
       returnData = returnData.filter((item) =>
-        item.title.includes(searchQuery)
+        item[1].title.includes(searchQuery)
       );
     }
     if (filterDir === 'Ascending')
-      return returnData.sort((a, b) => a.date!.localeCompare(b.date!));
+      return returnData.sort((a, b) => a[1].date!.localeCompare(b[1].date!));
     else {
-      return returnData.sort((a, b) => b.date!.localeCompare(a.date!));
+      return returnData.sort((a, b) => b[1].date!.localeCompare(a[1].date!));
     }
   }, [links, searchQuery, filterDir]);
   return filteredLinks;

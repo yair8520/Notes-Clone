@@ -17,14 +17,14 @@ import {
 } from '../../../../Features/Links/LinkSlice';
 import { useNavigation } from '@react-navigation/native';
 
-export const LinkMenu = ({ children, style, data, index }: LinkMenuProps) => {
+export const LinkMenu = ({ children, style, data, id }: LinkMenuProps) => {
   const nav = useNavigation();
   const [visible, setVisible] = React.useState(false);
   const { openModal } = useModal();
   const dispatch = useAppDispatch();
   const onEditLink = () => {
     const insert = (title: string, value: string) => {
-      dispatch(editLink({ title, value, index }));
+      dispatch(editLink({ title, value, id }));
     };
     openModal('LinkModal', { insert, data });
   };
@@ -82,7 +82,7 @@ export const LinkMenu = ({ children, style, data, index }: LinkMenuProps) => {
           onPress(() => {
             nav.navigate('Notes', {
               screen: 'password',
-              params: { handler: () => dispatch(lockLink({ index })) },
+              params: { handler: () => dispatch(lockLink({ id })) },
             });
           });
         }}

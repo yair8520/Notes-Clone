@@ -7,10 +7,10 @@ import { Layout } from '../../Components/Layout';
 import { NInput, NText } from '../../Components';
 import { Button } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { createAccount } from '../../Helpers/FireBase';
+import { createAccount, signInToFirebase } from '../../Helpers/FireBase';
 import { validateFields } from './helpers';
 import Lottie from 'lottie-react-native';
-import { ShakeView } from '../../Components/ShakeView';
+import { ShakeView, SlideView } from '../../Components/Animations';
 
 export const Login = ({}: LoginProps) => {
   const [signIn, setSignIn] = useState<boolean>(false);
@@ -24,7 +24,7 @@ export const Login = ({}: LoginProps) => {
   const signHandler = () => {
     if (validateFields(info, onChange)) {
       setLoading(true);
-      createAccount(info)
+      returnFunction()(info)
         .then((e) => console.log('success', e))
         .catch(({ field, value }) => {
           field && onChange(field, value);
@@ -33,6 +33,9 @@ export const Login = ({}: LoginProps) => {
           setLoading(false);
         });
     }
+  };
+  const returnFunction = () => {
+    return signIn ? createAccount : signInToFirebase;
   };
   return (
     <Layout>
@@ -66,29 +69,33 @@ export const Login = ({}: LoginProps) => {
               value={info.pass}
             />
           </ShakeView>
+
           <View style={styles.buttonCon}>
-            <Button
-              loading={loading}
-              disabled={loading}
-              onPress={signHandler}
-              buttonColor={'#367cff'}
-              mode="contained"
-              style={styles.button}
-            >
-              <NText variant="H3" style={styles.text}>
-                {signIn ? 'Create account' : 'Sign In'}
-              </NText>
-            </Button>
-            <View style={styles.subText}>
-              <TouchableOpacity
-                style={styles.SignIn}
-                onPress={() => setSignIn(!signIn)}
+            <SlideView dependency={signIn} side={signIn ? 'left' : 'right'}>
+              <Button
+                loading={loading}
+                disabled={loading}
+                onPress={signHandler}
+                buttonColor={'#367cff'}
+                mode="contained"
+                style={styles.button}
               >
-                <NText bold style={{ color: '#367cff' }}>
-                  {!signIn ? 'Create account' : 'Sign In'}
+                <NText variant="H3" style={styles.text}>
+                  {signIn ? 'Create account' : 'Sign In'}
                 </NText>
-              </TouchableOpacity>
-            </View>
+              </Button>
+
+              <View style={styles.subText}>
+                <TouchableOpacity
+                  style={styles.SignIn}
+                  onPress={() => setSignIn(!signIn)}
+                >
+                  <NText bold style={{ color: '#367cff' }}>
+                    {!signIn ? 'Create account' : 'Sign In'}
+                  </NText>
+                </TouchableOpacity>
+              </View>
+            </SlideView>
           </View>
         </View>
       </View>

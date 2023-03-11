@@ -12,6 +12,7 @@ export const useAuthStateChanged = () => {
     const subscriber = auth().onAuthStateChanged(async (user) => {
       if (user) {
         const { uid, email } = user;
+        console.log({ user });
         await saveUserToFirestore(uid, email!);
         dispatch(setUserInfo({ email, loggedIn: true }));
       } else {
@@ -24,12 +25,23 @@ export const useAuthStateChanged = () => {
 
   const saveUserToFirestore = async (uid: string, email: string) => {
     try {
-      await firestore().collection('users').doc(email).set({
-        id: uid,
-        email: email,
-        createdAt: new Date(),
-      });
-      console.log(email, 'User added to Firestore');
+      const userRef = firestore().collection('users').doc(email);
+      const userDoc = await userRef.get();
+
+      if (userDoc.exists) {
+        await userRef.update({
+          id: uid,
+          updatedAt: new Date(),
+        });
+        console.log(email, 'User data updated in Firestore');
+      } else {
+        await userRef.set({
+          id: uid,
+          email: email,
+          createdAt: new Date(),
+        });
+        console.log(email, 'User added to Firestore');
+      }
     } catch (e) {
       console.log('error saving user', e);
     }

@@ -36,7 +36,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
     !currentNote?.[1].record
   );
   const [selectedIndex, setSelectedIndex] = React.useState(
-    categories.findIndex((a) => a.title === category)
+    categories.findIndex((a: any) => a.title === category)
   );
   const [descHTML, setDescHTML] = useState(currentNote?.[1].body);
   const dispatch = useAppDispatch();
@@ -47,7 +47,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
         type: categories[selectedIndex].title,
         time: getCurrentTime(),
         date: getCurrentDate(),
-        body: descHTML!,
+        body: descHTML! ?? ' ',
       })
     );
   };

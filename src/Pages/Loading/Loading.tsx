@@ -5,13 +5,15 @@ import { LoadingProps } from './LoadingProps';
 import styles from './LoadingStyles';
 import Lottie from 'lottie-react-native';
 import { Layout } from '../../Components/Layout';
-import { NText } from '../../Components';
+import { TextAnimation } from '../../Components/Animations';
+import InitialStore from '../../Hooks/InitialStore/InitialStore';
 
 export const Loading = ({ navigation }: LoadingProps) => {
+  InitialStore();
   useEffect(() => {
-    // setTimeout(() => {
-    //   navigation.navigate('Home');
-    // }, 15000);
+    setTimeout(() => {
+      navigation.navigate('Home');
+    }, 2000);
   }, [navigation]);
   return (
     <Layout>
@@ -23,7 +25,7 @@ export const Loading = ({ navigation }: LoadingProps) => {
           loop={true}
           style={{ height: 500, width: 500 }}
         />
-        <NText>Retrieving your data...</NText>
+        <TextAnimation val={'Retrieving your data...'} />
       </View>
     </Layout>
   );

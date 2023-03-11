@@ -5,14 +5,13 @@ import styles from './LinkListItemStyles';
 import { NText } from '../../Text';
 import { Icon } from '@ui-kitten/components';
 import { TouchableOpacity } from 'react-native';
-import { JiggleView } from '../../JiggleView/JiggleView';
+import { JiggleView } from '../../Animations/JiggleView/JiggleView';
 import { LinkMenu } from './LinkMenu';
 import { List } from 'react-native-paper';
 export const LinkListItem = ({
   data,
   startAnimation,
   deleteLink,
-  index,
 }: LinkListItemProps) => {
   const info = useMemo(() => {
     const a = { ...data };
@@ -29,7 +28,7 @@ export const LinkListItem = ({
           <View style={styles.deleteButton}>
             <TouchableOpacity
               onPress={() => {
-                deleteLink(index);
+                deleteLink(data.id);
               }}
               style={styles.button}
             >
@@ -49,7 +48,7 @@ export const LinkListItem = ({
           </View>
         </View>
         <View style={styles.date}>
-          <LinkMenu index={index} data={info} style={styles.rightItem}>
+          <LinkMenu id={data.id} data={info} style={styles.rightItem}>
             <NText style={styles.dateText} variant="p">
               {info.date}
             </NText>

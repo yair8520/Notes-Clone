@@ -3,7 +3,7 @@ import React from 'react';
 import { RecordItemProps } from './RecordItemProps';
 import styles from './RecordItemStyles';
 import { List, ProgressBar } from 'react-native-paper';
-import { RotateView } from '../../RotateView';
+import { RotateView } from '../../Animations/RotateView';
 import { Microphone } from '../Microphone/Microphone';
 import { NText } from '../../Text';
 import { msToTime } from '../../../Helpers/helper';

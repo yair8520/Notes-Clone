@@ -22,14 +22,14 @@ export default function AppRouter() {
 
   return (
     <Stack.Navigator screenOptions={{ ...navigationOptionsConfig }}>
-      {/* {!loggedIn ? (
+      {!loggedIn ? (
         <Stack.Screen name="Login" component={Login} />
-      ) : ( */}
-      <>
-        <Stack.Screen name="Loading" component={Loading} />
-        <Stack.Screen name="Home" component={TabScreens} />
-      </>
-      {/* )} */}
+      ) : (
+        <>
+          <Stack.Screen name="Loading" component={Loading} />
+          <Stack.Screen name="Home" component={TabScreens} />
+        </>
+      )}
     </Stack.Navigator>
   );
 }

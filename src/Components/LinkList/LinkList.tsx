@@ -9,6 +9,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { LinkListItem } from './LinkListItem';
 import { removeLink } from '../../Features/Links/LinkSlice';
 import { useLinksFilter } from '../../Hooks/useLinksFilter';
+import { ILink } from '../../Features/Links/LinksTypes';
 export const LinkList = ({
   deleteMode,
   filterDir,
@@ -16,10 +17,11 @@ export const LinkList = ({
 }: LinkListProps) => {
   let links = useAppSelector(getLinks);
   const dispatch = useAppDispatch();
-  const deleteLink = (index: number) => {
-    dispatch(removeLink({ index }));
+  const deleteLink = (id: string) => {
+    dispatch(removeLink({ id }));
   };
   links = useLinksFilter({ filterDir, links, searchQuery });
+
   return (
     <ScrollView
       contentContainerStyle={styles.content}
@@ -27,14 +29,13 @@ export const LinkList = ({
     >
       <View style={styles.list}>
         {links.length !== 0 ? (
-          links.map((item, index) => {
+          links.map((item: [string, ILink], index: any) => {
             return (
               <LinkListItem
                 deleteLink={deleteLink}
                 startAnimation={deleteMode}
-                data={item}
-                index={index}
-                key={item.title + index}
+                data={item[1]}
+                key={item[1].title + index}
               />
             );
           })

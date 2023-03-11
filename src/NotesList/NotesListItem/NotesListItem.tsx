@@ -4,7 +4,7 @@ import { NotesListItemProps } from './NotesListItemProps';
 import styles from './NotesListItemStyles';
 import { NText } from '../../Components';
 import { useNavigation } from '@react-navigation/native';
-import { JiggleView } from '../../Components/JiggleView';
+import { JiggleView } from '../../Components/Animations/JiggleView';
 import { useAppDispatch } from '../../Redux';
 import { removeNote } from '../../Features/Notes/NotesSlice';
 import { Icon } from '@ui-kitten/components';

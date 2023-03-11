@@ -1,13 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { addToFirestore } from '../../Helpers/FireBase';
-import { generateColor } from '../../Theme/Colors';
-import {
-  IaddImage,
-  IaddSign,
-  ICategories,
-  Inote,
-  NotesState,
-} from './NotesTypes';
+import { ICategories, INote, Inote, NotesState } from './NotesTypes';
 
 const initialState: NotesState = {
   notesArray: {},
@@ -22,22 +15,14 @@ const NotesSlice = createSlice({
   name: 'Note',
   initialState,
   reducers: {
+    setInitialNotes: (state, { payload }: { payload: { notes: INote } }) => {
+      state.notesArray = payload.notes;
+    },
     addNote: (state, { payload }: { payload: Inote }) => {
       state.notesArray[payload.id] = {
         ...state.notesArray[payload.id],
         ...payload,
-        color: !state.notesArray[payload.id]?.color
-          ? generateColor()
-          : state.notesArray[payload.id].color,
       };
-    },
-    addImage: (state, { payload }: { payload: IaddImage }) => {
-      const { id, points, base64 } = payload;
-      state.notesArray[id].image = { points, base64 };
-    },
-    addSign: (state, { payload }: { payload: IaddSign }) => {
-      const { id, points, base64 } = payload;
-      state.notesArray[id].sign = { points, base64 };
     },
     removeNote: (state, { payload }: { payload: { noteId: string } }) => {
       delete state.notesArray[payload.noteId];
@@ -51,7 +36,7 @@ const NotesSlice = createSlice({
     },
     addCategory: (state, { payload }: { payload: ICategories }) => {
       state.categories.push(payload);
-      addToFirestore(state.categories);
+      addToFirestore('categories', state.categories);
     },
     addRecord: (
       state,
@@ -66,9 +51,8 @@ export const {
   addNote,
   removeNote,
   addCategory,
-  addImage,
-  addSign,
   lockNote,
   addRecord,
+  setInitialNotes,
 } = NotesSlice.actions;
 export default NotesSlice.reducer;
