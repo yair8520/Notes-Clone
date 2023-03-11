@@ -17,5 +17,5 @@ export * from './NSnackBar';
 export * from './NTimePicker';
 export * from './Recorder';
 export * from './Slider';
-
+export * from './Template';
 export * from './Text';

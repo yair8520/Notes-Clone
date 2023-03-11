@@ -1,20 +1,16 @@
 /* eslint-disable react-native/no-inline-styles */
 import { View } from 'react-native';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { LoadingProps } from './LoadingProps';
 import styles from './LoadingStyles';
 import Lottie from 'lottie-react-native';
 import { Layout } from '../../Components/Layout';
-import { TextAnimation } from '../../Components/Animations';
 import InitialStore from '../../Hooks/InitialStore/InitialStore';
+import { NText } from '../../Components';
 
 export const Loading = ({ navigation }: LoadingProps) => {
-  InitialStore();
-  useEffect(() => {
-    setTimeout(() => {
-      navigation.navigate('Home');
-    }, 2000);
-  }, [navigation]);
+  InitialStore(navigation);
+
   return (
     <Layout>
       <View style={styles.container}>
@@ -25,7 +21,7 @@ export const Loading = ({ navigation }: LoadingProps) => {
           loop={true}
           style={{ height: 500, width: 500 }}
         />
-        <TextAnimation val={'Retrieving your data...'} />
+        <NText>Retrieving your data...</NText>
       </View>
     </Layout>
   );

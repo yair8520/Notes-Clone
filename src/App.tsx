@@ -24,9 +24,8 @@ const App = () => {
   useAuthStateChanged();
   useOnFireBaseMessage();
   const dispatch = useAppDispatch();
-  const msg = useAppSelector(getMessage);
   const isDark = useAppSelector(getTheme);
-  useEffect(() => {}, []);
+  const msg = useAppSelector(getMessage);
   useEffect(() => {
     setTimeout(() => {
       dispatch(addMessage({ msg: '' }));

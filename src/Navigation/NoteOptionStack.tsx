@@ -58,7 +58,7 @@ export function DrawerNav() {
         name={'NoteEditorStack'}
         component={NoteOptionStack}
         options={{
-          unmountOnBlur: true,
+          // unmountOnBlur: true,
           drawerItemStyle: { display: 'none' },
         }}
       />

@@ -1,5 +1,6 @@
+/* eslint-disable curly */
 import { View, ScrollView } from 'react-native';
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { NoteEditorProps } from './NoteEditorProps';
 import styles from './NoteEditorStyles';
 import { FloatingButton } from '../../Components/FloatingButton';
@@ -13,12 +14,12 @@ import { RichEditor } from 'react-native-pell-rich-editor';
 import { ActivityIndicator } from 'react-native-paper';
 import { ToolBar } from './ToolBar';
 import { useHideTabBar } from '../../Hooks/useHideTabBar';
-import { Layout } from '../../Components/Layout';
-import { Recorder } from '../../Components/Recorder';
+import { Recorder, Layout } from '../../Components';
 import { getTheme } from '../../Features/General/GeneralSelectors';
 
 export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   useHideTabBar(navigation);
+  const isDark = useAppSelector(getTheme);
   const { noteId } = route?.params ?? '0';
   const { category } = route?.params;
   const notes = useAppSelector(getNotes);
@@ -30,15 +31,16 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   const id = useMemo(() => {
     return noteId ? noteId : uid(16);
   }, [noteId]);
-
+  const [descHTML, setDescHTML] = useState('');
   const categories = useAppSelector(getCategories);
-  const [openVoiceMemo, setOpenVoiceMemo] = React.useState<boolean>(
-    !currentNote?.[1].record
-  );
-  const [selectedIndex, setSelectedIndex] = React.useState(
-    categories.findIndex((a: any) => a.title === category)
-  );
-  const [descHTML, setDescHTML] = useState(currentNote?.[1].body);
+  useEffect(() => {
+    richTextRef.current?.setContentHTML(currentNote?.[1].body ?? '');
+    setOpenVoiceMemo(!currentNote?.[1].record);
+    setSelectedIndex(categories.findIndex((a: any) => a.title === category));
+  }, [noteId, currentNote, categories, category]);
+  const [openVoiceMemo, setOpenVoiceMemo] = React.useState<boolean>(false);
+  const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
+
   const dispatch = useAppDispatch();
   const saveNote = () => {
     dispatch(
@@ -51,7 +53,6 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
       })
     );
   };
-  const isDark = useAppSelector(getTheme);
 
   const richTextRef = useRef<RichEditor | any>();
   const richTextHandle = (descriptionText: string) => {
