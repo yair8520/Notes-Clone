@@ -9,6 +9,7 @@ import { PassModal } from '../Models/PassModal';
 import { NoteOptionStack } from '.';
 import { getCategories } from '../Features/Notes/NotesSelectors';
 import { useAppSelector } from '../Redux';
+import { Links } from '../Pages/Links';
 
 export function DrawerNav() {
   const categories = useAppSelector(getCategories);
@@ -23,6 +24,13 @@ export function DrawerNav() {
         return <NDrawerContent {...props} />;
       }}
     >
+      <Drawer.Screen
+        name={'Links'}
+        component={Links}
+        options={{
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
       <Drawer.Screen
         name={'Calendar'}
         component={NCalender}

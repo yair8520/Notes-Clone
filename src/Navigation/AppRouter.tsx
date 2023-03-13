@@ -7,6 +7,7 @@ import { Login } from '../Pages/Login';
 import { NoteEditor } from '../Pages/NoteEditor';
 import { TabScreens } from './TabScreens';
 import { Loading } from '../Pages/Loading';
+import { DrawerNav } from './NoteOptionStack';
 
 const Stack = createStackNavigator();
 
@@ -22,14 +23,14 @@ export default function AppRouter() {
 
   return (
     <Stack.Navigator screenOptions={{ ...navigationOptionsConfig }}>
-      {!loggedIn ? (
+      {/* {!loggedIn ? (
         <Stack.Screen name="Login" component={Login} />
       ) : (
-        <>
-          <Stack.Screen name="Loading" component={Loading} />
-          <Stack.Screen name="Home" component={TabScreens} />
-        </>
-      )}
+        <> */}
+      {/* <Stack.Screen name="Loading" component={Loading} /> */}
+      <Stack.Screen name="Home" component={DrawerNav} />
+      {/* </>
+      )} */}
     </Stack.Navigator>
   );
 }

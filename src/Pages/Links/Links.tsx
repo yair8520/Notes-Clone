@@ -1,5 +1,5 @@
-import { View } from 'react-native';
-import React from 'react';
+import { View, Animated } from 'react-native';
+import React, { useRef } from 'react';
 import { LinksProps } from './LinksProps';
 import styles from './LinksStyles';
 import { ListSearchBar } from '../../Components';
@@ -27,6 +27,16 @@ export const Links = ({ navigation }: LinksProps) => {
     };
     openModal('LinkModal', { insert });
   };
+  const scrollOffset = useRef(new Animated.Value(0)).current;
+  const searchBarOpacity = scrollOffset.interpolate({
+    inputRange: [0, 60], // the range of the scroll offset where the opacity should change
+    outputRange: [60, 0], // the range of opacity values for the searchBar (fully opaque to fully transparent)
+    extrapolate: 'clamp', // ensure that the output value stays within the range defined by outputRange
+  });
+  const handleScroll = Animated.event(
+    [{ nativeEvent: { contentOffset: { y: scrollOffset } } }],
+    { useNativeDriver: false }
+  );
   return (
     <Layout>
       <AppHeader
@@ -36,13 +46,15 @@ export const Links = ({ navigation }: LinksProps) => {
         navigation={navigation}
       />
       <View style={styles.container}>
-        <View style={styles.input}>
+        <Animated.View style={[styles.input, { height: searchBarOpacity }]}>
           <ListSearchBar
             onChangeSearch={onChangeSearch}
             searchQuery={searchQuery}
           />
-        </View>
+        </Animated.View>
         <LinkList
+          handleScroll={handleScroll}
+          scrollOffset={scrollOffset}
           searchQuery={searchQuery}
           deleteMode={deleteMode}
           filterDir={filterDir}

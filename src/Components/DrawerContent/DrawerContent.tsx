@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import { View } from 'react-native';
 import React, { useRef, useEffect } from 'react';
 import styles from './DrawerContentStyles';
@@ -5,7 +6,7 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
 } from '@react-navigation/drawer';
-import { Divider, List, Switch } from 'react-native-paper';
+import { List, Switch } from 'react-native-paper';
 import { useModal } from 'react-native-modalfy';
 import { Drawer } from 'react-native-paper';
 import { useAppDispatch, useAppSelector } from '../../Redux';
@@ -16,6 +17,7 @@ import { NText } from '../Text';
 import { getUserInfo } from '../../Features/General/GeneralSelectors';
 import Lottie from 'lottie-react-native';
 import { useDrawerStatus } from '@react-navigation/drawer';
+import { DrawerDivider } from './DrawerDivider';
 
 export const NDrawerContent = (props: any) => {
   const { openModal } = useModal();
@@ -47,7 +49,6 @@ export const NDrawerContent = (props: any) => {
           autoSize
           autoPlay
           loop={false}
-          // eslint-disable-next-line react-native/no-inline-styles
           style={{ height: 150, width: 150 }}
         />
       </View>
@@ -56,60 +57,49 @@ export const NDrawerContent = (props: any) => {
           Logged in as : {email}
         </NText>
       </View>
-      <Divider />
-      <Drawer.Section>
-        <Drawer.Item
-          theme={{
-            colors: {
-              onSurfaceVariant: 'red',
-            },
-          }}
-          label="Disconnect"
-          icon={() => <List.Icon icon="door-closed" />}
-          onPress={() => signOut()}
-        />
-        <Drawer.Item
-          label={isSwitchOn ? 'Dark Mode' : 'Light Mode'}
-          icon={() => {
-            return (
-              <RotateView deps={isSwitchOn}>
-                <List.Icon icon="theme-light-dark" />
-              </RotateView>
-            );
-          }}
-          onPress={onToggleSwitch}
-          right={() => (
-            <Switch
-              color="#3f7ee8"
-              value={isSwitchOn}
-              onValueChange={onToggleSwitch}
-            />
-          )}
-        />
-        <Drawer.Item
-          label="Add Category"
-          icon={() => <List.Icon icon="plus" />}
-          onPress={() => openModal('InfoModal')}
-        />
-      </Drawer.Section>
-
-      <DrawerItemList {...props} />
-      {/* <View style={styles.header}>
-        <NText bold variant="H1">
-          Notes App
-        </NText>
-        <NText bold variant="H2">
-          Created by Yair Gabay
-        </NText>
-        <View style={styles.icons}>
-          <IconLink
-            iconName="linkedin"
-            url={socialLinks.linkedin}
-            color="#0963bc"
+      <DrawerDivider text={'Settings'} />
+      <Drawer.Item
+        theme={{
+          colors: {
+            onSurfaceVariant: 'red',
+          },
+        }}
+        label="Disconnect"
+        icon={() => <List.Icon icon="door-closed" />}
+        onPress={() => signOut()}
+      />
+      <Drawer.Item
+        label={isSwitchOn ? 'Dark Mode' : 'Light Mode'}
+        icon={() => {
+          return (
+            <RotateView deps={isSwitchOn}>
+              <List.Icon icon="theme-light-dark" />
+            </RotateView>
+          );
+        }}
+        onPress={onToggleSwitch}
+        right={() => (
+          <Switch
+            color="#3f7ee8"
+            value={isSwitchOn}
+            onValueChange={onToggleSwitch}
           />
-          <IconLink iconName="github" url={socialLinks.git} />
-        </View>
-      </View> */}
+        )}
+      />
+      <Drawer.Item
+        label="Add Category"
+        icon={() => <List.Icon icon="plus" />}
+        onPress={() => openModal('InfoModal')}
+      />
+      <DrawerDivider text={'Links'} />
+      <Drawer.Item
+        label="Links"
+        icon={() => <List.Icon icon="link" />}
+        onPress={() => props.navigation.navigate('Links')}
+      />
+
+      <DrawerDivider text={'Notes categories'} />
+      <DrawerItemList {...props} />
     </DrawerContentScrollView>
   );
 };

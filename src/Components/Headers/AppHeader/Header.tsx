@@ -4,7 +4,6 @@ import { HeaderProps } from './HeaderProps';
 import { Appbar, Divider, Menu } from 'react-native-paper';
 import styles from './HeaderStyles';
 import { DarkTheme, DrawerActions } from '@react-navigation/native';
-import { View } from 'react-native';
 import { useAppSelector } from '../../../Redux';
 import { getTheme } from '../../../Features/General/GeneralSelectors';
 
@@ -29,15 +28,11 @@ export const AppHeader = ({
         { backgroundColor: !isDark ? 'white' : DarkTheme.colors.card },
       ]}
     >
-      {title !== 'Links' ? (
-        <Appbar.Action
-          icon="menu"
-          style={{ width: 50 }}
-          onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
-        />
-      ) : (
-        <View style={{ width: 50 }} />
-      )}
+      <Appbar.Action
+        icon="menu"
+        style={{ width: 50 }}
+        onPress={() => navigation.dispatch(DrawerActions.openDrawer())}
+      />
 
       <Appbar.Content style={styles.title} title={title} />
       <Appbar.Action
