@@ -27,16 +27,24 @@ export const Links = ({ navigation }: LinksProps) => {
     };
     openModal('LinkModal', { insert });
   };
-  const scrollOffset = useRef(new Animated.Value(0)).current;
-  const searchBarOpacity = scrollOffset.interpolate({
-    inputRange: [0, 60], // the range of the scroll offset where the opacity should change
-    outputRange: [60, 0], // the range of opacity values for the searchBar (fully opaque to fully transparent)
-    extrapolate: 'clamp', // ensure that the output value stays within the range defined by outputRange
-  });
-  const handleScroll = Animated.event(
-    [{ nativeEvent: { contentOffset: { y: scrollOffset } } }],
-    { useNativeDriver: false }
-  );
+  // const scrollOffset = useRef(new Animated.Value(0)).current;
+
+  // const handleScroll = Animated.event(
+  //   [{ nativeEvent: { contentOffset: { y: scrollOffset } } }],
+  //   { useNativeDriver: false }
+  // );
+  // const searchBarHeight = scrollOffset.interpolate({
+  //   inputRange: [0, 100], // scroll range where the search bar should change height
+  //   outputRange: [100, 0], // height values for the search bar (50 to 0)
+  //   extrapolate: 'clamp', // ensure that the output value stays within the range defined by outputRange
+  // });
+
+  // const searchBarOpacity = scrollOffset.interpolate({
+  //   inputRange: [0, 20], // scroll range where the search bar should change opacity
+  //   outputRange: [1, 0], // opacity values for the search bar (1 to 0)
+  //   extrapolate: 'clamp', // ensure that the output value stays within the range defined by outputRange
+  // });
+
   return (
     <Layout>
       <AppHeader
@@ -46,21 +54,21 @@ export const Links = ({ navigation }: LinksProps) => {
         navigation={navigation}
       />
       <View style={styles.container}>
-        <Animated.View style={[styles.input, { height: searchBarOpacity }]}>
+        <View style={styles.input}>
           <ListSearchBar
+            // searchBarHeight={searchBarHeight}
+            // searchBarOpacity={searchBarOpacity}
             onChangeSearch={onChangeSearch}
             searchQuery={searchQuery}
           />
-        </Animated.View>
+        </View>
         <LinkList
-          handleScroll={handleScroll}
-          scrollOffset={scrollOffset}
+          // handleScroll={handleScroll}
           searchQuery={searchQuery}
           deleteMode={deleteMode}
           filterDir={filterDir}
         />
       </View>
-
       <FAB
         icon="plus"
         color={'white'}

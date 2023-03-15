@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from '../../../Redux';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { lockNote } from '../../../Features/Notes/NotesSlice';
 import { addMessage } from '../../../Features/Links/LinkSlice';
+import useBackButton from '../../../Hooks/useBackHandler/useBackHandler';
 
 export const NoteHeader = ({
   navigation,
@@ -17,6 +18,7 @@ export const NoteHeader = ({
   id,
   locked,
 }: HeaderProps) => {
+  useBackButton(() => navigation.navigate(categories[selectedIndex].title));
   const categories = useAppSelector(getCategories);
   const dispatch = useAppDispatch();
   const save = () => {

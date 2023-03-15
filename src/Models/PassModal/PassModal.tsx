@@ -51,12 +51,9 @@ export const PassModal = ({ navigation, route }: PassModalProps) => {
       handler?.();
       return navigation.navigate('Links');
     } else {
-      navigation.navigate('Notes', {
-        screen: 'NoteEditorStack',
-        params: {
-          screen: 'NoteEditor',
-          params: { noteId, category },
-        },
+      navigation.navigate('NoteEditor', {
+        noteId,
+        category,
       });
     }
   };

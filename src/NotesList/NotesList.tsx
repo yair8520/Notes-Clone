@@ -15,6 +15,8 @@ export const NotesList = ({
   deleteMode,
   searchQuery,
   filterDir,
+  handleScroll,
+  scrollOffset,
 }: NotesListProps) => {
   let notes: INote = useAppSelector(getNotes);
   const notesFiltered: any = useNotesFilter({
@@ -27,6 +29,9 @@ export const NotesList = ({
     <ScrollView
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
+      onScroll={handleScroll}
+      scrollEventThrottle={16}
+      ref={scrollOffset}
     >
       <View>
         {notesFiltered && notesFiltered.length !== 0 ? (

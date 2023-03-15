@@ -5,8 +5,6 @@ import { Home } from '../Pages/Home';
 import { List } from 'react-native-paper';
 import { NCalender } from '../Components/NCalender';
 import { NDrawerContent } from '../Components/DrawerContent';
-import { PassModal } from '../Models/PassModal';
-import { NoteOptionStack } from '.';
 import { getCategories } from '../Features/Notes/NotesSelectors';
 import { useAppSelector } from '../Redux';
 import { Links } from '../Pages/Links';
@@ -16,10 +14,11 @@ export function DrawerNav() {
   return (
     <Drawer.Navigator
       screenOptions={{
+        drawerType: 'slide',
         headerShown: false,
         drawerStatusBarAnimation: 'fade',
       }}
-      initialRouteName={'Work'}
+      initialRouteName={'Links'}
       drawerContent={(props) => {
         return <NDrawerContent {...props} />;
       }}
@@ -53,23 +52,6 @@ export function DrawerNav() {
           }}
         />
       ))}
-
-      <Drawer.Screen
-        name={'password'}
-        component={PassModal}
-        options={{
-          unmountOnBlur: true,
-          drawerItemStyle: { display: 'none' },
-        }}
-      />
-      <Drawer.Screen
-        name={'NoteEditorStack'}
-        component={NoteOptionStack}
-        options={{
-          // unmountOnBlur: true,
-          drawerItemStyle: { display: 'none' },
-        }}
-      />
     </Drawer.Navigator>
   );
 }

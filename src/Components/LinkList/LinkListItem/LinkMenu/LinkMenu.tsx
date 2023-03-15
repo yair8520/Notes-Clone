@@ -80,9 +80,8 @@ export const LinkMenu = ({ children, style, data, id }: LinkMenuProps) => {
       <Menu.Item
         onPress={() => {
           onPress(() => {
-            nav.navigate('Notes', {
-              screen: 'password',
-              params: { handler: () => dispatch(lockLink({ id })) },
+            nav.navigate('password', {
+              handler: () => dispatch(lockLink({ id })),
             });
           });
         }}

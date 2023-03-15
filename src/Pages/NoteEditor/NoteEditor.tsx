@@ -13,12 +13,10 @@ import { getCategories, getNotes } from '../../Features/Notes/NotesSelectors';
 import { RichEditor } from 'react-native-pell-rich-editor';
 import { ActivityIndicator } from 'react-native-paper';
 import { ToolBar } from './ToolBar';
-import { useHideTabBar } from '../../Hooks/useHideTabBar';
 import { Recorder, Layout } from '../../Components';
 import { getTheme } from '../../Features/General/GeneralSelectors';
 
 export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
-  useHideTabBar(navigation);
   const isDark = useAppSelector(getTheme);
   const { noteId } = route?.params ?? '0';
   const { category } = route?.params;
@@ -34,6 +32,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   const [descHTML, setDescHTML] = useState('');
   const categories = useAppSelector(getCategories);
   useEffect(() => {
+    setDescHTML(currentNote?.[1].body ?? '');
     richTextRef.current?.setContentHTML(currentNote?.[1].body ?? '');
     setOpenVoiceMemo(!currentNote?.[1].record);
     setSelectedIndex(categories.findIndex((a: any) => a.title === category));

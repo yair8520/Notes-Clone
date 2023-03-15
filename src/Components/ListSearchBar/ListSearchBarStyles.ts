@@ -5,5 +5,8 @@ export default StyleSheet.create({
     width: '100%',
     borderColor: '#f6f6f6',
   },
+  input: {
+    width: '100%',
+  },
   outline: { borderRadius: 15 },
 });

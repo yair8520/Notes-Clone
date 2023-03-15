@@ -9,6 +9,7 @@ import { defaultActionsStyles } from '../../constant';
 import { Linking } from 'react-native';
 import { addMessage } from '../../Features/Links/LinkSlice';
 import { useAppDispatch } from '../../Redux';
+import { htmlToString } from '../../Helpers/helper';
 
 export const FloatingButton = ({
   data,
@@ -50,7 +51,7 @@ export const FloatingButton = ({
           icon: 'email',
           label: 'Mail',
           onPress: () => {
-            Linking.openURL(`mailto:?subject=&body=${data.body}`);
+            Linking.openURL(`mailto:?subject=&body=${htmlToString(data.body)}`);
             // shareOption(data);
           },
         },

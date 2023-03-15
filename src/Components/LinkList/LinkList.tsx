@@ -15,8 +15,8 @@ export const LinkList = ({
   filterDir,
   searchQuery,
   handleScroll,
-  scrollOffset,
-}: LinkListProps) => {
+}: // handleScroll,
+LinkListProps) => {
   let links = useAppSelector(getLinks);
   const dispatch = useAppDispatch();
   const deleteLink = (id: string) => {
@@ -27,7 +27,6 @@ export const LinkList = ({
   return (
     <ScrollView
       onScroll={handleScroll}
-      ref={scrollOffset}
       contentContainerStyle={styles.content}
       showsVerticalScrollIndicator={false}
       scrollEventThrottle={16}

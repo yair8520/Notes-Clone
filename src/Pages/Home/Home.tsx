@@ -19,12 +19,9 @@ export const Home = ({ navigation, route }: HomeProps) => {
     setSearchQuery(query);
   const category = useRoute().name;
   const newNote = () => {
-    navigation.navigate('Notes', {
-      screen: 'NoteEditorStack',
-      params: {
-        screen: 'NoteEditor',
-        params: { noteId: uid(16), category },
-      },
+    navigation.navigate('NoteEditor', {
+      noteId: uid(16),
+      category,
     });
   };
   return (

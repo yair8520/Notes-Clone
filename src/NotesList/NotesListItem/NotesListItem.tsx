@@ -17,17 +17,14 @@ export const NotesListItem = ({ note, startAnimation }: NotesListItemProps) => {
   const navToEditor = () => {
     if (!startAnimation) {
       if (note.locked) {
-        nav.navigate('Notes', {
-          screen: 'password',
-          params: { noteId: note.id, category: note.type },
+        return nav.navigate('password', {
+          noteId: note.id,
+          category: note.type,
         });
       } else {
-        nav.navigate('Notes', {
-          screen: 'NoteEditorStack',
-          params: {
-            screen: 'NoteEditor',
-            params: { noteId: note.id, category: note.type },
-          },
+        nav.navigate('NoteEditor', {
+          noteId: note.id,
+          category: note.type,
         });
       }
     }
