@@ -20,7 +20,6 @@ import { List } from 'react-native-paper';
 import { NText } from '../../../Components';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
 import { View } from 'react-native';
-import { BounceIn } from 'react-native-reanimated';
 
 export const ToDoList = ({ data, sectionId }: ToDoListProps) => {
   const dispatch = useAppDispatch();
@@ -63,15 +62,10 @@ export const ToDoList = ({ data, sectionId }: ToDoListProps) => {
     );
   };
   return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      scrollEnabled={false}
-      horizontal={true}
-    >
+    <ScrollView contentContainerStyle={styles.container} horizontal={true}>
       <DraggableFlatList
         data={data}
         nestedScrollEnabled={true}
-        itemEnteringAnimation={BounceIn.duration(700)}
         ItemSeparatorComponent={() => <View style={styles.divider} />}
         onDragEnd={({ data }) => dispatch(setTodos({ data, id: sectionId }))}
         dragItemOverflow={false}
