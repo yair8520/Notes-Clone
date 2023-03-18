@@ -1,4 +1,4 @@
-export interface CalendarHeaderProps {
+export interface ToDoHeaderProps {
   [key: string]: any;
   title: string;
 }

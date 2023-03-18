@@ -2,13 +2,19 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import NotesSlice from '../Features/Notes/NotesSlice';
 import LinkSlice from '../Features/Links/LinkSlice';
 import GeneralSlice from '../Features/General/GeneralSlice';
-import { linkPersistConfig, notePersistConfig } from './Filters';
+import {
+  linkPersistConfig,
+  notePersistConfig,
+  toDoPersistConfig,
+} from './Filters';
 import { persistReducer } from 'redux-persist';
 import firestoreMiddleware from './Middleware';
+import ToDoSlice from '../Features/ToDo/ToDoSlice';
 
 const rootReducer = combineReducers({
   note: persistReducer(notePersistConfig, NotesSlice),
   link: persistReducer(linkPersistConfig, LinkSlice),
+  todo: persistReducer(toDoPersistConfig, ToDoSlice),
   general: GeneralSlice,
 });
 

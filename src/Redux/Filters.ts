@@ -11,3 +11,8 @@ export const linkPersistConfig: PersistConfig<any> = {
   storage: AsyncStorage,
   whitelist: ['password', 'links'],
 };
+export const toDoPersistConfig: PersistConfig<any> = {
+  key: 'toDo',
+  storage: AsyncStorage,
+  whitelist: [],
+};

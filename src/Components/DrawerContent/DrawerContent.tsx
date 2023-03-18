@@ -91,6 +91,13 @@ export const NDrawerContent = (props: any) => {
         icon={() => <List.Icon icon="plus" />}
         onPress={() => openModal('InfoModal')}
       />
+      <DrawerDivider text={'To Do'} />
+      <Drawer.Item
+        label="ToDo"
+        icon={() => <List.Icon icon={'format-list-checkbox'} />}
+        onPress={() => props.navigation.navigate('Todo')}
+      />
+
       <DrawerDivider text={'Links'} />
       <Drawer.Item
         label="Links"

@@ -7,9 +7,15 @@ import {
 import { InfoModal } from './InfoModal';
 import { LinkModal } from './LinkModal';
 import { PassModal } from './PassModal';
+import { ToDoModal } from './ToDoModal';
 const { height } = Dimensions.get('screen');
 
-const modalConfig: ModalStackConfig = { InfoModal, LinkModal, PassModal };
+const modalConfig: ModalStackConfig = {
+  InfoModal,
+  LinkModal,
+  PassModal,
+  ToDoModal,
+};
 
 const animate = (animatedValue: Animated.Value, toValue: number) => {
   Animated.spring(animatedValue, {

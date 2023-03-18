@@ -27,23 +27,23 @@ export const Links = ({ navigation }: LinksProps) => {
     };
     openModal('LinkModal', { insert });
   };
-  // const scrollOffset = useRef(new Animated.Value(0)).current;
+  const scrollOffset = useRef(new Animated.Value(0)).current;
 
-  // const handleScroll = Animated.event(
-  //   [{ nativeEvent: { contentOffset: { y: scrollOffset } } }],
-  //   { useNativeDriver: false }
-  // );
-  // const searchBarHeight = scrollOffset.interpolate({
-  //   inputRange: [0, 100], // scroll range where the search bar should change height
-  //   outputRange: [100, 0], // height values for the search bar (50 to 0)
-  //   extrapolate: 'clamp', // ensure that the output value stays within the range defined by outputRange
-  // });
+  const handleScroll = Animated.event(
+    [{ nativeEvent: { contentOffset: { y: scrollOffset } } }],
+    { useNativeDriver: false }
+  );
+  const searchBarHeight = scrollOffset.interpolate({
+    inputRange: [0, 100], // scroll range where the search bar should change height
+    outputRange: [50, 0], // height values for the search bar (50 to 0)
+    extrapolate: 'clamp', // ensure that the output value stays within the range defined by outputRange
+  });
 
-  // const searchBarOpacity = scrollOffset.interpolate({
-  //   inputRange: [0, 20], // scroll range where the search bar should change opacity
-  //   outputRange: [1, 0], // opacity values for the search bar (1 to 0)
-  //   extrapolate: 'clamp', // ensure that the output value stays within the range defined by outputRange
-  // });
+  const searchBarOpacity = scrollOffset.interpolate({
+    inputRange: [0, 20], // scroll range where the search bar should change opacity
+    outputRange: [1, 0], // opacity values for the search bar (1 to 0)
+    extrapolate: 'clamp', // ensure that the output value stays within the range defined by outputRange
+  });
 
   return (
     <Layout>
@@ -56,14 +56,14 @@ export const Links = ({ navigation }: LinksProps) => {
       <View style={styles.container}>
         <View style={styles.input}>
           <ListSearchBar
-            // searchBarHeight={searchBarHeight}
-            // searchBarOpacity={searchBarOpacity}
+            searchBarHeight={searchBarHeight}
+            searchBarOpacity={searchBarOpacity}
             onChangeSearch={onChangeSearch}
             searchQuery={searchQuery}
           />
         </View>
         <LinkList
-          // handleScroll={handleScroll}
+          handleScroll={handleScroll}
           searchQuery={searchQuery}
           deleteMode={deleteMode}
           filterDir={filterDir}

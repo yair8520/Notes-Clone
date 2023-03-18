@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import { Text } from 'react-native';
 import React from 'react';
 import { AcTextProps } from './NTextProps';
@@ -12,7 +13,6 @@ export const NText = ({
   ...rest
 }: AcTextProps) => {
   const isDark = useAppSelector(getTheme);
-
   return (
     <Text
       lineBreakMode="tail"

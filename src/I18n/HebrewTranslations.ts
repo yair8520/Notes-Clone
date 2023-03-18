@@ -7,6 +7,9 @@ export const HebrewTranslations = {
     link: {
       add: 'Add Link',
     },
+    Todo: {
+      add: 'Add a Todo section',
+    },
   },
   buttons: {
     save: 'Save',

@@ -37,6 +37,7 @@ export const NotesList = ({
         {notesFiltered && notesFiltered.length !== 0 ? (
           notesFiltered.map((item: Inote[], index: any) => (
             <NotesListItem
+              delay={index * 100}
               startAnimation={deleteMode}
               key={`${index}${index}`}
               note={item[1]}
