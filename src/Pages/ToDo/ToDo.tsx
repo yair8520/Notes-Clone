@@ -8,16 +8,16 @@ import { useAppDispatch, useAppSelector } from '../../Redux';
 import { getToDo } from '../../Features/ToDo/ToDoSelectors';
 import { ITodo, IToDoObject } from '../../Features/ToDo/ToDoTypes';
 import { ToDoList } from './ToDoList';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native';
 import { sortListTodo } from '../../Features/ToDo/ToDoSlice';
 export const ToDo = ({ navigation }: ToDoProps) => {
+  const dispatch = useAppDispatch();
   const [collapse, setCollapse] = useState(true);
   const todo: IToDoObject = useAppSelector(getToDo);
+  const onSort = (sectionId: string) => dispatch(sortListTodo({ sectionId }));
   const list = useMemo(() => {
     return Object.entries(todo);
   }, [todo]);
-  const dispatch = useAppDispatch();
-  const onSort = (sectionId: string) => dispatch(sortListTodo({ sectionId }));
   return (
     <Layout style={styles.container}>
       <ToDoHeader
@@ -26,7 +26,10 @@ export const ToDo = ({ navigation }: ToDoProps) => {
         navigation={navigation}
         title={'Todo'}
       />
-      <ScrollView contentContainerStyle={styles.scroll}>
+      <ScrollView
+        nestedScrollEnabled={true}
+        contentContainerStyle={styles.scroll}
+      >
         {list.map(([id, item]: [string, ITodo]) => {
           return (
             <SectionView
@@ -36,10 +39,7 @@ export const ToDo = ({ navigation }: ToDoProps) => {
               style={styles.section}
               headerStyle={styles.sectionHeader}
               title={item.headline}
-              onSort={() => {
-                console.log(id);
-                onSort(id);
-              }}
+              onSort={() => onSort(id)}
             >
               <ToDoList sectionId={id} data={item.items} />
             </SectionView>

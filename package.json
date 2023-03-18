@@ -41,6 +41,7 @@
     "react-native-gesture-handler": "^2.9.0",
     "react-native-html-to-pdf": "^0.12.0",
     "react-native-image-picker": "^5.0.1",
+    "react-native-linear-gradient": "^2.6.2",
     "react-native-modalfy": "^3.3.2",
     "react-native-paper": "^5.1.3",
     "react-native-paper-dates": "^0.12.0",

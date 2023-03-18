@@ -24,6 +24,6 @@ export const findTodo = (array: ITodoItem[], id: string) => {
 };
 export const sortTodo = (array: ITodoItem[]) => {
   return array.sort((a, b) =>
-    a.checked !== b.checked ? 0 : a.checked ? -1 : 1
+    a.checked === b.checked ? 0 : a.checked ? 1 : -1
   );
 };

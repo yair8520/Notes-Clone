@@ -16,9 +16,12 @@ import {
   setTodos,
   setTodoTitle,
 } from '../../../Features/ToDo/ToDoSlice';
-import { Divider, List } from 'react-native-paper';
+import { List } from 'react-native-paper';
 import { NText } from '../../../Components';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { View } from 'react-native';
+import { BounceIn } from 'react-native-reanimated';
+
 export const ToDoList = ({ data, sectionId }: ToDoListProps) => {
   const dispatch = useAppDispatch();
   const onChecked = useCallback(
@@ -47,32 +50,40 @@ export const ToDoList = ({ data, sectionId }: ToDoListProps) => {
     isActive,
   }: RenderItemParams<ITodoItem>) => {
     return (
-      <ToDoItem
-        data={item}
-        onChecked={onChecked}
-        onDelete={onDelete}
-        onChangeTitle={onChangeTitle}
-        drag={drag}
-        isActive={isActive}
-      />
+      <View style={styles.divider}>
+        <ToDoItem
+          data={item}
+          onChecked={onChecked}
+          onDelete={onDelete}
+          onChangeTitle={onChangeTitle}
+          drag={drag}
+          isActive={isActive}
+        />
+      </View>
     );
   };
   return (
-    <DraggableFlatList
-      data={data}
-      ItemSeparatorComponent={() => <Divider style={styles.divider} />}
-      style={styles.container}
-      onDragEnd={({ data }) => dispatch(setTodos({ data, id: sectionId }))}
-      animationConfig={{}}
-      dragItemOverflow={false}
-      keyExtractor={(item) => item.id}
-      ListFooterComponent={() => (
-        <TouchableOpacity style={styles.add} onPress={onAddTodo}>
-          <List.Icon color={'#c7524b'} icon={'plus'} />
-          <NText variant="H3">Add Task</NText>
-        </TouchableOpacity>
-      )}
-      renderItem={renderItem}
-    />
+    <ScrollView
+      contentContainerStyle={styles.container}
+      scrollEnabled={false}
+      horizontal={true}
+    >
+      <DraggableFlatList
+        data={data}
+        nestedScrollEnabled={true}
+        itemEnteringAnimation={BounceIn.duration(700)}
+        ItemSeparatorComponent={() => <View style={styles.divider} />}
+        onDragEnd={({ data }) => dispatch(setTodos({ data, id: sectionId }))}
+        dragItemOverflow={false}
+        keyExtractor={(item) => item.id}
+        ListFooterComponent={() => (
+          <TouchableOpacity style={styles.add} onPress={onAddTodo}>
+            <List.Icon color={'#c7524b'} icon={'plus'} />
+            <NText variant="H3">Add Task</NText>
+          </TouchableOpacity>
+        )}
+        renderItem={renderItem}
+      />
+    </ScrollView>
   );
 };

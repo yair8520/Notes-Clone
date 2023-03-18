@@ -6,8 +6,6 @@ export default StyleSheet.create({
     paddingTop: 25,
   },
   sectionHeader: {
-    borderColor: '#3184fc',
-    borderBottomWidth: 2,
     borderRadius: 8,
     height: 50,
   },

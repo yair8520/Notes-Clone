@@ -3,10 +3,12 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flexDirection: 'row',
+
     justifyContent: 'space-between',
     width: '100%',
     alignSelf: 'center',
     alignItems: 'center',
+    borderRadius: 8,
     height: 50,
   },
   icons: {
@@ -29,5 +31,15 @@ export default StyleSheet.create({
   dargIcon: {
     paddingRight: 15,
     paddingLeft: 15,
+  },
+  card: {
+    borderWidth: 1,
+    backgroundColor: 'white',
+    borderColor: '#3184fc',
+  },
+  dark: {
+    borderWidth: 1,
+    backgroundColor: 'black',
+    borderColor: '#3184fc',
   },
 });
