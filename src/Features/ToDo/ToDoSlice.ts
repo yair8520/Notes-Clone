@@ -1,37 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { uid } from 'uid';
 import { findTodo, sortTodo } from '../../Helpers/helper';
-import { ITodo, ITodoItem, ToDoState } from './ToDoTypes';
+import { ITodo, ITodoItem, IToDoObject, ToDoState } from './ToDoTypes';
 
 const initialState: ToDoState = {
-  todoArray: {
-    '0': {
-      headline: 'test',
-      id: '0',
-      items: [
-        { title: 'test 1', checked: true, id: '1' },
-        { title: 'test 2', checked: true, id: '2' },
-        { title: 'test 3', checked: true, id: '3' },
-        { title: 'test 4', checked: true, id: '4' },
-        { title: 'test 5', checked: true, id: '5' },
-        { title: 'test 6', checked: true, id: '6' },
-        { title: 'test 7', checked: true, id: '7' },
-        { title: 'test 8', checked: true, id: '8' },
-        { title: 'test 9', checked: true, id: '9' },
-      ],
-    },
-    '1': {
-      headline: 'test2',
-      id: '0',
-      items: [{ title: 'test item', checked: true, id: '123' }],
-    },
-  },
+  todoArray: {},
 };
 
 const TodoSlice = createSlice({
   name: 'Todo',
   initialState,
   reducers: {
+    setInitialTodos: (
+      state,
+      { payload }: { payload: { todos: IToDoObject } }
+    ) => {
+      state.todoArray = payload.todos;
+    },
     addTodoItem: (state, { payload }: { payload: ITodo }) => {
       state.todoArray[payload.id] = {
         ...state.todoArray[payload.id],
@@ -111,5 +96,6 @@ export const {
   setTodoTitle,
   addTodo,
   sortListTodo,
+  setInitialTodos,
 } = TodoSlice.actions;
 export default TodoSlice.reducer;

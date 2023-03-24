@@ -4,6 +4,7 @@ import auth from '@react-native-firebase/auth';
 import { useAppDispatch } from '../../Redux';
 import { setInitialLinks } from '../../Features/Links/LinkSlice';
 import { setInitialNotes } from '../../Features/Notes/NotesSlice';
+import { setInitialTodos } from '../../Features/ToDo/ToDoSlice';
 
 const InitialStore = (navigation: any) => {
   const dispatch = useAppDispatch();
@@ -16,6 +17,7 @@ const InitialStore = (navigation: any) => {
         const data = e.data();
         dispatch(setInitialLinks({ links: data?.Links ?? {} }));
         dispatch(setInitialNotes({ notes: data?.notes ?? {} }));
+        dispatch(setInitialTodos({ todos: data?.Todo ?? {} }));
       })
       .finally(() => {
         navigation.navigate('Home');

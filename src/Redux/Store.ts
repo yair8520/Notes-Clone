@@ -7,6 +7,7 @@ import RecordSlice from '../Features/Record/RecordSlice';
 import {
   linkPersistConfig,
   notePersistConfig,
+  recordPersistConfig,
   toDoPersistConfig,
 } from './Filters';
 import { persistReducer } from 'redux-persist';
@@ -16,7 +17,7 @@ const rootReducer = combineReducers({
   note: persistReducer(notePersistConfig, NotesSlice),
   link: persistReducer(linkPersistConfig, LinkSlice),
   todo: persistReducer(toDoPersistConfig, ToDoSlice),
-  record: persistReducer(toDoPersistConfig, RecordSlice),
+  record: persistReducer(recordPersistConfig, RecordSlice),
   general: GeneralSlice,
 });
 

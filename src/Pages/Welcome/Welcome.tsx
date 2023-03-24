@@ -13,10 +13,14 @@ import { getCategories } from '../../Features/Notes/NotesSelectors';
 import { getUserInfo } from '../../Features/General/GeneralSelectors';
 import { RecordList } from '../../Components/RecordList';
 import { getRecords } from '../../Features/Record/RecordSelectors';
+import Lottie from 'lottie-react-native';
+const WelcomeAnim = require('../../Assets/Images/WelcomeAnim.json');
+
 export const Welcome = ({ navigation }: WelcomeProps) => {
   const categories = useAppSelector(getCategories);
   const records = useAppSelector(getRecords);
   const user = useAppSelector(getUserInfo);
+
   return (
     <Layout>
       <ScrollView
@@ -33,11 +37,14 @@ export const Welcome = ({ navigation }: WelcomeProps) => {
             </TouchableOpacity>
           </View>
           <View style={styles.headline}>
-            <NText style={styles.text} variant="head">
-              Welcome
-            </NText>
+            <Lottie
+              source={WelcomeAnim}
+              loop={true}
+              autoPlay
+              style={styles.lottie}
+            />
             <NText style={styles.text} variant="H2">
-              {user.email ?? 'email'}
+              {user.email}
             </NText>
           </View>
         </LinearGradient>

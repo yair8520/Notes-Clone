@@ -17,8 +17,13 @@ const firestoreMiddleware = (store: any) => (next: any) => (action: any) => {
     action.type === 'Link/removeLink' ||
     action.type === 'Link/lockLink'
   ) {
-    console.log(action.type, state.link.links);
     addToFirestore('Links', state.link.links);
+  } else if (
+    action.type === 'Todo/addTodo' ||
+    action.type === 'Todo/setTodos' ||
+    action.type === 'Todo/setChecked'
+  ) {
+    addToFirestore('Todo', state.todo.todoArray);
   }
 
   return result;

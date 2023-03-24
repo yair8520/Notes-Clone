@@ -23,20 +23,20 @@ export default function AppRouter() {
 
   return (
     <Stack.Navigator screenOptions={{ ...navigationOptionsConfig }}>
-      {/* {!loggedIn ? (
+      {!loggedIn ? (
         <Stack.Screen name="Login" component={Login} />
       ) : (
         <>
-          <Stack.Screen name="Loading" component={Loading} /> */}
-      <Stack.Screen name="Home" component={DrawerNav} />
-      <Stack.Screen
-        options={{ presentation: 'modal' }}
-        name="password"
-        component={PassModal}
-      />
-      <Stack.Screen name="NoteEditor" component={NoteEditor} />
-      {/* </>
-      )} */}
+          <Stack.Screen name="Loading" component={Loading} />
+          <Stack.Screen name="Home" component={DrawerNav} />
+          <Stack.Screen
+            options={{ presentation: 'modal' }}
+            name="password"
+            component={PassModal}
+          />
+          <Stack.Screen name="NoteEditor" component={NoteEditor} />
+        </>
+      )}
     </Stack.Navigator>
   );
 }

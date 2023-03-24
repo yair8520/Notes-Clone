@@ -34,15 +34,15 @@ export const Links = ({ navigation }: LinksProps) => {
     { useNativeDriver: false }
   );
   const searchBarHeight = scrollOffset.interpolate({
-    inputRange: [0, 100], // scroll range where the search bar should change height
-    outputRange: [50, 0], // height values for the search bar (50 to 0)
-    extrapolate: 'clamp', // ensure that the output value stays within the range defined by outputRange
+    inputRange: [0, 100],
+    outputRange: [50, 0],
+    extrapolate: 'clamp',
   });
 
   const searchBarOpacity = scrollOffset.interpolate({
-    inputRange: [0, 20], // scroll range where the search bar should change opacity
-    outputRange: [1, 0], // opacity values for the search bar (1 to 0)
-    extrapolate: 'clamp', // ensure that the output value stays within the range defined by outputRange
+    inputRange: [0, 20],
+    outputRange: [1, 0],
+    extrapolate: 'clamp',
   });
 
   return (

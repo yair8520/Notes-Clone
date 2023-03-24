@@ -23,14 +23,19 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   icon: { width: 60, height: 60 },
+  lottie: { width: 50, height: 50 },
   iconContainer: { height: '20%', width: '100%' },
   headline: {
-    alignSelf: 'center',
+    alignItems: 'flex-start',
+    height: '100%',
+    width: '90%',
 
-    height: '80%',
-    width: '80%',
+    justifyContent: 'flex-start',
+    alignSelf: 'center',
   },
   text: {
+    paddingTop: 25,
     color: 'white',
   },
+  Info: {},
 });

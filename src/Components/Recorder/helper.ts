@@ -37,7 +37,6 @@ export const onStopRecord = async (
 };
 
 export const onStartPlay = async (uri: string, handler: (a: any) => void) => {
-  console.log('onStartPlay', { uri });
   const msg = await audioRecorderPlayer.startPlayer(uri);
   console.log({ msg });
   audioRecorderPlayer.addPlayBackListener((e) => {

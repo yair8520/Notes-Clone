@@ -1,6 +1,6 @@
-import { View, ScrollView, Linking } from 'react-native';
-import React, { useCallback } from 'react';
-import { RecordListProps } from './RecordListProps';
+import { View, ScrollView, LayoutAnimation } from 'react-native';
+import React, { useCallback, useEffect, useState } from 'react';
+import { IActiveIndex, RecordListProps } from './RecordListProps';
 import styles from './RecordListStyles';
 import { RecordListItem } from './RecordListItem';
 import { IRecord } from '../../Features/Record/RecordTypes';
@@ -17,13 +17,13 @@ const PressArrow = require('../../Assets/Images/PressArrow.json');
 export const RecordList = ({ array }: RecordListProps) => {
   const dispatch = useAppDispatch();
   const { openModal } = useModal();
-  const renderItems = ({ item }: any) => {
-    return (
-      <View style={styles.item}>
-        <RecordListItem onSubmitEditing={onSubmitEditing} data={item} />
-      </View>
-    );
-  };
+  const [activeIndex, setActiveIndex] = useState<IActiveIndex>({
+    open: true,
+    index: 0,
+  });
+  useEffect(() => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+  }, [array]);
   const onSubmitEditing = useCallback(
     (headline: string, id: string) => {
       return dispatch(
@@ -43,6 +43,28 @@ export const RecordList = ({ array }: RecordListProps) => {
       .catch((msg) => {
         dispatch(addMessage({ msg }));
       });
+  };
+  const handleIndex = useCallback((index: number) => {
+    setActiveIndex((p) => {
+      if (p.index === index) {
+        return { index, open: !p.open };
+      } else {
+        return { index, open: true };
+      }
+    });
+  }, []);
+
+  const renderItems = ({ item, index }: any) => {
+    return (
+      <View style={styles.item}>
+        <RecordListItem
+          isExpanded={activeIndex.index === index && activeIndex.open}
+          setActiveIndex={() => handleIndex(index)}
+          onSubmitEditing={onSubmitEditing}
+          data={item}
+        />
+      </View>
+    );
   };
   return (
     <ScrollView

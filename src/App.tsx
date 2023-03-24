@@ -1,11 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NSnackBar } from './Components/NSnackBar';
 import { getTheme } from './Features/General/GeneralSelectors';
-import { addMessage } from './Features/Links/LinkSlice';
 import { getMessage } from './Features/Links/LinksSelectors';
 import AppRouter from './Navigation/AppRouter';
-import { useAppDispatch, useAppSelector } from './Redux';
+import { useAppSelector } from './Redux';
 import {
   DefaultTheme,
   DarkTheme,
@@ -18,11 +16,9 @@ import { ModalProvider } from 'react-native-modalfy';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { darkTheme, lightTheme } from './Theme/Colors';
 import { useAuthStateChanged } from './Hooks/useAuthStateChanged';
-import { useOnFireBaseMessage } from './Hooks/useOnFireBaseMessage';
 
 const App = () => {
   useAuthStateChanged();
-  useOnFireBaseMessage();
   const isDark = useAppSelector(getTheme);
   const msg = useAppSelector(getMessage);
   console.log(msg);

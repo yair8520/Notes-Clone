@@ -19,5 +19,5 @@ export const toDoPersistConfig: PersistConfig<any> = {
 export const recordPersistConfig: PersistConfig<any> = {
   key: 'record',
   storage: AsyncStorage,
-  whitelist: [],
+  whitelist: ['recordArray'],
 };

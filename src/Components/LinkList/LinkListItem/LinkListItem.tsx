@@ -44,7 +44,7 @@ export const LinkListItem = ({
           <View style={styles.content}>
             <View style={styles.verticalLine} />
             <View style={styles.item}>
-              <NText bold variant="H2">
+              <NText bold variant="H3">
                 {info.title}
               </NText>
               <NText numberOfLines={1} variant="H4">

@@ -16,8 +16,7 @@ export const LinkList = ({
   filterDir,
   searchQuery,
   handleScroll,
-}: // handleScroll,
-LinkListProps) => {
+}: LinkListProps) => {
   let links = useAppSelector(getLinks);
   const dispatch = useAppDispatch();
   const deleteLink = (id: string) => {
