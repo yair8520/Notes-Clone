@@ -1,10 +1,9 @@
 import { RecordBackType } from 'react-native-audio-recorder-player';
-import { Inote } from '../../Features/Notes/NotesTypes';
 
 export interface RecorderProps {
   [key: string]: any;
-  noteId: string;
-  currentNote: Inote;
+  recordId: string;
+  url: string;
 }
 export interface IPlayer extends RecordBackType {
   file?: string;

@@ -7,6 +7,7 @@ import {
 import { InfoModal } from './InfoModal';
 import { LinkModal } from './LinkModal';
 import { PassModal } from './PassModal';
+import { RecordModal } from './RecordModal';
 import { ToDoModal } from './ToDoModal';
 const { height } = Dimensions.get('screen');
 
@@ -15,6 +16,7 @@ const modalConfig: ModalStackConfig = {
   LinkModal,
   PassModal,
   ToDoModal,
+  RecordModal,
 };
 
 const animate = (animatedValue: Animated.Value, toValue: number) => {

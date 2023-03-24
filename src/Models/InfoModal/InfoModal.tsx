@@ -22,7 +22,7 @@ export const InfoModal = ({ modal: { closeModal } }: InfoModalProps) => {
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const onSave = () => {
     if (value) {
-      let dup = categories.find((c) => {
+      let dup = categories.find((c: { title: string }) => {
         return c.title === value;
       });
       if (!dup) {

@@ -3,22 +3,15 @@ import React from 'react';
 import { TemplateProps } from './FloatingButtonProps';
 import styles from './FloatingButtonStyles';
 import { FAB } from 'react-native-paper';
-import { askPermission, createPDF, shareOption } from './helpers';
+import { createPDF, shareOption } from './helpers';
 import useKeyBoardStatus from '../../Hooks/useKeyBoardStatus/useKeyBoardStatus';
 import { defaultActionsStyles } from '../../constant';
 import { Linking } from 'react-native';
-import { addMessage } from '../../Features/Links/LinkSlice';
-import { useAppDispatch } from '../../Redux';
 import { htmlToString } from '../../Helpers/helper';
 
-export const FloatingButton = ({
-  data,
-  onPress,
-  openVoiceMemo,
-}: TemplateProps) => {
+export const FloatingButton = ({ data, onPress }: TemplateProps) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const onStateChange = ({ open }: any) => setOpen(open);
-  const dispatch = useAppDispatch();
   const { keyboardStatus } = useKeyBoardStatus();
   return (
     <FAB.Group
@@ -55,32 +48,6 @@ export const FloatingButton = ({
             // shareOption(data);
           },
         },
-        {
-          ...defaultActionsStyles,
-          icon: 'record-rec',
-          label: 'Voice Memo',
-          onPress: async () => {
-            askPermission().then((res) =>
-              res
-                ? openVoiceMemo((p: boolean) => {
-                    return !p;
-                  })
-                : dispatch(addMessage({ msg: 'Please confirm permissions' }))
-            );
-          },
-        },
-        // {
-        //   ...defaultActionsStyles,
-        //   icon: 'draw',
-        //   label: 'Draw',
-        //   onPress: () => nav.navigate('DrawPannel', { noteId }),
-        // },
-        // {
-        //   ...defaultActionsStyles,
-        //   icon: 'signature',
-        //   label: 'Sign',
-        //   onPress: () => nav.navigate('DrawPannel', { noteId, sign: true }),
-        // },
       ]}
       onStateChange={onStateChange}
     />

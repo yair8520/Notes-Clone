@@ -42,4 +42,5 @@ export default StyleSheet.create({
     backgroundColor: 'black',
     borderColor: '#3184fc',
   },
+  line: { textDecorationLine: 'line-through' },
 });

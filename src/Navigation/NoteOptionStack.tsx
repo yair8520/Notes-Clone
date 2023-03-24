@@ -2,12 +2,12 @@ import React from 'react';
 const Drawer = createDrawerNavigator();
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { Home } from '../Pages/Home';
-import { List } from 'react-native-paper';
 import { NDrawerContent } from '../Components/DrawerContent';
 import { getCategories } from '../Features/Notes/NotesSelectors';
 import { useAppSelector } from '../Redux';
 import { Links } from '../Pages/Links';
 import { ToDo } from '../Pages/ToDo';
+import { Welcome } from '../Pages/Welcome';
 
 export function DrawerNav() {
   const categories = useAppSelector(getCategories);
@@ -18,7 +18,7 @@ export function DrawerNav() {
         headerShown: false,
         drawerStatusBarAnimation: 'fade',
       }}
-      initialRouteName={'Links'}
+      initialRouteName={'Welcome'}
       drawerContent={(props) => {
         return <NDrawerContent {...props} />;
       }}
@@ -37,6 +37,13 @@ export function DrawerNav() {
           drawerItemStyle: { display: 'none' },
         }}
       />
+      <Drawer.Screen
+        name={'Welcome'}
+        component={Welcome}
+        options={{
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
 
       {categories.map((category: any) => (
         <Drawer.Screen
@@ -45,9 +52,7 @@ export function DrawerNav() {
           name={category.title}
           component={Home}
           options={{
-            drawerIcon() {
-              return <List.Icon icon={category.icon || 'folder'} />;
-            },
+            drawerItemStyle: { display: 'none' },
           }}
         />
       ))}

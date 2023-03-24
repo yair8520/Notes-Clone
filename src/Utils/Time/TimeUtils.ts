@@ -1,5 +1,7 @@
 import moment from 'moment';
 
+console.log(moment().format('DD MMM YY'));
+
 export const getCurrentTime = (): string => {
   return moment().format('HH:mm');
 };

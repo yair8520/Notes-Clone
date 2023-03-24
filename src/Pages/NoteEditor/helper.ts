@@ -4,13 +4,13 @@ import { actions, RichEditor } from 'react-native-pell-rich-editor';
 
 export const actionList = [
   actions.insertImage,
-  actions.checkboxList,
+  actions.setBold,
   actions.insertBulletsList,
   actions.insertOrderedList,
-  actions.insertLink,
   actions.setItalic,
   actions.setUnderline,
   actions.undo,
+
   actions.redo,
   actions.keyboard,
 ];
@@ -24,6 +24,7 @@ export const onPressAddImage = async (
     maxWidth: 350,
   }).then((res) => {
     const str = `data:${res?.assets?.[0].type};base64,${res?.assets?.[0].base64}`;
-    _ref.current?.insertImage(str);
+    console.log(str);
+    if (res?.assets?.[0].type) _ref.current?.insertImage(str);
   });
 };

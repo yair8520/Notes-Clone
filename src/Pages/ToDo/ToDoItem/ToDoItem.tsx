@@ -38,7 +38,7 @@ export const ToDoItem = ({
                 variant="H3"
                 numberOfLines={1}
                 adjustsFontSizeToFit
-                style={styles.title}
+                style={[styles.title, data.checked && styles.line]}
               >
                 {data.title}
               </NText>

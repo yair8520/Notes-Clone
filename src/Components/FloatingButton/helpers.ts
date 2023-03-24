@@ -4,6 +4,7 @@ import RNHTMLtoPDF from 'react-native-html-to-pdf';
 import RNFetchBlob from 'rn-fetch-blob';
 import { Inote } from '../../Features/Notes/NotesTypes';
 import { htmlToString } from '../../Helpers/helper';
+import { errorMsg } from '../../I18n/HebrewTranslations';
 import { getCurrentTime, getFullDate } from '../../Utils/Time';
 
 export const shareOption = async ({
@@ -51,28 +52,28 @@ const isPermitted = async () => {
 };
 
 export const askPermission = async () => {
-  try {
-    const grants = await PermissionsAndroid.requestMultiple([
-      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
-      PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
-      PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
-    ]);
-
-    if (
-      grants['android.permission.WRITE_EXTERNAL_STORAGE'] ===
-        PermissionsAndroid.RESULTS.GRANTED &&
-      grants['android.permission.READ_EXTERNAL_STORAGE'] ===
-        PermissionsAndroid.RESULTS.GRANTED &&
-      grants['android.permission.RECORD_AUDIO'] ===
-        PermissionsAndroid.RESULTS.GRANTED
-    ) {
-      return true;
-    } else {
-      return false;
-    }
-  } catch (err) {
-    return false;
-  }
+  return PermissionsAndroid.requestMultiple([
+    PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+    PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+    PermissionsAndroid.PERMISSIONS.RECORD_AUDIO,
+  ])
+    .then((grants) => {
+      if (
+        grants['android.permission.WRITE_EXTERNAL_STORAGE'] ===
+          PermissionsAndroid.RESULTS.GRANTED &&
+        grants['android.permission.READ_EXTERNAL_STORAGE'] ===
+          PermissionsAndroid.RESULTS.GRANTED &&
+        grants['android.permission.RECORD_AUDIO'] ===
+          PermissionsAndroid.RESULTS.GRANTED
+      ) {
+        return true;
+      } else {
+        throw errorMsg.permissions;
+      }
+    })
+    .catch((msg) => {
+      throw msg;
+    });
 };
 
 export const createPDF = async (data: any) => {
@@ -90,6 +91,7 @@ export const createPDF = async (data: any) => {
     );
   }
 };
+
 const generateHtmlPdfContent = (data: Inote) => {
   const { body, image, sign } = data;
   return `<html>

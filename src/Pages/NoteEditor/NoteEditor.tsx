@@ -13,7 +13,7 @@ import { getCategories, getNotes } from '../../Features/Notes/NotesSelectors';
 import { RichEditor } from 'react-native-pell-rich-editor';
 import { ActivityIndicator } from 'react-native-paper';
 import { ToolBar } from './ToolBar';
-import { Recorder, Layout } from '../../Components';
+import { Layout } from '../../Components';
 import { getTheme } from '../../Features/General/GeneralSelectors';
 
 export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
@@ -34,10 +34,8 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
   useEffect(() => {
     setDescHTML(currentNote?.[1].body ?? '');
     richTextRef.current?.setContentHTML(currentNote?.[1].body ?? '');
-    setOpenVoiceMemo(!currentNote?.[1].record);
     setSelectedIndex(categories.findIndex((a: any) => a.title === category));
   }, [noteId, currentNote, categories, category]);
-  const [openVoiceMemo, setOpenVoiceMemo] = React.useState<boolean>(false);
   const [selectedIndex, setSelectedIndex] = React.useState<number>(0);
 
   const dispatch = useAppDispatch();
@@ -74,9 +72,6 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
           keyboardShouldPersistTaps={'never'}
         >
           <View style={styles.container}>
-            {!openVoiceMemo && (
-              <Recorder currentNote={currentNote?.[1]!} noteId={id} />
-            )}
             <RichEditor
               focusable={true}
               renderLoading={() => (
@@ -106,7 +101,6 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
         <ToolBar richTextRef={richTextRef} />
         <FloatingButton
           onPress={() => saveNote()}
-          openVoiceMemo={setOpenVoiceMemo}
           data={currentNote?.[1]}
           noteId={id}
         />

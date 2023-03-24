@@ -23,14 +23,9 @@ import { useOnFireBaseMessage } from './Hooks/useOnFireBaseMessage';
 const App = () => {
   useAuthStateChanged();
   useOnFireBaseMessage();
-  const dispatch = useAppDispatch();
   const isDark = useAppSelector(getTheme);
   const msg = useAppSelector(getMessage);
-  useEffect(() => {
-    setTimeout(() => {
-      dispatch(addMessage({ msg: '' }));
-    }, 2000);
-  }, [msg]);
+  console.log(msg);
   return (
     <NavigationContainer theme={isDark ? DarkTheme : DefaultTheme}>
       <PaperProvider theme={isDark ? darkTheme : lightTheme}>

@@ -1,3 +1,4 @@
+import { IRecord } from '../Features/Record/RecordTypes';
 import { ITodoItem } from '../Features/ToDo/ToDoTypes';
 
 export const htmlToString = (html: string) => {
@@ -22,8 +23,16 @@ export const findTodo = (array: ITodoItem[], id: string) => {
     return a.id === id;
   });
 };
+export const findRecord = (array: IRecord[], id: string) => {
+  return array.findIndex((a) => {
+    return a.id === id;
+  });
+};
 export const sortTodo = (array: ITodoItem[]) => {
   return array.sort((a, b) =>
     a.checked === b.checked ? 0 : a.checked ? 1 : -1
   );
+};
+export const getNextHeadLine = (array: IRecord[]) => {
+  return `Record ${array.length + 1}`;
 };

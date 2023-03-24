@@ -21,6 +21,7 @@ export const HebrewTranslations = {
     required: 'Required felid',
   },
 };
-export const errorMsg: any = {
+export const errorMsg = {
   required: 'This is a require felid',
+  permissions: 'Please grant permissions',
 };

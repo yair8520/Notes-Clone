@@ -7,6 +7,5 @@ export const styles = ({ height }: any) =>
       height,
       overflow: height ? 'hidden' : 'visible',
       width: '100%',
-      borderRadius: 8,
     },
   });

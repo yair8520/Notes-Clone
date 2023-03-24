@@ -12,7 +12,9 @@ export const onStartRecord = async (
   audioRecorderPlayer.addRecordBackListener((e) => {
     handler((p: IPlayer) => ({
       ...p,
-      duration: e.currentPosition,
+      currentPosition: audioRecorderPlayer.mmssss(
+        Math.floor(e.currentPosition)
+      ),
       isRecording: true,
     }));
     return;
@@ -33,6 +35,7 @@ export const onStopRecord = async (
   }));
   save(result);
 };
+
 export const onStartPlay = async (uri: string, handler: (a: any) => void) => {
   console.log('onStartPlay', { uri });
   const msg = await audioRecorderPlayer.startPlayer(uri);

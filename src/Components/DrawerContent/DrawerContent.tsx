@@ -91,6 +91,11 @@ export const NDrawerContent = (props: any) => {
         icon={() => <List.Icon icon="plus" />}
         onPress={() => openModal('InfoModal')}
       />
+      <Drawer.Item
+        label="Welcome"
+        icon={() => <List.Icon icon={'home'} />}
+        onPress={() => props.navigation.navigate('Welcome')}
+      />
       <DrawerDivider text={'To Do'} />
       <Drawer.Item
         label="ToDo"
@@ -105,7 +110,6 @@ export const NDrawerContent = (props: any) => {
         onPress={() => props.navigation.navigate('Links')}
       />
 
-      <DrawerDivider text={'Notes categories'} />
       <DrawerItemList {...props} />
     </DrawerContentScrollView>
   );

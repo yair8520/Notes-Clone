@@ -1,13 +1,14 @@
 import { StyleSheet } from 'react-native';
-import { fontsSizes } from '../../constant';
+import { fontFamily, fontsSizes } from '../../constant';
 
 export default StyleSheet.create({
   text: {
     color: 'black',
     textAlign: 'left',
+    fontFamily: fontFamily.regular,
   },
   head: {
-    fontWeight: '600',
+    fontSize: fontsSizes.head,
   },
   H1: {
     fontSize: fontsSizes.H1,
@@ -25,7 +26,7 @@ export default StyleSheet.create({
     fontSize: fontsSizes.p,
   },
   bold: {
-    fontWeight: 'bold',
+    fontFamily: fontFamily.bold,
   },
   error: {
     color: 'red',
