@@ -21,8 +21,10 @@ export const ToolBar = ({ richTextRef }: ToolBarProps) => {
         redo: () => <List.Icon icon={'redo'} />,
         underline: () => <List.Icon icon={'format-underline'} />,
         italic: () => <List.Icon icon={'format-italic'} />,
-        setBold: () => <List.Icon icon={'format-bold'} />,
-        orderedList: () => <List.Icon icon={'format-list-numbered'} />,
+        bold: () => <List.Icon icon={'format-bold'} />,
+        justifyLeft: () => <List.Icon icon={'format-align-left'} />,
+        justifyCenter: () => <List.Icon icon={'format-align-center'} />,
+        justifyRight: () => <List.Icon icon={'format-align-right'} />,
         unorderedList: () => <List.Icon icon={'format-list-group'} />,
         image: () => <List.Icon icon={'file-image-plus'} />,
       }}

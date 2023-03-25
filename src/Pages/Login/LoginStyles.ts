@@ -17,7 +17,12 @@ export default StyleSheet.create({
   },
   text: { color: 'white' },
   buttonCon: { width: '100%', flex: 1, alignItems: 'center', paddingTop: 50 },
-  button: { width: '80%', height: 50, justifyContent: 'center' },
+  button: {
+    width: '80%',
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   subText: { paddingTop: 20, flexDirection: 'row' },
   SignIn: {
     color: 'red',

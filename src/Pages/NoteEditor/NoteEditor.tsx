@@ -89,7 +89,6 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
               autoCapitalize={'off'}
               onChange={richTextHandle}
               initialContentHTML={descHTML}
-              editorStyle={{}}
               placeholder="Write your note here..."
               androidHardwareAccelerationDisabled={true}
               style={styles.richTextEditorStyle}

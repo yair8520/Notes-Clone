@@ -26,7 +26,7 @@ export default StyleSheet.create({
     fontSize: fontsSizes.p,
   },
   bold: {
-    fontFamily: fontFamily.medium,
+    fontWeight: '800',
   },
   error: {
     color: 'red',

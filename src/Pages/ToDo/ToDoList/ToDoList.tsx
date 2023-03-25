@@ -12,6 +12,7 @@ import { useAppDispatch } from '../../../Redux';
 import {
   addTodo,
   deleteTodo,
+  removeSection,
   setChecked,
   setTodos,
   setTodoTitle,
@@ -42,6 +43,7 @@ export const ToDoList = ({ data, sectionId }: ToDoListProps) => {
     [dispatch, sectionId]
   );
   const onAddTodo = () => dispatch(addTodo({ sectionId }));
+  const onDeleteSection = () => dispatch(removeSection({ sectionId }));
 
   const renderItem = ({
     item,
@@ -71,10 +73,16 @@ export const ToDoList = ({ data, sectionId }: ToDoListProps) => {
         dragItemOverflow={false}
         keyExtractor={(item) => item.id}
         ListFooterComponent={() => (
-          <TouchableOpacity style={styles.add} onPress={onAddTodo}>
-            <List.Icon color={'#c7524b'} icon={'plus'} />
-            <NText variant="H3">Add Task</NText>
-          </TouchableOpacity>
+          <View style={styles.footer}>
+            <TouchableOpacity style={styles.add} onPress={onAddTodo}>
+              <List.Icon color={'#c7524b'} icon={'plus'} />
+              <NText variant="H3">Task</NText>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.add} onPress={onDeleteSection}>
+              <List.Icon color={'#c7524b'} icon={'minus'} />
+              <NText variant="H3">Section</NText>
+            </TouchableOpacity>
+          </View>
         )}
         renderItem={renderItem}
       />

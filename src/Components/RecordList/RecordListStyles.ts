@@ -11,11 +11,11 @@ export default StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
   },
+  list: { width: '100%' },
   icon: {
     width: 150,
     height: 150,
   },
-  list: { width: '100%' },
   iconContainer: {
     alignSelf: 'center',
     width: '95%',

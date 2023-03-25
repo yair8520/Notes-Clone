@@ -36,3 +36,10 @@ export const sortTodo = (array: ITodoItem[]) => {
 export const getNextHeadLine = (array: IRecord[]) => {
   return `Record ${array.length + 1}`;
 };
+export const fireBaseAuthErrorMsg: { [key: string]: any } = {
+  'auth/weak-password': 'Password should be at least 6 characters',
+  'auth/invalid-email': 'That email address is invalid!',
+  'auth/email-already-in-use': 'That email address is already in use!',
+  'auth/user-not-found': 'That email address is not registered!',
+  'auth/wrong-password': 'Incorrect password!',
+};

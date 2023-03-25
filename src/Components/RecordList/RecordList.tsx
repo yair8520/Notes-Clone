@@ -10,9 +10,9 @@ import { setRecordTitle } from '../../Features/Record/RecordSlice';
 import { NText } from '../Text';
 import { List } from 'react-native-paper';
 import { useModal } from 'react-native-modalfy';
-import Lottie from 'lottie-react-native';
 import { askPermission } from '../FloatingButton/helpers';
 import { addMessage } from '../../Features/Links/LinkSlice';
+import Lottie from 'lottie-react-native';
 const PressArrow = require('../../Assets/Images/PressArrow.json');
 export const RecordList = ({ array }: RecordListProps) => {
   const dispatch = useAppDispatch();

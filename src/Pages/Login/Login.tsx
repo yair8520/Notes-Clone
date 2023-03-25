@@ -39,7 +39,10 @@ export const Login = ({}: LoginProps) => {
   };
   return (
     <Layout>
-      <ScrollView keyboardShouldPersistTaps={'handled'}>
+      <ScrollView
+        keyboardShouldPersistTaps={'handled'}
+        keyboardDismissMode={'on-drag'}
+      >
         <View style={styles.container}>
           <View style={styles.header}>
             <Lottie

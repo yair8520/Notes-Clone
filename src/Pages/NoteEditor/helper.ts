@@ -1,16 +1,18 @@
+/* eslint-disable curly */
 import { MutableRefObject } from 'react';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { actions, RichEditor } from 'react-native-pell-rich-editor';
 
 export const actionList = [
   actions.insertImage,
-  actions.setBold,
   actions.insertBulletsList,
-  actions.insertOrderedList,
+  actions.setBold,
   actions.setItalic,
   actions.setUnderline,
+  actions.alignLeft,
+  actions.alignCenter,
+  actions.alignRight,
   actions.undo,
-
   actions.redo,
   actions.keyboard,
 ];

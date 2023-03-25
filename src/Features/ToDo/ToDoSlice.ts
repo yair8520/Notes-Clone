@@ -36,6 +36,9 @@ const TodoSlice = createSlice({
         items: [],
       };
     },
+    removeSection: (state, { payload }: { payload: { sectionId: string } }) => {
+      delete state.todoArray[payload.sectionId];
+    },
     addTodo: (state, { payload }: { payload: { sectionId: string } }) => {
       const id = uid(16);
       state.todoArray[payload.sectionId].items.push({
@@ -95,6 +98,7 @@ export const {
   deleteTodo,
   setTodoTitle,
   addTodo,
+  removeSection,
   sortListTodo,
   setInitialTodos,
 } = TodoSlice.actions;

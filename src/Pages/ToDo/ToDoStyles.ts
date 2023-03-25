@@ -13,4 +13,18 @@ export default StyleSheet.create({
     width: '95%',
     alignSelf: 'center',
   },
+
+  icon: {
+    width: 150,
+    height: 150,
+  },
+  iconContainer: {
+    alignSelf: 'center',
+    width: '95%',
+    transform: [{ scaleY: -1 }, { rotate: '180deg' }],
+  },
+  textContainer: {
+    paddingTop: 25,
+    alignSelf: 'center',
+  },
 });

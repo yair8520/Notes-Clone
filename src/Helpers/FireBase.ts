@@ -1,5 +1,6 @@
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import { fireBaseAuthErrorMsg } from './helper';
 const collectionRef = firestore().collection('users');
 
 export const signOut = () =>
@@ -11,25 +12,27 @@ export const signInToFirebase = ({ email, pass }: any) =>
     .signInWithEmailAndPassword(email, pass)
     .then((userCredential) => {
       const { user } = userCredential;
-      console.log('Signed in user:', user);
       return user;
     })
     .catch((error) => {
-      console.log({ error });
       if (error.code === 'auth/user-not-found') {
         throw {
           field: 'errorEmail',
-          value: 'That email address is not registered!',
+          value: fireBaseAuthErrorMsg[error.code],
         };
       }
       if (error.code === 'auth/wrong-password') {
         throw {
           field: 'errorPass',
-          value: 'Incorrect password!',
+          value: fireBaseAuthErrorMsg[error.code],
         };
       }
-
-      console.log(error);
+      if (error.code === 'auth/invalid-email') {
+        throw {
+          field: 'errorEmail',
+          value: fireBaseAuthErrorMsg[error.code],
+        };
+      }
     });
 export const createAccount = ({ email, pass }: any) =>
   auth()
@@ -41,19 +44,19 @@ export const createAccount = ({ email, pass }: any) =>
       if (error.code === 'auth/email-already-in-use') {
         throw {
           field: 'errorEmail',
-          value: 'That email address is already in use!',
+          value: fireBaseAuthErrorMsg[error.code],
         };
       }
       if (error.code === 'auth/invalid-email') {
         throw {
           field: 'errorEmail',
-          value: 'That email address is invalid!',
+          value: fireBaseAuthErrorMsg[error.code],
         };
       }
       if (error.code === 'auth/weak-password') {
         throw {
           field: 'errorPass',
-          value: 'Password should be at least 6 characters',
+          value: fireBaseAuthErrorMsg[error.code],
         };
       }
 
