@@ -21,7 +21,7 @@ export const Loading = ({ navigation }: LoadingProps) => {
           loop={true}
           style={{ height: 500, width: 500 }}
         />
-        <NText>Retrieving your data...</NText>
+        <NText variant="H3">Retrieving your data...</NText>
       </View>
     </Layout>
   );

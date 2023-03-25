@@ -53,6 +53,8 @@ export const Login = ({}: LoginProps) => {
           <View style={styles.inputCon}>
             <ShakeView error={!!info.errorEmail}>
               <NInput
+                autoComplete={'email'}
+                textContentType="username"
                 error={!!info.errorEmail}
                 label="Email "
                 errorText={info.errorEmail}
@@ -62,6 +64,8 @@ export const Login = ({}: LoginProps) => {
             </ShakeView>
             <ShakeView error={!!info.errorPass}>
               <NInput
+                textContentType={'password'}
+                autoComplete={'password'}
                 secure={true}
                 error={!!info.errorPass}
                 label="Password"

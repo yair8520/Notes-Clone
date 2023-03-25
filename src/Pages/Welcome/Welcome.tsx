@@ -14,9 +14,11 @@ import { getUserInfo } from '../../Features/General/GeneralSelectors';
 import { RecordList } from '../../Components/RecordList';
 import { getRecords } from '../../Features/Record/RecordSelectors';
 import Lottie from 'lottie-react-native';
+import useBackButton from '../../Hooks/useBackHandler/useBackHandler';
 const WelcomeAnim = require('../../Assets/Images/WelcomeAnim.json');
 
 export const Welcome = ({ navigation }: WelcomeProps) => {
+  useBackButton();
   const categories = useAppSelector(getCategories);
   const records = useAppSelector(getRecords);
   const user = useAppSelector(getUserInfo);

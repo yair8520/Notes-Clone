@@ -35,24 +35,12 @@ const NotesSlice = createSlice({
       }
     },
     addCategory: (state, { payload }: { payload: ICategories }) => {
-      state.categories.push(payload);
+      state.categories.unshift(payload);
       addToFirestore('categories', state.categories);
-    },
-    addRecord: (
-      state,
-      { payload }: { payload: { noteId: string; file: string } }
-    ) => {
-      state.notesArray[payload.noteId].record = payload.file;
     },
   },
 });
 
-export const {
-  addNote,
-  removeNote,
-  addCategory,
-  lockNote,
-  addRecord,
-  setInitialNotes,
-} = NotesSlice.actions;
+export const { addNote, removeNote, addCategory, lockNote, setInitialNotes } =
+  NotesSlice.actions;
 export default NotesSlice.reducer;

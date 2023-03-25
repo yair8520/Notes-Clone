@@ -1,5 +1,5 @@
 /* eslint-disable quotes */
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback } from 'react-native';
 import React, { useState } from 'react';
 import styles from './RecordModalStyles';
 import { useAppDispatch } from '../../Redux';
@@ -44,34 +44,38 @@ export const RecordModal = ({ modal: { closeModal } }: any) => {
     );
   };
   return (
-    <View style={styles.centeredView}>
-      <View style={styles.body}>
-        <Layout style={[styles.modalView]}>
-          <View style={styles.inputCon}>
-            {player.isRecording ? (
-              <Lottie source={SoundAnim} autoPlay style={styles.icon} />
-            ) : (
-              <Lottie
-                source={MiceAnim}
-                autoPlay
-                loop={false}
-                style={styles.icon}
-              />
-            )}
+    <TouchableWithoutFeedback onPress={() => closeModal()}>
+      <View style={styles.centeredView}>
+        <View style={styles.body}>
+          <View onStartShouldSetResponder={() => true}>
+            <Layout style={[styles.modalView]}>
+              <View style={styles.inputCon}>
+                {player.isRecording ? (
+                  <Lottie source={SoundAnim} autoPlay style={styles.icon} />
+                ) : (
+                  <Lottie
+                    source={MiceAnim}
+                    autoPlay
+                    loop={false}
+                    style={styles.icon}
+                  />
+                )}
+              </View>
+              {!!player.currentPosition && (
+                <NText variant="H2">{player.currentPosition}</NText>
+              )}
+              <View style={styles.button}>
+                <IconButton
+                  icon={player.isRecording ? 'stop' : 'record-circle-outline'}
+                  iconColor={player.isRecording ? '#66ccff' : 'red'}
+                  size={50}
+                  onPress={pressHandler}
+                />
+              </View>
+            </Layout>
           </View>
-          {!!player.currentPosition && (
-            <NText variant="H2">{player.currentPosition}</NText>
-          )}
-          <View style={styles.button}>
-            <IconButton
-              icon={player.isRecording ? 'stop' : 'record-circle-outline'}
-              iconColor={player.isRecording ? '#66ccff' : 'red'}
-              size={50}
-              onPress={pressHandler}
-            />
-          </View>
-        </Layout>
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 };

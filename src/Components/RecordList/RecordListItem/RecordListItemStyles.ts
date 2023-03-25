@@ -16,6 +16,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
   },
   text: { color: 'black' },
+  dateText: { color: 'white' },
   recordContainer: {
     width: '100%',
     flex: 1,
@@ -48,6 +49,6 @@ export default StyleSheet.create({
     width: 50,
     borderRadius: 1000,
   },
-  input: { flex: 4, paddingLeft: 15 },
+  input: { flex: 4, paddingLeft: 15, color: 'white' },
   clock: { width: 15, height: 15 },
 });

@@ -44,16 +44,21 @@ export const RecordListItem = ({
                 setIsDisabled(!IsDisabled);
               }}
             >
-              <NText variant="H3" numberOfLines={1} adjustsFontSizeToFit>
+              <NText
+                variant="H3"
+                numberOfLines={1}
+                adjustsFontSizeToFit
+                style={styles.dateText}
+              >
                 {data.headline}
               </NText>
             </TextInput>
           </TouchableOpacity>
           <View style={styles.date}>
-            <NText variant="p" style={styles.text}>
+            <NText variant="p" style={styles.dateText}>
               {data.time}
             </NText>
-            <NText variant="p" style={styles.text}>
+            <NText variant="p" style={styles.dateText}>
               {data.date}
             </NText>
           </View>

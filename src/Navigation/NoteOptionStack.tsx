@@ -24,6 +24,13 @@ export function DrawerNav() {
       }}
     >
       <Drawer.Screen
+        name={'Welcome'}
+        component={Welcome}
+        options={{
+          drawerItemStyle: { display: 'none' },
+        }}
+      />
+      <Drawer.Screen
         name={'Links'}
         component={Links}
         options={{
@@ -33,13 +40,6 @@ export function DrawerNav() {
       <Drawer.Screen
         name={'Todo'}
         component={ToDo}
-        options={{
-          drawerItemStyle: { display: 'none' },
-        }}
-      />
-      <Drawer.Screen
-        name={'Welcome'}
-        component={Welcome}
         options={{
           drawerItemStyle: { display: 'none' },
         }}

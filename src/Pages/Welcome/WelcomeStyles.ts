@@ -5,7 +5,7 @@ export default StyleSheet.create({
     borderBottomLeftRadius: 50,
     border: -50,
     width: '100%',
-    height: 250,
+    height: 300,
   },
   tip: {
     position: 'absolute',
@@ -23,7 +23,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
   },
   icon: { width: 60, height: 60 },
-  lottie: { width: 50, height: 50 },
+  lottie: { width: 100, height: 80 },
   iconContainer: { height: '20%', width: '100%' },
   headline: {
     alignItems: 'flex-start',

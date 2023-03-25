@@ -7,7 +7,7 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import { List, Switch } from 'react-native-paper';
-import { useModal } from 'react-native-modalfy';
+
 import { Drawer } from 'react-native-paper';
 import { useAppDispatch, useAppSelector } from '../../Redux';
 import { setDarkMode } from '../../Features/General/GeneralSlice';
@@ -20,7 +20,6 @@ import { useDrawerStatus } from '@react-navigation/drawer';
 import { DrawerDivider } from './DrawerDivider';
 
 export const NDrawerContent = (props: any) => {
-  const { openModal } = useModal();
   const { email } = useAppSelector(getUserInfo);
   const [isSwitchOn, setIsSwitchOn] = React.useState(false);
   const dispatch = useAppDispatch();
@@ -59,6 +58,11 @@ export const NDrawerContent = (props: any) => {
       </View>
       <DrawerDivider text={'Settings'} />
       <Drawer.Item
+        label="Home"
+        icon={() => <List.Icon icon={'home'} />}
+        onPress={() => props.navigation.navigate('Welcome')}
+      />
+      <Drawer.Item
         theme={{
           colors: {
             onSurfaceVariant: 'red',
@@ -86,16 +90,7 @@ export const NDrawerContent = (props: any) => {
           />
         )}
       />
-      <Drawer.Item
-        label="Add Category"
-        icon={() => <List.Icon icon="plus" />}
-        onPress={() => openModal('InfoModal')}
-      />
-      <Drawer.Item
-        label="Welcome"
-        icon={() => <List.Icon icon={'home'} />}
-        onPress={() => props.navigation.navigate('Welcome')}
-      />
+
       <DrawerDivider text={'To Do'} />
       <Drawer.Item
         label="ToDo"
