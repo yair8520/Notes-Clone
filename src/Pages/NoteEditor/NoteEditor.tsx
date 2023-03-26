@@ -1,5 +1,5 @@
 /* eslint-disable curly */
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, Dimensions } from 'react-native';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { NoteEditorProps } from './NoteEditorProps';
 import styles from './NoteEditorStyles';
@@ -79,13 +79,12 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
                   <ActivityIndicator
                     size={'large'}
                     animating={true}
-                    color={'blue'}
+                    color={'grey'}
                   />
                 </View>
               )}
               startInLoadingState={true}
               ref={richTextRef}
-              forceDarkOn={isDark}
               autoCapitalize={'off'}
               editorStyle={isDark ? styles.darkEditor : styles.lightEditor}
               onChange={richTextHandle}
@@ -94,7 +93,8 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
               androidHardwareAccelerationDisabled={true}
               style={styles.richTextEditorStyle}
               allowsLinkPreview={true}
-              initialHeight={450}
+              minimumFontSize={22}
+              initialHeight={Dimensions.get('screen').height * 0.72}
             />
           </View>
         </ScrollView>

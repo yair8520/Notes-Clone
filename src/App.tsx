@@ -3,7 +3,7 @@ import { NSnackBar } from './Components/NSnackBar';
 import { getTheme } from './Features/General/GeneralSelectors';
 import { getMessage } from './Features/Links/LinksSelectors';
 import AppRouter from './Navigation/AppRouter';
-import { useAppSelector } from './Redux';
+import { useAppDispatch, useAppSelector } from './Redux';
 import {
   DefaultTheme,
   DarkTheme,
@@ -16,9 +16,13 @@ import { ModalProvider } from 'react-native-modalfy';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { darkTheme, lightTheme } from './Theme/Colors';
 import { useAuthStateChanged } from './Hooks/useAuthStateChanged';
+import useDarkModeListener from './Hooks/useDarkModeListener/useDarkModeListener';
+import { setDarkMode } from './Features/General/GeneralSlice';
 
 const App = () => {
+  const dispatch = useAppDispatch();
   useAuthStateChanged();
+  useDarkModeListener(() => dispatch(setDarkMode()));
   const isDark = useAppSelector(getTheme);
   const msg = useAppSelector(getMessage);
   console.log(msg);

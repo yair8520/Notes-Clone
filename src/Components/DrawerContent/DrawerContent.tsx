@@ -14,14 +14,15 @@ import { setDarkMode } from '../../Features/General/GeneralSlice';
 import { RotateView } from '../Animations/RotateView';
 import { signOut } from '../../Helpers/FireBase';
 import { NText } from '../Text';
-import { getUserInfo } from '../../Features/General/GeneralSelectors';
+import { getTheme, getUserInfo } from '../../Features/General/GeneralSelectors';
 import Lottie from 'lottie-react-native';
 import { useDrawerStatus } from '@react-navigation/drawer';
 import { DrawerDivider } from './DrawerDivider';
 
 export const NDrawerContent = (props: any) => {
   const { email } = useAppSelector(getUserInfo);
-  const [isSwitchOn, setIsSwitchOn] = React.useState(false);
+  const isDark = useAppSelector(getTheme);
+  const [isSwitchOn, setIsSwitchOn] = React.useState(isDark);
   const dispatch = useAppDispatch();
   const onToggleSwitch = () => {
     dispatch(setDarkMode());
