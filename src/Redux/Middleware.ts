@@ -20,7 +20,11 @@ const firestoreMiddleware = (store: any) => (next: any) => (action: any) => {
     addToFirestore('Links', state.link.links);
   } else if (
     action.type === 'Todo/addTodo' ||
-    action.type === 'Todo/setTodos' ||
+    action.type === 'Todo/addTodoItem' ||
+    action.type === 'Todo/addTodoSection' ||
+    action.type === 'Todo/removeSection' ||
+    action.type === 'Todo/deleteTodo' ||
+    action.type === 'Todo/setTodoTitle' ||
     action.type === 'Todo/setChecked'
   ) {
     addToFirestore('Todo', state.todo.todoArray);

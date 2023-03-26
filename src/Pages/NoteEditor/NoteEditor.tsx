@@ -87,6 +87,7 @@ export const NoteEditor = ({ navigation, route }: NoteEditorProps) => {
               ref={richTextRef}
               forceDarkOn={isDark}
               autoCapitalize={'off'}
+              editorStyle={isDark ? styles.darkEditor : styles.lightEditor}
               onChange={richTextHandle}
               initialContentHTML={descHTML}
               placeholder="Write your note here..."

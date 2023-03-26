@@ -10,6 +10,8 @@ export default StyleSheet.create({
     alignSelf: 'center',
     paddingTop: 15,
   },
+  darkEditor: { backgroundColor: 'black', color: 'white' },
+  lightEditor: { backgroundColor: 'white', color: 'black' },
   title: {
     marginTop: 25,
     width: '90%',
