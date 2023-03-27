@@ -17,8 +17,6 @@
 - [React Native Paper](https://github.com/callstack/react-native-paper)
 > Cross-platform Material Design for React Native.
 
-- [React Native Modalfy](https://github.com/colorfy-software/react-native-modalfy)
-> Modals Context Manager
 
 
 ## Requirements
