@@ -49,9 +49,9 @@ https://user-images.githubusercontent.com/66212863/227953034-4ca6f8a6-0761-40f3-
 
 
 ### Notes:
+1.filtering and deleting
 
-
-https://user-images.githubusercontent.com/66212863/227953361-6b7d20c1-780d-4a0a-a98d-a4e168baa5e7.mp4
+https://user-images.githubusercontent.com/66212863/227958645-216ebe3b-063a-4c20-aa23-ca1d8b3e3318.mp4
 
 
 ### Links :
