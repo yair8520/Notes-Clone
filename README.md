@@ -47,43 +47,30 @@ https://user-images.githubusercontent.com/66212863/227952067-9594ffc1-9007-4196-
 
 ### Home Page: Notes Folders and Voice Memo's
 
-
-
+https://user-images.githubusercontent.com/66212863/227953034-4ca6f8a6-0761-40f3-b8d3-c25c6e91a97a.mp4
 
 
 ### Notes:
 
 
+https://user-images.githubusercontent.com/66212863/227953361-6b7d20c1-780d-4a0a-a98d-a4e168baa5e7.mp4
 
 
 ### Links :
 
 
+https://user-images.githubusercontent.com/66212863/227953488-d1bed1ca-d144-47b4-8b02-6d9b71cec80f.mp4
+
 
 ### todo:
 
 
+https://user-images.githubusercontent.com/66212863/227953685-0d371bef-e4bb-453b-a3b2-54921baa5be8.mp4
 
 
-### Dark Mode:
+### Full Dark Mode support:
 
-
-
-
-### filter and delete Links and Notes:
-
-
-
-
- ### Lock Note and Hide Links with password Pattern:
-
-
-
-
- ### Full Dark Mode support:
-
-
-
+https://user-images.githubusercontent.com/66212863/227953744-e3010bc9-5360-45da-8256-d9ac3eaac3b5.mp4
 
 
  
