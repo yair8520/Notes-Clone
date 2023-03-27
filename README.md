@@ -8,6 +8,9 @@
 - [React Native](https://github.com/facebook/react-native)
 > A framework for building native apps with React.
 
+- [React Native Firebase](https://rnfirebase.io/)
+> Collection of packages that brings React Native support for all Firebase services on both Android and iOS apps.
+
 - [Redux Toolkit](https://github.com/reduxjs/redux-toolkit)
 > Redux-Toolkit State Management.
 
@@ -38,56 +41,47 @@ react-native run-android
 
 ## Demonstration
 
-### lists:  and option to export to content into PDF file
+### login and register: with firebase Auth
 
+https://user-images.githubusercontent.com/66212863/227952067-9594ffc1-9007-4196-94fa-a96edc0947f4.mp4
 
-https://user-images.githubusercontent.com/66212863/221363014-a6673158-24d7-4f9d-bbdb-d510a468e4f3.mp4
-
-
-### Add images to the Note from gallery:
-
-
-https://user-images.githubusercontent.com/66212863/221363649-fe2fe4f2-7c88-4fae-b6da-84f02d7a96ee.mp4
-
-
-### Record voice Memo,and share as mp3 file:
-
-https://user-images.githubusercontent.com/66212863/221363762-0f5dd339-a286-455b-87fe-c4b1137fbad8.mp4
+### Home Page: Notes Folders and Voice Memo's
 
 
 
-### Add notes Category :
-
-https://user-images.githubusercontent.com/66212863/221363703-b30f29ec-3d10-4f92-affd-751cac411dcc.mp4
 
 
- ### Changing the note category through the editor:
+### Notes:
 
 
-https://user-images.githubusercontent.com/66212863/221363787-12629567-c708-4656-a879-40c636336f74.mp4
 
 
-### Links Section where you can store your favorite links,option and tools:
+### Links :
 
 
-https://user-images.githubusercontent.com/66212863/221363952-17710b7a-e727-4619-9bf4-d7643900e24d.mp4
+
+### todo:
+
+
+
+
+### Dark Mode:
+
+
 
 
 ### filter and delete Links and Notes:
 
 
-https://user-images.githubusercontent.com/66212863/221364064-7200223b-3c50-41e8-9f3c-5b895728f37e.mp4
 
 
  ### Lock Note and Hide Links with password Pattern:
 
 
-https://user-images.githubusercontent.com/66212863/221364554-8bc380c3-e7c7-456f-82b1-9fe6c6e74cfc.mp4
 
 
  ### Full Dark Mode support:
 
-https://user-images.githubusercontent.com/66212863/221364231-0db620b1-44ca-47cc-987d-501cf39ad90a.mp4
 
 
 
